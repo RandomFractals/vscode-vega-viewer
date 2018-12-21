@@ -1,8 +1,12 @@
 {
     "name": "vscode-vega-viewer",
-    "displayName": "VscodeVegaViewer",
-    "description": "Vs Code Vega Viewer",
+    "displayName": "Vega Viewer",
+    "description": "Vega Viewer",
     "version": "0.0.1",
+    "publisher": "Random Fractals, Inc.",
+    "repository": {
+        "url": "https://github.com/RandomFractals/vscode-vega-viewer"
+    },
     "engines": {
         "vscode": "^1.30.0"
     },
@@ -10,14 +14,14 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello"
+        "onCommand:extension.showVegaView"
     ],
     "main": "./out/extension",
     "contributes": {
         "commands": [
             {
-                "command": "extension.sayHello",
-                "title": "Hello World"
+                "command": "extension.showVegaView",
+                "title": "Vega Viewer: Show Preview"
             }
         ]
     },
@@ -34,5 +38,9 @@
         "tslint": "^5.8.0",
         "@types/node": "^8.10.25",
         "@types/mocha": "^2.2.42"
+    },
+    "dependencies": {
+        "vega": "^4.4.0",
+        "vega-lite": "^3.0.0-rc10"
     }
 }

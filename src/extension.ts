@@ -1,29 +1,49 @@
 'use strict';
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-
-    // Use the console to output diagnostic information (console.log) and errors (console.error)
-    // This line of code will only be executed once when your extension is activated
-    console.log('Congratulations, your extension "vscode-vega-viewer" is now active!');
-
-    // The command has been defined in the package.json file
-    // Now provide the implementation of the command with  registerCommand
-    // The commandId parameter must match the command field in package.json
-    let disposable = vscode.commands.registerCommand('extension.sayHello', () => {
-        // The code you place here will be executed every time your command is executed
-
-        // Display a message box to the user
-        vscode.window.showInformationMessage('Hello World!');
+    console.log('vega-viewer is now active!');
+    let disposable = vscode.commands.registerCommand('extension.showVegaView', () => {
+        //vscode.window.showInformationMessage('Hello Vega!');
+        const panel = vscode.window.createWebviewPanel(
+            'vega-viewer', 'Vega Viewer',
+            vscode.ViewColumn.One,
+            {
+                enableScripts: true,
+                retainContextWhenHidden: true
+            });
+        panel.webview.html = getVegaWebviewHtml();
     });
-
     context.subscriptions.push(disposable);
 }
 
-// this method is called when your extension is deactivated
 export function deactivate() {
+}
+
+function getVegaWebviewHtml() {
+    return `<!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Vega Viewer</title>
+                <script src="https://cdn.jsdelivr.net/npm/vega@4.4"></script>
+                <script src="https://cdn.jsdelivr.net/npm/vega-lite@3.0.0-rc10"></script>
+                <script src="https://cdn.jsdelivr.net/npm/vega-embed@3.26.1"></script>
+                <style>
+                    body {
+                        background-color: #fff;
+                    }
+                </style>
+            </head>
+            <body>
+                <div id="vis"></div>
+                <script type="text/javascript">
+                    var spec = "https://raw.githubusercontent.com/vega/vega/master/docs/examples/bar-chart.vg.json";
+                    vegaEmbed('#vis', spec).then(function(result) {
+                        // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+                    }).catch(console.error);
+            </script>
+            </body>
+        </html>`;
 }

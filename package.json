@@ -1,46 +1,106 @@
 {
-    "name": "vscode-vega-viewer",
-    "displayName": "Vega Viewer",
-    "description": "Vega Viewer",
-    "version": "0.0.1",
-    "publisher": "Random Fractals, Inc.",
-    "repository": {
-        "url": "https://github.com/RandomFractals/vscode-vega-viewer"
-    },
-    "engines": {
-        "vscode": "^1.30.0"
-    },
-    "categories": [
-        "Other"
+  "name": "vscode-vega-viewer",
+  "displayName": "Vega Viewer",
+  "description": "Vega Viewer",
+  "version": "0.0.1",
+  "publisher": "Random Fractals, Inc.",
+  "author": "Taras Novak",
+  "contributors": ["Taras Novak"],
+  "license": "MIT",
+  "readme": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RandomFractals/vscode-vega-viewer"
+  },
+  "bugs": "https://github.com/RandomFractals/vscode-vega-viewer/issues",
+  "homepage": "https://github.com/RandomFractals/vscode-vega-viewer/README.md",
+  "keywords": [
+    "vega",
+    "vega-lite",
+    "viewer",
+    "preview"
+  ],
+  "engines": {
+    "vscode": "^1.30.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onCommand:vega.preview"
+  ],
+  "main": "./out/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "vega.preview",
+        "title": "Preview",
+        "category": "Vega"
+      }
     ],
-    "activationEvents": [
-        "onCommand:extension.showVegaView"
+    "keybindings": [
+      {
+        "command": "vega.preview",
+        "key": "ctrl+alt+v"
+      }
     ],
-    "main": "./out/extension",
-    "contributes": {
-        "commands": [
-            {
-                "command": "extension.showVegaView",
-                "title": "Vega Viewer: Show Preview"
-            }
-        ]
-    },
-    "scripts": {
-        "vscode:prepublish": "npm run compile",
-        "compile": "tsc -p ./",
-        "watch": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "npm run compile && node ./node_modules/vscode/bin/test"
-    },
-    "devDependencies": {
-        "typescript": "^3.1.4",
-        "vscode": "^1.1.25",
-        "tslint": "^5.8.0",
-        "@types/node": "^8.10.25",
-        "@types/mocha": "^2.2.42"
-    },
-    "dependencies": {
-        "vega": "^4.4.0",
-        "vega-lite": "^3.0.0-rc10"
+    "languages": [
+      {
+        "id": "json",
+        "aliases": ["vega"],
+        "extensions": [".vega", ".vg.", ".vg.json", ".vl", ".vl.json"]
+      }
+    ],
+    "jsonValidation": [
+      {
+        "fileMatch": "*.vg.json",
+        "url": "https://vega.github.io/schema/vega/v4.json"
+      },
+      {
+        "fileMatch": "*.vl.json",
+        "url": "https://vega.github.io/schema/vega-lite/v3.json"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "when": "resourceExtname == .vega || resourceExtname == .vg || resourceExtname == .vg.json || resourceExtname == .vl || resourceExtname == .vl.json",
+          "command": "vega.preview",
+          "group": "navigation"
+        }
+      ],
+      "editor/title": [
+        {
+          "when": "resourceExtname == .vega || resourceExtname == .vg || resourceExtname == .vg.json || resourceExtname == .vl || resourceExtname == .vl.json",
+          "command": "vega.preview",
+          "group": "navigation"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "when": "resourceExtname == .vega || resourceExtname == .vg || resourceExtname == .vg.json || resourceExtname == .vl || resourceExtname == .vl.json",
+          "command": "vega.preview",
+          "group": "navigation"
+        }
+      ]
     }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "npm run compile && node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "typescript": "^3.1.4",
+    "vscode": "^1.1.25",
+    "tslint": "^5.8.0",
+    "@types/node": "^8.10.25",
+    "@types/mocha": "^2.2.42"
+  },
+  "dependencies": {
+    "vega": "^4.4.0",
+    "vega-lite": "^3.0.0-rc10"
+  }
 }

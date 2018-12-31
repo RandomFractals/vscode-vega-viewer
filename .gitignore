@@ -2,5 +2,5 @@ out
 node_modules
 .vscode-test/
 *.vsix
-test/examples
-test/vega-examples.ts
+src/test/examples
+src/test/vega-examples.ts

@@ -5,7 +5,9 @@
   "version": "0.0.1",
   "publisher": "Random Fractals, Inc.",
   "author": "Taras Novak",
-  "contributors": ["Taras Novak"],
+  "contributors": [
+    "Taras Novak"
+  ],
   "license": "MIT",
   "readme": "README.md",
   "repository": {
@@ -47,8 +49,18 @@
     "languages": [
       {
         "id": "json",
-        "aliases": ["vega"],
-        "extensions": [".vega", ".vg.", ".vg.json", ".vl", ".vl.json"]
+        "aliases": [
+          "Vega",
+          "vg",
+          "vl"
+        ],
+        "extensions": [
+          ".vega",
+          ".vg.",
+          ".vg.json",
+          ".vl",
+          ".vl.json"
+        ]
       }
     ],
     "jsonValidation": [
@@ -101,6 +113,7 @@
   },
   "dependencies": {
     "vega": "^4.4.0",
-    "vega-lite": "^3.0.0-rc10"
+    "vega-lite": "^3.0.0-rc10",
+    "vega-embed": "^3.28.0"
   }
 }

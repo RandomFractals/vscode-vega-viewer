@@ -8,77 +8,68 @@ import {
   Uri, 
   ViewColumn, 
   TextDocument, 
-  Webview,
-  WebviewPanel
 } from "vscode";
-
-const PreviewCommand = "vega.preview";
+import VegaPreview from './vega.preview';
+import {PreviewManager, previewManager} from './preview.manger';
 
 export function activate(context: ExtensionContext) {
-  console.log("vega.viewer is now active!");
-  let disposable: Disposable = commands.registerCommand(
-    PreviewCommand, (uri) => {
-      let resource: Uri = uri;
-
-      // get vega file info
-      resource = window.activeTextEditor.document.uri;
-      const filePath = resource.path;
-      const fileName = filePath.substr(filePath.lastIndexOf('/') + 1);
-
-      // create preview panel
-      const webviewOptions = {
-        enableScripts: true,
-        enableCommandUris: true,
-        retainContextWhenHidden: true
-      };
-      const panel:WebviewPanel = window.createWebviewPanel(
-        PreviewCommand,
-        `Preview ${fileName}`,
-        getViewColumn(),
-        webviewOptions
-      );
-      panel.webview.html = getVegaWebviewHtml();
+  // Vega: Preview
+  let vegaWebview: Disposable = commands.registerCommand('vega.preview', (uri) => {
+    let resource: any = uri;
+    let viewColumn: ViewColumn = getViewColumn();
+    if (!(resource instanceof Uri)) {
+      if (window.activeTextEditor) {
+        resource = window.activeTextEditor.document.uri;
+      } else {
+        window.showInformationMessage('Open a Vega file first to Preview.');
+        return;
+      }
     }
-  );
+    const preview: VegaPreview = new VegaPreview(context, resource, viewColumn);
+    return preview.webview;
+  });
 
-  // add disposables to subscriptions
-  context.subscriptions.push(disposable);
+  // Add disposable commands to subscriptions
+  context.subscriptions.push(vegaWebview);
+
+  // Refresh associated preview on Vega file save
+  workspace.onDidSaveTextDocument(document => {
+    if (isVegaFile(document)) {
+      const uri: Uri = document.uri.with({scheme: 'vega-preview'});
+      const preview: VegaPreview = previewManager.find(uri);
+      if (preview) {
+        preview.refresh();
+      }
+    }
+  });
+
+  // Reset associated preview on Vega file change
+  workspace.onDidChangeTextDocument(args => {
+    if (isVegaFile(args.document)) {
+      const uri: Uri = args.document.uri.with({scheme: 'vega-preview'});
+      const preview: VegaPreview = previewManager.find(uri);
+      if (preview && args.contentChanges.length > 0) {
+        preview.refresh();
+      }
+    }
+  });
+
+  // Reset all previews on config change
+  workspace.onDidChangeConfiguration(() => {
+    previewManager.configure();
+  });
+
+} // end of activate()
+
+export function deactivate() {
 }
 
-export function deactivate() {}
+function isVegaFile(document: TextDocument) {
+  // TODO
+  return true;
+}
 
 function getViewColumn(): ViewColumn {
   const activeEditor = window.activeTextEditor;
   return activeEditor ? (activeEditor.viewColumn + 1) : ViewColumn.One;
-}
-
-function getVegaWebviewHtml() {
-  return `<!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta http-equiv="Content-Security-Policy" 
-          content="default-src * 'unsafe-inline' 'unsafe-eval'; frame-src *;">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Vega Preview</title>
-        <script src="https://cdn.jsdelivr.net/npm/vega@4.4"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vega-lite@3.0.0-rc10"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vega-embed@3.26.1"></script>
-        <style>
-          body {
-            background-color: #fff;
-          }
-        </style>
-      </head>
-      <body>
-        <div id="vis"></div>
-        <script type="text/javascript">
-          var spec = //"https://raw.githubusercontent.com/vega/vega/master/docs/examples/circle-packing.vg.json";
-          vegaEmbed('#vis', spec).then(function(result) {
-            // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-          }).catch(console.error);
-        </script>
-      </body>
-    </html>`;
 }

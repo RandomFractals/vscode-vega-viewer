@@ -7,10 +7,20 @@ import {
   Disposable, 
   Uri, 
   ViewColumn, 
-  TextDocument, 
+  TextDocument,
+  TextDocumentChangeEvent 
 } from "vscode";
+import * as path from 'path';
 import VegaPreview from './vega.preview';
 import {PreviewManager, previewManager} from './preview.manger';
+
+const VEGA_FILE_EXTENSIONS: string[] = [
+  '.vega',
+  '.vg',
+  '.vl',
+  '.vg.json',
+  '.vl.json'
+];
 
 export function activate(context: ExtensionContext) {
   // Vega: Preview
@@ -33,9 +43,9 @@ export function activate(context: ExtensionContext) {
   context.subscriptions.push(vegaWebview);
 
   // Refresh associated preview on Vega file save
-  workspace.onDidSaveTextDocument(document => {
+  workspace.onDidSaveTextDocument((document: TextDocument) => {
     if (isVegaFile(document)) {
-      const uri: Uri = document.uri.with({scheme: 'vega-preview'});
+      const uri: Uri = document.uri.with({scheme: 'vega'});
       const preview: VegaPreview = previewManager.find(uri);
       if (preview) {
         preview.refresh();
@@ -44,11 +54,11 @@ export function activate(context: ExtensionContext) {
   });
 
   // Reset associated preview on Vega file change
-  workspace.onDidChangeTextDocument(args => {
-    if (isVegaFile(args.document)) {
-      const uri: Uri = args.document.uri.with({scheme: 'vega-preview'});
+  workspace.onDidChangeTextDocument((changeEvent: TextDocumentChangeEvent) => {
+    if (isVegaFile(changeEvent.document)) {
+      const uri: Uri = changeEvent.document.uri.with({scheme: 'vega'});
       const preview: VegaPreview = previewManager.find(uri);
-      if (preview && args.contentChanges.length > 0) {
+      if (preview && changeEvent.contentChanges.length > 0) {
         preview.refresh();
       }
     }
@@ -65,8 +75,11 @@ export function deactivate() {
 }
 
 function isVegaFile(document: TextDocument) {
-  // TODO
-  return true;
+  const fileName: string = path.basename(document.uri.fsPath).replace('.json', ''); // strip out .json ext
+  const fileExt: string = fileName.substr(fileName.lastIndexOf('.') + 1);
+  console.log('vega.viewer.isVegaFile: doc:', fileName , 'lang:', document.languageId, 'ext:', fileExt);
+  //console.log('vega:content:', document.getText());
+  return VEGA_FILE_EXTENSIONS.findIndex(vegaFileExt => vegaFileExt === fileExt) >= 0;
 }
 
 function getViewColumn(): ViewColumn {

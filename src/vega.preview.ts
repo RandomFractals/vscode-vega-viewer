@@ -29,7 +29,7 @@ export default class VegaPreview {
     this._storage = context.workspaceState;
     this._uri = uri;
     this._fileName = path.basename(uri.fsPath);
-    this.initWebview('vega-preview', viewColumn);
+    this.initWebview('vega', viewColumn);
     //this.initService(context);
     this.configure();
   }
@@ -127,7 +127,7 @@ export default class VegaPreview {
 
   refresh(): void {
     // TODO
-    console.log('vega.preview.referesh:', this._fileName);
+    console.log('vega.preview.refresh:', this._fileName);
   }
   
   get html(): string {
@@ -142,7 +142,7 @@ export default class VegaPreview {
         <title>Vega Preview</title>
         <script src="https://cdn.jsdelivr.net/npm/vega@4.4"></script>
         <script src="https://cdn.jsdelivr.net/npm/vega-lite@3.0.0-rc10"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vega-embed@3.26.1"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
         <style>
           body {
             background-color: #fff;
@@ -152,7 +152,12 @@ export default class VegaPreview {
       <body>
         <div id="vis"></div>
         <script type="text/javascript">
-          var spec = "https://raw.githubusercontent.com/vega/vega/master/docs/examples/bar-chart.vg.json";
+          var spec = {
+            "$schema": "https://vega.github.io/schema/vega/v4.json",
+            "width": 400,
+            "height": 200,
+            "padding": 5
+          };
           vegaEmbed('#vis', spec).then(function(result) {
             // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
           }).catch(console.error);

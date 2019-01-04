@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Security-Policy" 
+      content="default-src * 'unsafe-inline' 'unsafe-eval'; frame-src *;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vega Preview</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@4.4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@3.0.0-rc10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
+    <style>
+      body {
+        background: white;
+        margin: 0;
+      }
+      .vega-embed summary {
+        display: none !important;
+      }
+      .error-container {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        color: red;
+        font-size: 12pt;
+        justify-self: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="vis"></div>
+    <div class="error-container">
+      <div id="errors"></div>
+    </div>  
+    <script type="text/javascript">
+      var spec = {
+        "$schema": "https://vega.github.io/schema/vega/v4.json",
+        "width": 400,
+        "height": 200,
+        "padding": 5
+      };
+      vegaEmbed('#vis', spec).then(function(result) {
+        // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+      }).catch(console.error);
+    </script>
+  </body>
+</html>

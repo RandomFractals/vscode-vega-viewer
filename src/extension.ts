@@ -12,7 +12,8 @@ import {
 } from "vscode";
 import * as path from 'path';
 import VegaPreview from './vega.preview';
-import {PreviewManager, previewManager} from './preview.manger';
+import { previewManager } from './preview.manager';
+import { Template, ITemplateManager, TemplateManager } from './template.manager';
 
 const VEGA_FILE_EXTENSIONS: string[] = [
   '.vega',
@@ -23,6 +24,12 @@ const VEGA_FILE_EXTENSIONS: string[] = [
 ];
 
 export function activate(context: ExtensionContext) {
+  console.info('vega.viewer: loading vega templates...');
+
+  // initialize vega templates
+  const templateManager: ITemplateManager = new TemplateManager(context.asAbsolutePath('templates'));
+  const previewTemplate: Template = templateManager.getTemplate('vega.preview.html');
+
   // Vega: Preview
   let vegaWebview: Disposable = commands.registerCommand('vega.preview', (uri) => {
     let resource: any = uri;
@@ -35,14 +42,14 @@ export function activate(context: ExtensionContext) {
         return;
       }
     }
-    const preview: VegaPreview = new VegaPreview(context, resource, viewColumn);
+    const preview: VegaPreview = new VegaPreview(context, resource, viewColumn, previewTemplate.content);
     return preview.webview;
   });
 
-  // Add disposable commands to subscriptions
+  // add disposable commands to subscriptions
   context.subscriptions.push(vegaWebview);
 
-  // Refresh associated preview on Vega file save
+  // refresh associated preview on Vega file save
   workspace.onDidSaveTextDocument((document: TextDocument) => {
     if (isVegaFile(document)) {
       const uri: Uri = document.uri.with({scheme: 'vega'});
@@ -53,7 +60,7 @@ export function activate(context: ExtensionContext) {
     }
   });
 
-  // Reset associated preview on Vega file change
+  // reset associated preview on Vega file change
   workspace.onDidChangeTextDocument((changeEvent: TextDocumentChangeEvent) => {
     if (isVegaFile(changeEvent.document)) {
       const uri: Uri = changeEvent.document.uri.with({scheme: 'vega'});
@@ -64,17 +71,18 @@ export function activate(context: ExtensionContext) {
     }
   });
 
-  // Reset all previews on config change
+  // reset all previews on config change
   workspace.onDidChangeConfiguration(() => {
     previewManager.configure();
   });
 
+  console.info('vega.viewer: activated!');
 } // end of activate()
 
 export function deactivate() {
 }
 
-function isVegaFile(document: TextDocument) {
+function isVegaFile(document: TextDocument): boolean {
   const fileName: string = path.basename(document.uri.fsPath).replace('.json', ''); // strip out .json ext
   const fileExt: string = fileName.substr(fileName.lastIndexOf('.') + 1);
   console.log('vega.viewer.isVegaFile: doc:', fileName , 'lang:', document.languageId, 'ext:', fileExt);

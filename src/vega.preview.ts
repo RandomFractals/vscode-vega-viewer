@@ -13,7 +13,7 @@ import {
   WebviewPanelOnDidChangeViewStateEvent 
 } from 'vscode';
 import * as path from 'path';
-import { previewManager } from './preview.manger';
+import { previewManager } from './preview.manager';
 
 export default class VegaPreview {
     
@@ -23,12 +23,14 @@ export default class VegaPreview {
   private _fileName: string;
   private _title: string;
   private _panel: WebviewPanel;
+  private _html: string;
   protected _disposables: Disposable[] = [];
 
-  constructor(context: ExtensionContext, uri: Uri, viewColumn: ViewColumn) {
+  constructor(context: ExtensionContext, uri: Uri, viewColumn: ViewColumn, template: string) {
     this._storage = context.workspaceState;
     this._uri = uri;
     this._fileName = path.basename(uri.fsPath);
+    this._html = template;
     this.initWebview('vega', viewColumn);
     //this.initService(context);
     this.configure();
@@ -90,6 +92,11 @@ export default class VegaPreview {
     this.refresh();
   }
 
+  public refresh(): void {
+    // TODO
+    console.log('vega.preview.refresh:', this._fileName);
+  }
+
   public dispose() {
     previewManager.remove(this);
     this._panel.dispose();
@@ -124,45 +131,8 @@ export default class VegaPreview {
   get previewUri(): Uri {
     return this._previewUri;
   }
-
-  refresh(): void {
-    // TODO
-    console.log('vega.preview.refresh:', this._fileName);
-  }
   
   get html(): string {
-    return `<!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta http-equiv="Content-Security-Policy" 
-          content="default-src * 'unsafe-inline' 'unsafe-eval'; frame-src *;">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Vega Preview</title>
-        <script src="https://cdn.jsdelivr.net/npm/vega@4.4"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vega-lite@3.0.0-rc10"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
-        <style>
-          body {
-            background-color: #fff;
-          }
-        </style>
-      </head>
-      <body>
-        <div id="vis"></div>
-        <script type="text/javascript">
-          var spec = {
-            "$schema": "https://vega.github.io/schema/vega/v4.json",
-            "width": 400,
-            "height": 200,
-            "padding": 5
-          };
-          vegaEmbed('#vis', spec).then(function(result) {
-            // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-          }).catch(console.error);
-        </script>
-      </body>
-    </html>`;
+    return this._html;
   }
 }

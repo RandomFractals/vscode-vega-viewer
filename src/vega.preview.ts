@@ -24,6 +24,8 @@ export default class VegaPreview {
   private _title: string;
   private _panel: WebviewPanel;
   private _html: string;
+  private _content: string;
+
   protected _disposables: Disposable[] = [];
 
   constructor(context: ExtensionContext, uri: Uri, viewColumn: ViewColumn, template: string) {
@@ -32,7 +34,6 @@ export default class VegaPreview {
     this._fileName = path.basename(uri.fsPath);
     this._html = template;
     this.initWebview('vega', viewColumn);
-    //this.initService(context);
     this.configure();
   }
 
@@ -73,11 +74,6 @@ export default class VegaPreview {
     }
     return [];
   }
-  
-  public update(content: string, options: any) {
-    //this._service.init(content, options);
-    this.webview.html = this.html;
-  }
 
   public getOptions(): any {
     return {
@@ -93,8 +89,12 @@ export default class VegaPreview {
   }
 
   public refresh(): void {
-    // TODO
-    console.log('vega.preview.refresh:', this._fileName);
+    workspace.openTextDocument(this.uri).then(document => {
+      const vegaSpec: string = document.getText();
+      console.log('vega.preview.refresh:', this._fileName);
+      // console.log(vegaSpec);
+      this.webview.postMessage(vegaSpec);
+    });
   }
 
   public dispose() {

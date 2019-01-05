@@ -66,7 +66,8 @@ export function activate(context: ExtensionContext) {
       const uri: Uri = changeEvent.document.uri.with({scheme: 'vega'});
       const preview: VegaPreview = previewManager.find(uri);
       if (preview && changeEvent.contentChanges.length > 0) {
-        preview.refresh();
+        // TODO: add refresh interval before enabling this
+        // preview.refresh();
       }
     }
   });
@@ -84,9 +85,7 @@ export function deactivate() {
 
 function isVegaFile(document: TextDocument): boolean {
   const fileName: string = path.basename(document.uri.fsPath).replace('.json', ''); // strip out .json ext
-  const fileExt: string = fileName.substr(fileName.lastIndexOf('.') + 1);
-  console.log('vega.viewer.isVegaFile: doc:', fileName , 'lang:', document.languageId, 'ext:', fileExt);
-  //console.log('vega:content:', document.getText());
+  const fileExt: string = fileName.substr(fileName.lastIndexOf('.'));
   return VEGA_FILE_EXTENSIONS.findIndex(vegaFileExt => vegaFileExt === fileExt) >= 0;
 }
 

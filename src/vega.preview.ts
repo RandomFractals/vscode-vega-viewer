@@ -59,9 +59,12 @@ export default class VegaPreview {
       let active = e.webviewPanel.visible;
     }, null, this._disposables);
 
-    this.webview.onDidReceiveMessage((e) => {
-      if (e.error) {
-        window.showErrorMessage(e.error);
+    this.webview.onDidReceiveMessage(message => {
+      // console.log(message);
+      switch (message) {
+        case 'refresh':
+          this.refresh();
+          break;
       }
     }, null, this._disposables);
 

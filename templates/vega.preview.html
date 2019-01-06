@@ -37,6 +37,7 @@
     </div>  
     <script type="text/javascript">
       // start with blank vega spec
+      let vscode, view, errors;
       let spec = {
         "$schema": "https://vega.github.io/schema/vega/v4.json",
         "width": 400,
@@ -44,22 +45,30 @@
         "padding": 5
       };
 
-      // get errors display container
-      const errors = document.getElementById('errors');
-
-      // create vega embed view
-      let view = preview(spec);
+      document.addEventListener('DOMContentLoaded', event => {
+        // get errors display container
+        errors = document.getElementById('errors');
+        // create blank vega embed view
+        view = preview(spec);
+        try {
+          // notify webview
+          vscode = acquireVsCodeApi();
+          vscode.postMessage('refresh');
+        }
+        catch (error) {
+          // ignore: must be loaded outside of vscode webview
+        }
+      });
 
       // vega spec update handler
       window.addEventListener('message', event => {
         try {
           spec = JSON.parse(event.data.spec);
-          console.log('spec:', spec);
           errors.innerText = '';
           view = preview(spec);
         }
         catch (error) {
-          console.error(error);
+          console.error('vega.viewer:', error.message);
           errors.innerText = error.message;
         }
       });
@@ -67,11 +76,10 @@
       function preview(spec) {        
         vegaEmbed('#vis', spec)
         .then (result => {
-          // console.log(result);
           return result.view;
         })
         .catch (error => {
-          console.error(error);
+          console.error('vega.viewer:', error.message);
           errors.innerText = error.message;
           return null;
         });

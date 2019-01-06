@@ -6,7 +6,8 @@ import {
   Disposable, 
   Uri, 
   ViewColumn, 
-  Memento, 
+  Memento,
+  WorkspaceFolder, 
   Webview,
   WebviewOptions, 
   WebviewPanel, 
@@ -28,7 +29,8 @@ export default class VegaPreview {
 
   protected _disposables: Disposable[] = [];
 
-  constructor(context: ExtensionContext, uri: Uri, viewColumn: ViewColumn, template: string) {
+  constructor(context: ExtensionContext, uri: Uri, 
+    viewColumn: ViewColumn, template: string) {
     this._storage = context.workspaceState;
     this._uri = uri;
     this._fileName = path.basename(uri.fsPath);
@@ -55,8 +57,9 @@ export default class VegaPreview {
       this.dispose();
     }, null, this._disposables);
 
-    this._panel.onDidChangeViewState((e: WebviewPanelOnDidChangeViewStateEvent) => {
-      let active = e.webviewPanel.visible;
+    this._panel.onDidChangeViewState(
+      (viewStateEvent: WebviewPanelOnDidChangeViewStateEvent) => {
+      let active = viewStateEvent.webviewPanel.visible;
     }, null, this._disposables);
 
     this.webview.onDidReceiveMessage(message => {
@@ -72,14 +75,16 @@ export default class VegaPreview {
   }
 
   private getLocalResourceRoots(): Uri[] {
-    const folder = workspace.getWorkspaceFolder(this.uri);
-    if (folder) {
-      return [folder.uri];
+    const localResourceRoots: Uri[] = [];
+    const workspaceFolder: WorkspaceFolder = workspace.getWorkspaceFolder(this.uri);
+    if (workspaceFolder) {
+      localResourceRoots.push(workspaceFolder.uri);
     }
-    if (!this.uri.scheme || this.uri.scheme === 'file') {
-      return [Uri.file(path.dirname(this.uri.fsPath))];
+    else if (!this.uri.scheme || this.uri.scheme === 'file') {
+      localResourceRoots.push(Uri.file(path.dirname(this.uri.fsPath)));
     }
-    return [];
+    // console.log(localResourceRoots);
+    return localResourceRoots;
   }
 
   public getOptions(): any {

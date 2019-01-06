@@ -38,11 +38,15 @@ export default class VegaPreview {
   }
 
   private initWebview(scheme: string, viewColumn: ViewColumn) {
+    // create preview uri and title
     this._previewUri = this._uri.with({scheme: scheme});
     this._title = `Preview ${this._fileName}`;
+
+    // create webview panel
     const webviewOptions: WebviewOptions = {
       enableScripts: true,
       enableCommandUris: true,
+      localResourceRoots: this.getLocalResourceRoots()
     };
     this._panel = window.createWebviewPanel('vega.preview', 
       this._title, viewColumn, webviewOptions);
@@ -91,9 +95,8 @@ export default class VegaPreview {
   public refresh(): void {
     workspace.openTextDocument(this.uri).then(document => {
       const vegaSpec: string = document.getText();
-      console.log('vega.preview.refresh:', this._fileName);
-      // console.log(vegaSpec);
-      this.webview.postMessage(vegaSpec);
+      // console.log('vega.preview.refresh:', this._fileName);
+      this.webview.postMessage({spec: vegaSpec});
     });
   }
 

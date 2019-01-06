@@ -36,15 +36,46 @@
       <div id="errors"></div>
     </div>  
     <script type="text/javascript">
-      var spec = {
+      // start with blank vega spec
+      let spec = {
         "$schema": "https://vega.github.io/schema/vega/v4.json",
         "width": 400,
         "height": 200,
         "padding": 5
       };
-      vegaEmbed('#vis', spec).then(function(result) {
-        // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-      }).catch(console.error);
+
+      // get errors display container
+      const errors = document.getElementById('errors');
+
+      // create vega embed view
+      let view = preview(spec);
+
+      // vega spec update handler
+      window.addEventListener('message', event => {
+        try {
+          spec = JSON.parse(event.data.spec);
+          console.log('spec:', spec);
+          errors.innerText = '';
+          view = preview(spec);
+        }
+        catch (error) {
+          console.error(error);
+          errors.innerText = error.message;
+        }
+      });
+
+      function preview(spec) {        
+        vegaEmbed('#vis', spec)
+        .then (result => {
+          // console.log(result);
+          return result.view;
+        })
+        .catch (error => {
+          console.error(error);
+          errors.innerText = error.message;
+          return null;
+        });
+      }
     </script>
   </body>
 </html>

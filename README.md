@@ -7,7 +7,8 @@ in [VSCode](https://github.com/Microsoft/vscode)
 
 # Usage 
 
-`ctrl+alt+v` (Mac: `cmd+alt+v`) to preview `.vega`, `.vg.json` or `vl.json` spec charts.
+`ctrl+alt+v` (Mac: `cmd+alt+v`) to preview open `.vega`, `.vg.json` or `vl.json` 
+JSON spec documents
 
 ## Example: [Vega Contour Plot Preview](https://vega.github.io/vega/examples/contour-plot/)
 

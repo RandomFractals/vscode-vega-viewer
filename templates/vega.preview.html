@@ -4,9 +4,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Security-Policy" 
-      content="default-src * vscode-resource: https: 'unsafe-inline' 'unsafe-eval';">
+      content="default-src * vscode-resource: https: 'unsafe-inline' 'unsafe-eval'; img-src vscode-resource: https:; connect-src vscode-resource: https:;">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vega Preview</title>
+    <meta name="description" content="Vega is a declarative format for creating, saving, and sharing visualization designs. With Vega, visualizations are described in JSON, and generate interactive views using either HTML5 Canvas or SVG.">
+    <base href="https://vega.github.io/" target="_blank" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <script src="https://cdn.jsdelivr.net/npm/vega@4.4"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@3.0.0-rc10"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
@@ -22,22 +25,20 @@
       .vega-embed summary {
         display: none !important;
       }
-      .error-container {
+      #message {
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         color: red;
         font-size: 12pt;
-        justify-self: center;
+        text-align: center;
       }
     </style>
   </head>
   <body>
     <div id="vis"></div>
-    <div class="error-container">
-      <div id="errors"></div>
-    </div>  
+    <div id="message">Loading Vega spec preview...</div>
     <script type="text/javascript">
       // start with blank vega spec
-      let vscode, view, errors;
+      let vscode, view, message;
       let spec = {
         "$schema": "https://vega.github.io/schema/vega/v4.json",
         "width": 400,
@@ -45,9 +46,13 @@
         "padding": 5
       };
 
+      // create custom vega data loader
+      const vegaLoader = vega.loader();
+
+      // display blank vega spec on webview content loaded
       document.addEventListener('DOMContentLoaded', event => {
-        // get errors display container
-        errors = document.getElementById('errors');
+        // get message display container
+        message = document.getElementById('message');
         // create blank vega embed view
         view = preview(spec);
         try {
@@ -64,23 +69,25 @@
       window.addEventListener('message', event => {
         try {
           spec = JSON.parse(event.data.spec);
-          errors.innerText = '';
           view = preview(spec);
         }
         catch (error) {
           console.error('vega.viewer:', error.message);
-          errors.innerText = error.message;
+          message.innerText = error.message;
         }
       });
 
+      // vega preview update
       function preview(spec) {        
-        vegaEmbed('#vis', spec)
+        message.innerText = 'Loading Vega spec preview...';
+        vegaEmbed('#vis', spec, {loader: vegaLoader})
         .then (result => {
+          message.innerText = '';
           return result.view;
         })
         .catch (error => {
           console.error('vega.viewer:', error.message);
-          errors.innerText = error.message;
+          message.innerText = error.message;
           return null;
         });
       }

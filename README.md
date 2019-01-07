@@ -1,6 +1,6 @@
 # Vega Viewer
 
-Vega Viewer provides language support and
+[Vega Viewer](https://twitter.com/hashtag/VegaViewer?src=hash) provides language support and
 Interactive Preview of [Vega](https://vega.github.io/vega/) 
 and [Vega-Lite](https://vega.github.io/vega-lite/) JSON spec charts 
 in [VSCode](https://github.com/Microsoft/vscode)

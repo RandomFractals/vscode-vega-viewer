@@ -2,7 +2,7 @@
   "name": "vscode-vega-viewer",
   "displayName": "Vega Viewer",
   "description": "Vega Viewer",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "publisher": "Random Fractals, Inc.",
   "author": "Taras Novak",
   "contributors": [

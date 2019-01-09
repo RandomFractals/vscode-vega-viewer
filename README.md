@@ -10,6 +10,8 @@ in [VSCode](https://github.com/Microsoft/vscode)
 1. `ctrl+alt+v` (Mac: `cmd+alt+v`) to Preview open `.vega`, `.vg.json` or `vl.json` 
 JSON spec document
 
+Or Run `Vega: Preview` command from `View -> Command Pallette...` menu on open Vega json spec document
+
 2. `ctrl+s` (Mac: `cmd+s`) to Save and Preview updated Vega viz
 
 ## Example: [Vega Contour Plot Preview](https://vega.github.io/vega/examples/contour-plot/)

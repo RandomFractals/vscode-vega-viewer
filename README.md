@@ -17,6 +17,11 @@ on open `.vega`, `.vg.json` or `.vl.json` Vega spec document
 ![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-contour.png?raw=true 
  "Vega Viewer Contour Plot Preview")
 
+# Vega Viewer VSCode Contributions
+
+![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-contributions.png?raw=true 
+ "Vega Viewer VSCode Contributions")
+
 # Dev Build
 
 ```bash

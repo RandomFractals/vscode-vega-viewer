@@ -65,8 +65,20 @@
     ],
     "jsonValidation": [
       {
+        "fileMatch": "*.vega",
+        "url": "https://vega.github.io/schema/vega/v4.json"
+      },
+      {
+        "fileMatch": "*.vg",
+        "url": "https://vega.github.io/schema/vega/v4.json"
+      },
+      {
         "fileMatch": "*.vg.json",
         "url": "https://vega.github.io/schema/vega/v4.json"
+      },
+      {
+        "fileMatch": "*.vl",
+        "url": "https://vega.github.io/schema/vega-lite/v3.json"
       },
       {
         "fileMatch": "*.vl.json",

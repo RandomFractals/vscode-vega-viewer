@@ -7,12 +7,10 @@ in [VSCode](https://github.com/Microsoft/vscode)
 
 # Usage 
 
-1. `ctrl+alt+v` (Mac: `cmd+alt+v`) to Preview open `.vega`, `.vg.json` or `vl.json` 
-JSON spec document
+1. Run `Vega: Preview` command from `View -> Command Pallette...` menu 
+on open `.vega`, `.vg.json` or `.vl.json` Vega spec document
 
-Or Run `Vega: Preview` command from `View -> Command Pallette...` menu on open Vega json spec document
-
-2. `ctrl+s` (Mac: `cmd+s`) to Save and Preview updated Vega viz
+2. Save updated Vega spec JSON document to Preview updated Vega viz
 
 ## Example: [Vega Contour Plot Preview](https://vega.github.io/vega/examples/contour-plot/)
 

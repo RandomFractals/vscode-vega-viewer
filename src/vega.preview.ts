@@ -45,9 +45,10 @@ export default class VegaPreview {
     this._title = `Preview ${this._fileName}`;
 
     // create webview panel
-    const webviewOptions: WebviewOptions = {
+    const webviewOptions = {
       enableScripts: true,
       enableCommandUris: true,
+      retainContextWhenHidden: true,
       localResourceRoots: this.getLocalResourceRoots()
     };
     this._panel = window.createWebviewPanel('vega.preview', 

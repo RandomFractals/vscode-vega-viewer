@@ -56,7 +56,7 @@
         ],
         "extensions": [
           ".vega",
-          ".vg.",
+          ".vg",
           ".vg.json",
           ".vl",
           ".vl.json"

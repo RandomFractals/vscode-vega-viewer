@@ -86,6 +86,7 @@ export function deactivate() {
 function isVegaFile(document: TextDocument): boolean {
   const fileName: string = path.basename(document.uri.fsPath).replace('.json', ''); // strip out .json ext
   const fileExt: string = fileName.substr(fileName.lastIndexOf('.'));
+  // console.info('vega.viewer:isVegaFile:', fileName, document.languageId, 'file');
   return VEGA_FILE_EXTENSIONS.findIndex(vegaFileExt => vegaFileExt === fileExt) >= 0;
 }
 

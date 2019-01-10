@@ -2,7 +2,7 @@
   "name": "vscode-vega-viewer",
   "displayName": "Vega Viewer",
   "description": "Vega Viewer",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "RandomFractalsInc",
   "author": "Taras Novak",
   "contributors": [
@@ -29,7 +29,8 @@
     "Programming Languages"
   ],
   "activationEvents": [
-    "onCommand:vega.preview"
+    "onCommand:vega.preview",
+    "onLanguage:json"
   ],
   "main": "./out/extension",
   "contributes": {
@@ -88,21 +89,21 @@
     "menus": {
       "explorer/context": [
         {
-          "when": "resourceExtname == .vega || resourceExtname == .vg || resourceExtname == .vg.json || resourceExtname == .vl || resourceExtname == .vl.json",
+          "when": "resourceLangId == json",
           "command": "vega.preview",
           "group": "navigation"
         }
       ],
       "editor/title": [
         {
-          "when": "resourceExtname == .vega || resourceExtname == .vg || resourceExtname == .vg.json || resourceExtname == .vl || resourceExtname == .vl.json",
+          "when": "resourceLangId == json",
           "command": "vega.preview",
           "group": "navigation"
         }
       ],
       "editor/title/context": [
         {
-          "when": "resourceExtname == .vega || resourceExtname == .vg || resourceExtname == .vg.json || resourceExtname == .vl || resourceExtname == .vl.json",
+          "when": "resourceLangId == json",
           "command": "vega.preview",
           "group": "navigation"
         }

@@ -22,6 +22,30 @@ on open `.vega`, `.vg.json` or `.vl.json` Vega spec document
 ![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-contributions.png?raw=true 
  "Vega Viewer VSCode Contributions")
 
+## Vega Preview Menu Shortcuts
+
+The following Preview navigation menu items are added for quick Vega chart previews:
+
+### 1. Vega: Preview Command
+
+![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-preview-command.png?raw=true 
+ "Vega: Preview Command")
+
+### 2. Explorer/context Preview
+
+![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-explorer-context-preview.png?raw=true 
+ "Explorer/context Preview")
+
+### 3. Editor/title Preview
+
+![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-editor-title-preview.png?raw=true 
+ "Editor/title Preview")
+
+### 4. Editor/title/context Preview
+
+![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-editor-title-context-preview.png?raw=true 
+ "Editor/title/context Preview")
+
 # Dev Build
 
 ```bash

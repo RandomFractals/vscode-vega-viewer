@@ -13,6 +13,7 @@ import {
   WebviewPanel, 
   WebviewPanelOnDidChangeViewStateEvent 
 } from 'vscode';
+import * as fs from 'fs';
 import * as path from 'path';
 import { previewManager } from './preview.manager';
 
@@ -25,8 +26,6 @@ export default class VegaPreview {
   private _title: string;
   private _panel: WebviewPanel;
   private _html: string;
-  private _content: string;
-
   protected _disposables: Disposable[] = [];
 
   constructor(context: ExtensionContext, uri: Uri, 
@@ -98,15 +97,72 @@ export default class VegaPreview {
   public configure() {
     let options = this.getOptions();
     this.webview.html = this.html;
-    this.refresh();
+    // NOTE: let webview fire refresh
+    // when vega preview DOM content is initialized
+    // this.refresh();
   }
 
   public refresh(): void {
     workspace.openTextDocument(this.uri).then(document => {
-      const vegaSpec: string = document.getText();
       // console.log('vega.preview.refresh:', this._fileName);
-      this.webview.postMessage({spec: vegaSpec});
+      const vegaSpec: string = document.getText();
+      try {
+        const spec = JSON.parse(vegaSpec);
+        const data = this.getData(spec);
+        this.webview.postMessage({
+          spec: vegaSpec,
+          data: data
+        });
+      }
+      catch (error) {
+        console.error('vega.viewer:', error.message);
+        this.webview.postMessage({error: error});
+      }
     });
+  }
+
+  private getData(spec:any): any {
+    const dataFiles = {};
+    const data = spec['data'];
+    let fileData;
+    if (data !== undefined) {
+      if (Array.isArray(data)) {
+        data.filter(d => d['url'] !== undefined)
+          .forEach(d => {
+            fileData = this.getFileData(d['url']);
+            if (fileData) {
+              dataFiles[fileData.url] = fileData.data;
+            }
+          });
+      }
+      else if (data['url'] !== undefined) {
+        const url = data['url'];
+         fileData = this.getFileData(url);
+         if (fileData) {
+          dataFiles[url] = fileData.data;
+         }
+      }
+    }
+    // console.log('vega.viewer:dataFiles:', dataFiles);
+    return dataFiles;
+  }
+
+  // TODO: change this to async later
+  private getFileData(filePath: string) {
+    let data = {url: filePath, data: filePath};
+    if (!filePath.startsWith('http')) {
+      // must be local data file reference
+      const dataFilePath = path.join(path.dirname(this._uri.fsPath), filePath);
+      // console.log(dataFilePath);
+      if (fs.existsSync(dataFilePath)) {
+        data['data'] = fs.readFileSync(dataFilePath, 'utf8');
+      }
+      else {
+        data = null;
+        console.error('vega.viewer:', `${filePath} doesn't exist`);
+      }
+    }
+    return data;
   }
 
   public dispose() {

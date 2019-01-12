@@ -38,7 +38,7 @@
     <div id="message">Loading Vega spec preview...</div>
     <script type="text/javascript">
       // start with blank vega spec
-      let vscode, view, message;
+      let vscode, view, message, data;
       let spec = {
         "$schema": "https://vega.github.io/schema/vega/v4.json",
         "width": 400,
@@ -48,6 +48,21 @@
 
       // create custom vega data loader
       const vegaLoader = vega.loader();
+      const dataLoader = vega.loader();
+      dataLoader.load = (uri) => {
+        if (uri.startsWith('http')) {
+          return vegaLoader.load(uri);
+        }
+        return new Promise((resolve, reject) => {
+          if (data !== undefined && data[uri]) {
+            resolve(data[uri]);
+          }
+          else {
+            message.innerHTML += `<p>${uri} doesn't exist</p>`;
+            reject(`${uri} doesn't exist`);
+          } 
+        });
+      };
 
       // display blank vega spec on webview content loaded
       document.addEventListener('DOMContentLoaded', event => {
@@ -69,6 +84,7 @@
       window.addEventListener('message', event => {
         try {
           spec = JSON.parse(event.data.spec);
+          data = event.data.data;
           view = preview(spec);
         }
         catch (error) {
@@ -78,16 +94,15 @@
       });
 
       // vega preview update
-      function preview(spec) {        
-        message.innerText = 'Loading Vega spec preview...';
-        vegaEmbed('#vis', spec, {loader: vegaLoader})
+      function preview(spec) {
+        message.innerHTML = ''; // 'Loading Vega spec preview...';
+        vegaEmbed('#vis', spec, {loader: dataLoader})
         .then (result => {
-          message.innerText = '';
           return result.view;
         })
         .catch (error => {
           console.error('vega.viewer:', error.message);
-          message.innerText = error.message;
+          message.innerHTML = error.message;
           return null;
         });
       }

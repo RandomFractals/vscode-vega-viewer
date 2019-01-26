@@ -2,56 +2,61 @@
 import { 
   workspace, 
   window, 
-  ExtensionContext, 
   Disposable, 
   Uri, 
   ViewColumn, 
   Memento,
   WorkspaceFolder, 
   Webview,
-  WebviewOptions, 
   WebviewPanel, 
-  WebviewPanelOnDidChangeViewStateEvent 
+  WebviewPanelOnDidChangeViewStateEvent, 
+  WebviewPanelSerializer
 } from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
 import { previewManager } from './preview.manager';
 
-export default class VegaPreview {
+export class VegaPreviewSerializer implements WebviewPanelSerializer {
+  constructor(private template: string) {
+  }
+
+  async deserializeWebviewPanel(webviewPanel: WebviewPanel, state: any) {
+    // console.log('vega.viewer:deserialize:', state.uri.toString());
+    previewManager.add(
+      new VegaPreview( Uri.parse(state.uri),
+        webviewPanel.viewColumn, this.template, webviewPanel
+    ));
+  }
+}
+export class VegaPreview {
     
-  private _storage: Memento;
   private _uri: Uri;
   private _previewUri: Uri;
   private _fileName: string;
   private _title: string;
-  private _panel: WebviewPanel;
   private _html: string;
+  private _panel: WebviewPanel;
   protected _disposables: Disposable[] = [];
 
-  constructor(context: ExtensionContext, uri: Uri, 
-    viewColumn: ViewColumn, template: string) {
-    this._storage = context.workspaceState;
+  constructor(uri: Uri, viewColumn: ViewColumn, 
+    template: string, panel?: WebviewPanel) {
     this._uri = uri;
     this._fileName = path.basename(uri.fsPath);
+    this._previewUri = this._uri.with({scheme: 'vega'});
+    this._title = `Preview ${this._fileName}`;
     this._html = template;
-    this.initWebview('vega', viewColumn);
+    this._panel = panel;
+    this.initWebview(viewColumn);
     this.configure();
   }
 
-  private initWebview(scheme: string, viewColumn: ViewColumn) {
-    // create preview uri and title
-    this._previewUri = this._uri.with({scheme: scheme});
-    this._title = `Preview ${this._fileName}`;
-
+  private initWebview(viewColumn: ViewColumn) {
+    if (!this._panel) {
     // create webview panel
-    const webviewOptions = {
-      enableScripts: true,
-      enableCommandUris: true,
-      retainContextWhenHidden: true,
-      localResourceRoots: this.getLocalResourceRoots()
-    };
     this._panel = window.createWebviewPanel('vega.preview', 
-      this._title, viewColumn, webviewOptions);
+      this._title, viewColumn, 
+      this.getWebviewOptions());
+    }
 
     this._panel.onDidDispose(() => {
       this.dispose();
@@ -70,8 +75,15 @@ export default class VegaPreview {
           break;
       }
     }, null, this._disposables);
+  }
 
-    previewManager.add(this);
+  private getWebviewOptions(): any {
+    return {
+      enableScripts: true,
+      enableCommandUris: true,
+      retainContextWhenHidden: true,
+      localResourceRoots: this.getLocalResourceRoots()
+    };
   }
 
   private getLocalResourceRoots(): Uri[] {
@@ -87,15 +99,7 @@ export default class VegaPreview {
     return localResourceRoots;
   }
 
-  public getOptions(): any {
-    return {
-      uri: this.previewUri.toString(),
-      state: this.state
-    };
-  }
-
   public configure() {
-    let options = this.getOptions();
     this.webview.html = this.html;
     // NOTE: let webview fire refresh
     // when vega preview DOM content is initialized
@@ -103,6 +107,9 @@ export default class VegaPreview {
   }
 
   public refresh(): void {
+    // reveal corresponding Vega preview panel
+    this._panel.reveal(this._panel.viewColumn, true); // preserve focus
+    // open Vega json spec text document
     workspace.openTextDocument(this.uri).then(document => {
       // console.log('vega.preview.refresh:', this._fileName);
       const vegaSpec: string = document.getText();
@@ -110,6 +117,7 @@ export default class VegaPreview {
         const spec = JSON.parse(vegaSpec);
         const data = this.getData(spec);
         this.webview.postMessage({
+          uri: this._uri.toString(),
           spec: vegaSpec,
           data: data
         });
@@ -182,14 +190,6 @@ export default class VegaPreview {
 
   get webview(): Webview {
     return this._panel.webview;
-  }
-
-  get storage(): Memento {
-    return this._storage;
-  }
-    
-  get state(): any {
-    return this.storage.get(this.previewUri.toString());
   }
     
   get uri(): Uri {

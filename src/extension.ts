@@ -9,9 +9,9 @@ import {
   ViewColumn, 
   TextDocument,
   TextDocumentChangeEvent 
-} from "vscode";
+} from 'vscode';
 import * as path from 'path';
-import VegaPreview from './vega.preview';
+import { VegaPreview, VegaPreviewSerializer } from './vega.preview';
 import { previewManager } from './preview.manager';
 import { Template, ITemplateManager, TemplateManager } from './template.manager';
 
@@ -26,11 +26,15 @@ const VEGA_FILE_EXTENSIONS: string[] = [
 export function activate(context: ExtensionContext) {
   console.info('vega.viewer: loading vega templates...');
 
-  // initialize vega templates
+  // initialize Vega templates
   const templateManager: ITemplateManager = new TemplateManager(context.asAbsolutePath('templates'));
   const previewTemplate: Template = templateManager.getTemplate('vega.preview.html');
 
-  // Vega: Preview
+  // register Vega preview serializer for restore on vscode restart
+  window.registerWebviewPanelSerializer('vega.preview', 
+    new VegaPreviewSerializer(previewTemplate.content));
+
+  // Vega: Preview command
   let vegaWebview: Disposable = commands.registerCommand('vega.preview', (uri) => {
     let resource: any = uri;
     let viewColumn: ViewColumn = getViewColumn();
@@ -42,7 +46,8 @@ export function activate(context: ExtensionContext) {
         return;
       }
     }
-    const preview: VegaPreview = new VegaPreview(context, resource, viewColumn, previewTemplate.content);
+    const preview: VegaPreview = new VegaPreview(resource, viewColumn, previewTemplate.content);
+    previewManager.add(preview);
     return preview.webview;
   });
 

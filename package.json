@@ -2,7 +2,7 @@
   "name": "vscode-vega-viewer",
   "displayName": "Vega Viewer",
   "description": "Vega Viewer",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "publisher": "RandomFractalsInc",
   "author": "Taras Novak",
   "contributors": [
@@ -30,6 +30,7 @@
   ],
   "activationEvents": [
     "onCommand:vega.preview",
+    "onWebviewPanel:vega.preview",
     "onLanguage:json"
   ],
   "main": "./out/extension",

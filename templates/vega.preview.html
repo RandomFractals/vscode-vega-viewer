@@ -83,6 +83,7 @@
       // vega spec update handler
       window.addEventListener('message', event => {
         try {
+          vscode.setState({uri: event.data.uri});
           spec = JSON.parse(event.data.spec);
           data = event.data.data;
           view = preview(spec);

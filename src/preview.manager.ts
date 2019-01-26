@@ -1,6 +1,6 @@
 'use strict';
 import { Uri } from 'vscode';
-import VegaPreview from './vega.preview';
+import { VegaPreview } from './vega.preview';
 
 export class PreviewManager {
     

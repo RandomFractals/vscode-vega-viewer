@@ -20,6 +20,5 @@
     ".vscode-test",
     "templates",
     "src/test/examples",
-
   ]
 }

@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Security-Policy" 
-      content="default-src * vscode-resource: https: 'unsafe-inline' 'unsafe-eval'; img-src vscode-resource: https:; connect-src vscode-resource: https:;">
+      content="default-src * vscode-resource: https: 'unsafe-inline' 'unsafe-eval'; script-src vscode-resource: https: 'unsafe-inline' 'unsafe-eval'; img-src vscode-resource: https:; connect-src vscode-resource: https:;">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vega Preview</title>
     <meta name="description" content="Vega is a declarative format for creating, saving, and sharing visualization designs. With Vega, visualizations are described in JSON, and generate interactive views using either HTML5 Canvas or SVG.">
     <base href="https://vega.github.io/" target="_blank" />
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-    <script src="https://cdn.jsdelivr.net/npm/vega@4.4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@3.0.0-rc10"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
+    <script src="{scripts}/vega.min.js"></script>
+    <script src="{scripts}/vega-lite.min.js"></script>
+    <script src="{scripts}/vega-embed.min.js"></script>
     <style>
       body {
         background: white;

@@ -32,7 +32,7 @@ export function activate(context: ExtensionContext) {
 
   // register Vega preview serializer for restore on vscode restart
   window.registerWebviewPanelSerializer('vega.preview', 
-    new VegaPreviewSerializer(previewTemplate.content));
+    new VegaPreviewSerializer(context.extensionPath, previewTemplate.content));
 
   // Vega: Preview command
   let vegaWebview: Disposable = commands.registerCommand('vega.preview', (uri) => {
@@ -46,7 +46,8 @@ export function activate(context: ExtensionContext) {
         return;
       }
     }
-    const preview: VegaPreview = new VegaPreview(resource, viewColumn, previewTemplate.content);
+    const preview: VegaPreview = 
+      new VegaPreview(context.extensionPath, resource, viewColumn, previewTemplate.content);
     previewManager.add(preview);
     return preview.webview;
   });

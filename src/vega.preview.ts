@@ -5,7 +5,6 @@ import {
   Disposable, 
   Uri, 
   ViewColumn, 
-  Memento,
   WorkspaceFolder, 
   Webview,
   WebviewPanel, 
@@ -17,19 +16,24 @@ import * as path from 'path';
 import { previewManager } from './preview.manager';
 
 export class VegaPreviewSerializer implements WebviewPanelSerializer {
-  constructor(private template: string) {
+  constructor(private extensionPath: string, private template: string) {
   }
 
   async deserializeWebviewPanel(webviewPanel: WebviewPanel, state: any) {
     // console.log('vega.viewer:deserialize:', state.uri.toString());
     previewManager.add(
-      new VegaPreview( Uri.parse(state.uri),
-        webviewPanel.viewColumn, this.template, webviewPanel
+      new VegaPreview(
+        this.extensionPath, 
+        Uri.parse(state.uri),
+        webviewPanel.viewColumn, 
+        this.template, 
+        webviewPanel
     ));
   }
 }
 export class VegaPreview {
     
+  private _extensionPath: string;
   private _uri: Uri;
   private _previewUri: Uri;
   private _fileName: string;
@@ -38,13 +42,17 @@ export class VegaPreview {
   private _panel: WebviewPanel;
   protected _disposables: Disposable[] = [];
 
-  constructor(uri: Uri, viewColumn: ViewColumn, 
+  constructor(extensionPath: string, 
+    uri: Uri, viewColumn: ViewColumn, 
     template: string, panel?: WebviewPanel) {
+    this._extensionPath = extensionPath;
     this._uri = uri;
     this._fileName = path.basename(uri.fsPath);
     this._previewUri = this._uri.with({scheme: 'vega'});
     this._title = `Preview ${this._fileName}`;
-    this._html = template;
+    const scriptsPath: string = Uri.file(path.join(this._extensionPath, 'scripts'))
+      .with({scheme: 'vscode-resource'}).toString(true);
+    this._html = template.replace(/\{scripts\}/g, scriptsPath);
     this._panel = panel;
     this.initWebview(viewColumn);
     this.configure();
@@ -95,6 +103,8 @@ export class VegaPreview {
     else if (!this.uri.scheme || this.uri.scheme === 'file') {
       localResourceRoots.push(Uri.file(path.dirname(this.uri.fsPath)));
     }
+    // add vega preview js scripts
+    localResourceRoots.push(Uri.file(path.join(this._extensionPath, 'scripts')));
     // console.log(localResourceRoots);
     return localResourceRoots;
   }

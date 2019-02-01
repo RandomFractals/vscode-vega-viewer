@@ -46,6 +46,10 @@ The following Preview navigation menu items are added for quick Vega chart previ
 ![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-editor-title-context-preview.png?raw=true 
  "Editor/title/context Preview")
 
+# Dev Log
+
+See [#VegaViewer tag on Twitter](https://twitter.com/hashtag/vegaviewer?f=tweets&vertical=default&src=hash) for the latest and greatest updates on this vscode extension and what's in store next.
+
 # Dev Build
 
 ```bash

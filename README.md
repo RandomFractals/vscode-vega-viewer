@@ -5,6 +5,12 @@ Interactive Preview of [Vega](https://vega.github.io/vega/)
 and [Vega-Lite](https://vega.github.io/vega-lite/) JSON spec charts 
 in [VSCode](https://github.com/Microsoft/vscode)
 
+# Features
+
+- Preview Vega and Vega-Lite specs
+- Local data files support
+- Export to SVG
+
 # Usage 
 
 1. Run `Vega: Preview` command from `View -> Command Pallette...` menu 
@@ -36,12 +42,12 @@ The following Preview navigation menu items are added for quick Vega chart previ
 ![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-explorer-context-preview.png?raw=true 
  "Explorer/context Preview")
 
-### 3. Editor/title Preview
+### 3. Editor/title/context Preview
 
 ![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-editor-title-preview.png?raw=true 
  "Editor/title Preview")
 
-### 4. Editor/title/context Preview
+### 4. Editor/title Preview
 
 ![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-editor-title-context-preview.png?raw=true 
  "Editor/title/context Preview")

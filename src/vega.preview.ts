@@ -14,6 +14,7 @@ import {
 import * as fs from 'fs';
 import * as path from 'path';
 import { previewManager } from './preview.manager';
+import { ENGINE_METHOD_STORE } from 'constants';
 
 export class VegaPreviewSerializer implements WebviewPanelSerializer {
   constructor(private extensionPath: string, private template: string) {
@@ -82,6 +83,7 @@ export class VegaPreview {
           break;
         case 'exportSvg':
           // console.log(message.svg.substring(0, 300), '...');
+          this.exportSvg(message.svg);
           break;
       }
     }, null, this._disposables);
@@ -129,6 +131,7 @@ export class VegaPreview {
         const spec = JSON.parse(vegaSpec);
         const data = this.getData(spec);
         this.webview.postMessage({
+          fileName: this._fileName,
           uri: this._uri.toString(),
           spec: vegaSpec,
           data: data
@@ -183,6 +186,21 @@ export class VegaPreview {
       }
     }
     return data;
+  }
+
+  private async exportSvg(svg: string): Promise<void> {
+    const svgFilePath = this._uri.fsPath.replace('.json', '');
+    const svgFileUri: Uri = await window.showSaveDialog({
+      defaultUri: Uri.parse(svgFilePath).with({scheme: 'file'}),
+      filters: {'SVG': ['svg']}
+    });
+    if (svgFileUri) {
+      fs.writeFile(svgFileUri.fsPath, svg, (error) => {
+        if (error) {
+          window.showErrorMessage(`Failed to save file: ${svgFileUri.fsPath}`);
+        }
+      });
+    }
   }
 
   public dispose() {

@@ -21,8 +21,8 @@
       #toolbar {
         border-bottom: 1px solid #999;
         margin-bottom: 10px;
-        padding: 10px;
-        text-align: right;
+        padding: 0px;
+        color: #333;
       }
       #toolbar a {
         text-decoration: none;
@@ -43,12 +43,17 @@
     </style>
   </head>
   <body>
-    <div id="toolbar"><a title="export svg" href="#" onclick="exportView('svg')">&lt;svg&gt;</a></div>
+    <div id="toolbar">
+      <div style="float: right; width: 40px;">
+        <a title="export svg" href="#" onclick="exportView('svg')">&lt;svg&gt;</a>
+      </div>
+      <h3 id="title"></h3>
+    </div>
     <div id="vis"></div>
     <div id="message">Loading Vega spec preview...</div>
     <script type="text/javascript">
       // start with blank vega spec
-      let vscode, view, message, data;
+      let vscode, view, message, data, title;
       let spec = {
         "$schema": "https://vega.github.io/schema/vega/v4.json",
         "width": 400,
@@ -76,7 +81,8 @@
 
       // display blank vega spec on webview content loaded
       document.addEventListener('DOMContentLoaded', event => {
-        // get message display container
+        // get title and message display containers
+        title = document.getElementById('title');
         message = document.getElementById('message');
         // create blank vega embed view
         view = preview(spec);
@@ -94,6 +100,7 @@
       window.addEventListener('message', event => {
         try {
           vscode.setState({uri: event.data.uri});
+          title.innerText = event.data.fileName;
           spec = JSON.parse(event.data.spec);
           data = event.data.data;
           view = preview(spec);

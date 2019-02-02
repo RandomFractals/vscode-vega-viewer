@@ -16,7 +16,16 @@
     <style>
       body {
         background: white;
-        margin: 0;
+        margin: 0px;
+      }
+      #toolbar {
+        border-bottom: 1px solid #999;
+        margin-bottom: 10px;
+        padding: 10px;
+        text-align: right;
+      }
+      #toolbar a {
+        text-decoration: none;
       }
       /* hide vega embed actions menu */
       .vega-embed {
@@ -34,6 +43,7 @@
     </style>
   </head>
   <body>
+    <div id="toolbar"><a title="export svg" href="#" onclick="exportView('svg')">&lt;svg&gt;</a></div>
     <div id="vis"></div>
     <div id="message">Loading Vega spec preview...</div>
     <script type="text/javascript">
@@ -73,7 +83,7 @@
         try {
           // notify webview
           vscode = acquireVsCodeApi();
-          vscode.postMessage('refresh');
+          vscode.postMessage({command: 'refresh'});
         }
         catch (error) {
           // ignore: must be loaded outside of vscode webview
@@ -99,13 +109,26 @@
         message.innerHTML = ''; // 'Loading Vega spec preview...';
         vegaEmbed('#vis', spec, {loader: dataLoader})
         .then (result => {
-          return result.view;
+          view = result.view;
         })
         .catch (error => {
           console.error('vega.viewer:', error.message);
           message.innerHTML = error.message;
-          return null;
+          view = null;
         });
+        return view;
+      }
+
+      function exportView(exportType) {
+        if (!view) return;
+        switch (exportType) {
+          case 'svg':
+            view.toSVG().then(svg => {
+              vscode.postMessage({command: 'exportSvg', svg: svg});
+            })
+            .catch(error => message.innerText = error.message);
+          break;
+        }
       }
     </script>
   </body>

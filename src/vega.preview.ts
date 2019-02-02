@@ -76,10 +76,12 @@ export class VegaPreview {
     }, null, this._disposables);
 
     this.webview.onDidReceiveMessage(message => {
-      // console.log(message);
-      switch (message) {
+      switch (message.command) {
         case 'refresh':
           this.refresh();
+          break;
+        case 'exportSvg':
+          // console.log(message.svg.substring(0, 300), '...');
           break;
       }
     }, null, this._disposables);

@@ -7,9 +7,9 @@ in [VSCode](https://github.com/Microsoft/vscode)
 
 # Features
 
-- Preview Vega and Vega-Lite specs
+- Vega and Vega-Lite charts Preview
 - Local data files support
-- Export to SVG
+- SVG and PNG export
 
 # Usage 
 

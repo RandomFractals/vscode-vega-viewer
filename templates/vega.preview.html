@@ -16,6 +16,7 @@
     <style>
       body {
         background: white;
+        color: #333;
         margin: 0px;
       }
       #toolbar {
@@ -44,13 +45,14 @@
   </head>
   <body>
     <div id="toolbar">
-      <div style="float: right; width: 40px;">
-        <a title="export svg" href="#" onclick="exportView('svg')">&lt;svg&gt;</a>
+      <div style="float: right; width: 54px;">
+        <a title="export svg" href="#" onclick="exportView('svg')">svg</a> |
+        <a title="export png" href="#" onclick="exportView('png')">png</a>
       </div>
       <h3 id="title"></h3>
     </div>
-    <div id="vis"></div>
     <div id="message">Loading Vega spec preview...</div>
+    <div id="vis"></div>
     <script type="text/javascript">
       // start with blank vega spec
       let vscode, view, message, data, title;
@@ -100,27 +102,27 @@
       window.addEventListener('message', event => {
         try {
           vscode.setState({uri: event.data.uri});
-          title.innerText = event.data.fileName;
+          title.innerText = event.data.fileName.replace('.json', '');
           spec = JSON.parse(event.data.spec);
           data = event.data.data;
           view = preview(spec);
         }
         catch (error) {
-          console.error('vega.viewer:', error.message);
-          message.innerText = error.message;
+          console.error('vega.preview:', error.message);
+          showMessage(error.message);
         }
       });
 
       // vega preview update
       function preview(spec) {
-        message.innerHTML = ''; // 'Loading Vega spec preview...';
+        showMessage(''); // 'Loading Vega spec preview...';
         vegaEmbed('#vis', spec, {loader: dataLoader})
         .then (result => {
           view = result.view;
         })
         .catch (error => {
-          console.error('vega.viewer:', error.message);
-          message.innerHTML = error.message;
+          console.error('vega.preview:', error.message);
+          showMessage(error.message);
           view = null;
         });
         return view;
@@ -130,12 +132,29 @@
         if (!view) return;
         switch (exportType) {
           case 'svg':
+            showMessage('Exporting SVG...');
             view.toSVG().then(svg => {
               vscode.postMessage({command: 'exportSvg', svg: svg});
+              showMessage('');
             })
-            .catch(error => message.innerText = error.message);
-          break;
+            .catch(error => showMessage(error.message));
+            break;
+          case 'png':
+            showMessage('Exporting PNG...');
+            view.toCanvas().then(canvas => {
+              vscode.postMessage({
+                command: 'exportPng', 
+                imageData: canvas.toDataURL()
+              });
+              showMessage('');
+            })
+            .catch(error => showMessage(error.message));            
+            break;
         }
+      }
+
+      function showMessage(text) {
+        message.innerText = text;
       }
     </script>
   </body>

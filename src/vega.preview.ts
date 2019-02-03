@@ -82,8 +82,10 @@ export class VegaPreview {
           this.refresh();
           break;
         case 'exportSvg':
-          // console.log(message.svg.substring(0, 300), '...');
           this.exportSvg(message.svg);
+          break;
+        case 'exportPng':
+          this.exportPng(message.imageData);
           break;
       }
     }, null, this._disposables);
@@ -198,6 +200,22 @@ export class VegaPreview {
       fs.writeFile(svgFileUri.fsPath, svg, (error) => {
         if (error) {
           window.showErrorMessage(`Failed to save file: ${svgFileUri.fsPath}`);
+        }
+      });
+    }
+  }
+
+  private async exportPng(imageData: string): Promise<void> {
+    const base64: string = imageData.replace('data:image/png;base64,', '');
+    const pngFilePath = this._uri.fsPath.replace('.json', '');
+    const pngFileUri: Uri = await window.showSaveDialog({
+      defaultUri: Uri.parse(pngFilePath).with({scheme: 'file'}),
+      filters: {'PNG': ['png']}
+    });
+    if (pngFileUri) {
+      fs.writeFile(pngFileUri.fsPath, base64, 'base64', (error) => {
+        if (error) {
+          window.showErrorMessage(`Failed to save file: ${pngFileUri.fsPath}`);
         }
       });
     }

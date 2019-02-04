@@ -133,6 +133,7 @@ export class VegaPreview {
         const spec = JSON.parse(vegaSpec);
         const data = this.getData(spec);
         this.webview.postMessage({
+          command: 'refresh',
           fileName: this._fileName,
           uri: this._uri.toString(),
           spec: vegaSpec,
@@ -191,7 +192,7 @@ export class VegaPreview {
   }
 
   private async exportSvg(svg: string): Promise<void> {
-    const svgFilePath = this._uri.fsPath.replace('.json', '');
+    const svgFilePath: string = this._uri.fsPath.replace('.json', '');
     const svgFileUri: Uri = await window.showSaveDialog({
       defaultUri: Uri.parse(svgFilePath).with({scheme: 'file'}),
       filters: {'SVG': ['svg']}
@@ -203,11 +204,12 @@ export class VegaPreview {
         }
       });
     }
+    this.webview.postMessage({command: 'showMessage', message: ''});
   }
 
   private async exportPng(imageData: string): Promise<void> {
     const base64: string = imageData.replace('data:image/png;base64,', '');
-    const pngFilePath = this._uri.fsPath.replace('.json', '');
+    const pngFilePath: string = this._uri.fsPath.replace('.json', '');
     const pngFileUri: Uri = await window.showSaveDialog({
       defaultUri: Uri.parse(pngFilePath).with({scheme: 'file'}),
       filters: {'PNG': ['png']}
@@ -219,6 +221,7 @@ export class VegaPreview {
         }
       });
     }
+    this.webview.postMessage({command: 'showMessage', message: ''});
   }
 
   public dispose() {

@@ -100,16 +100,23 @@
 
       // vega spec update handler
       window.addEventListener('message', event => {
-        try {
-          vscode.setState({uri: event.data.uri});
-          title.innerText = event.data.fileName.replace('.json', '');
-          spec = JSON.parse(event.data.spec);
-          data = event.data.data;
-          view = preview(spec);
-        }
-        catch (error) {
-          console.error('vega.preview:', error.message);
-          showMessage(error.message);
+        switch (event.data.command) {
+          case 'showMessage':
+            showMessage(event.data.message);
+            break;
+          case 'refresh':
+            try {
+              vscode.setState({uri: event.data.uri});
+              title.innerText = event.data.fileName.replace('.json', '');
+              spec = JSON.parse(event.data.spec);
+              data = event.data.data;
+              view = preview(spec);
+            }
+            catch (error) {
+              console.error('vega.preview:', error.message);
+              showMessage(error.message);
+            }
+            break;
         }
       });
 
@@ -135,7 +142,6 @@
             showMessage('Exporting SVG...');
             view.toSVG().then(svg => {
               vscode.postMessage({command: 'exportSvg', svg: svg});
-              showMessage('');
             })
             .catch(error => showMessage(error.message));
             break;
@@ -146,7 +152,6 @@
                 command: 'exportPng', 
                 imageData: canvas.toDataURL()
               });
-              showMessage('');
             })
             .catch(error => showMessage(error.message));            
             break;

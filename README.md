@@ -29,7 +29,7 @@ on open `.vega`, `.vg.json` or `.vl.json` Vega spec document to Preview it.
 
 # Vega Viewer VSCode Contributions
 
-![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-contributions.png?raw=true 
+![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-contribs.png?raw=true 
  "Vega Viewer VSCode Contributions")
 
 ## Vega Preview Menu Shortcuts

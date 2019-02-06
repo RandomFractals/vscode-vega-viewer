@@ -7,16 +7,20 @@ in [VSCode](https://github.com/Microsoft/vscode)
 
 # Features
 
+- Create Vega document command
 - Vega and Vega-Lite charts Preview
 - Local data files support
 - SVG and PNG export
 
 # Usage 
 
-1. Run `Vega: Preview` command from `View -> Command Pallette...` menu 
-on open `.vega`, `.vg.json` or `.vl.json` Vega spec document
+1. Run `Vega: Create Vega document` command from `View -> Command Pallette...` menu 
+to create and save new Vega or Vega-Lite document with the corresponding Vega JSON schema reference.
 
-2. Save updated Vega spec JSON document to Preview updated Vega viz
+2. Run `Vega: Preview` command from `View -> Command Pallette...` menu 
+on open `.vega`, `.vg.json` or `.vl.json` Vega spec document to Preview it.
+
+3. Save updated Vega spec JSON document to Preview updated Vega viz.
 
 ## Example: [Vega Contour Plot Preview](https://vega.github.io/vega/examples/contour-plot/)
 

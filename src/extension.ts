@@ -10,6 +10,7 @@ import {
   TextDocument,
   TextDocumentChangeEvent 
 } from 'vscode';
+import * as fs from 'fs';
 import * as path from 'path';
 import { VegaPreview, VegaPreviewSerializer } from './vega.preview';
 import { previewManager } from './preview.manager';
@@ -33,6 +34,14 @@ export function activate(context: ExtensionContext) {
   // register Vega preview serializer for restore on vscode restart
   window.registerWebviewPanelSerializer('vega.preview', 
     new VegaPreviewSerializer(context.extensionPath, previewTemplate.content));
+
+  // Vega: Create Vega document 
+  let createVegaDocumentCommand: Disposable = commands.registerCommand('vega.create', () => 
+    createVegaDocument(
+      templateManager.getTemplate('vega.vg.json').content, 
+      templateManager.getTemplate('vega.lite.vl.json').content)
+  );
+  context.subscriptions.push(createVegaDocumentCommand);
 
   // Vega: Preview command
   let vegaWebview: Disposable = commands.registerCommand('vega.preview', (uri) => {
@@ -99,4 +108,26 @@ function isVegaFile(document: TextDocument): boolean {
 function getViewColumn(): ViewColumn {
   const activeEditor = window.activeTextEditor;
   return activeEditor ? (activeEditor.viewColumn + 1) : ViewColumn.One;
+}
+
+async function createVegaDocument(vegaTemplate: string, vegaLiteTemplate: string): Promise<void> {
+  const vegaFileUri: Uri = await window.showSaveDialog({
+    defaultUri: Uri.parse(path.join(workspace.rootPath, 'chart')).with({scheme: 'file'}),
+    filters: {
+      'Vega Document': ['vg'],
+      'Vega-Lite Document': ['vl']
+    }
+  });
+  if (vegaFileUri) {
+    const vegaContent: string = vegaFileUri.fsPath.endsWith('.vg') ? vegaTemplate : vegaLiteTemplate;
+    fs.writeFile(vegaFileUri.fsPath, vegaContent, (error) => {
+      if (error) {
+        window.showErrorMessage(`Failed to create Vega document: ${vegaFileUri.fsPath}`);
+      } else {
+        workspace.openTextDocument(vegaFileUri).then(document => {
+          window.showTextDocument(document);
+        });
+      }
+    });
+  }
 }

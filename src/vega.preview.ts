@@ -50,7 +50,7 @@ export class VegaPreview {
     this._uri = uri;
     this._fileName = path.basename(uri.fsPath);
     this._previewUri = this._uri.with({scheme: 'vega'});
-    this._title = `Preview ${this._fileName}`;
+    this._title = `Preview ${this._fileName} 📊`;
     const scriptsPath: string = Uri.file(path.join(this._extensionPath, 'scripts'))
       .with({scheme: 'vscode-resource'}).toString(true);
     this._html = template.replace(/\{scripts\}/g, scriptsPath);

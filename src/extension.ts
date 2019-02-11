@@ -4,7 +4,8 @@ import {
   window, 
   commands, 
   ExtensionContext,
-  Disposable, 
+  Disposable,
+  QuickPickItem, 
   Uri, 
   ViewColumn, 
   TextDocument,
@@ -36,15 +37,21 @@ export function activate(context: ExtensionContext) {
     new VegaPreviewSerializer(context.extensionPath, previewTemplate.content));
 
   // Vega: Create Vega document 
-  let createVegaDocumentCommand: Disposable = commands.registerCommand('vega.create', () => 
+  const createVegaDocumentCommand: Disposable = commands.registerCommand('vega.create', () => 
     createVegaDocument(
       templateManager.getTemplate('vega.vg.json').content, 
       templateManager.getTemplate('vega.lite.vl.json').content)
   );
   context.subscriptions.push(createVegaDocumentCommand);
 
+  // Vega: Examples command
+  const vegaExamplesCommand: Disposable = commands.registerCommand('vega.examples', () => 
+    showVegaExamples(context.asAbsolutePath('examples'))
+  );
+  context.subscriptions.push(vegaExamplesCommand);
+
   // Vega: Preview command
-  let vegaWebview: Disposable = commands.registerCommand('vega.preview', (uri) => {
+  const vegaWebview: Disposable = commands.registerCommand('vega.preview', (uri) => {
     let resource: any = uri;
     let viewColumn: ViewColumn = getViewColumn();
     if (!(resource instanceof Uri)) {
@@ -125,9 +132,25 @@ async function createVegaDocument(vegaTemplate: string, vegaLiteTemplate: string
         window.showErrorMessage(`Failed to create Vega document: ${vegaFileUri.fsPath}`);
       } else {
         workspace.openTextDocument(vegaFileUri).then(document => {
-          window.showTextDocument(document);
+          window.showTextDocument(document, ViewColumn.One);
         });
       }
+    });
+  }
+}
+
+async function showVegaExamples(examplesPath: string): Promise<void> {
+  const fileNames: string[] = fs.readdirSync(examplesPath).filter(f => f.endsWith('vg.json'));
+  const fileItems: Array<QuickPickItem> = [];
+  fileNames.forEach(fileName => fileItems.push(
+    {label: `$(graph) ${fileName}`}
+  ));
+  const selectedExample: QuickPickItem = await window.showQuickPick(fileItems, {canPickMany: false});
+  if (selectedExample) {
+    const exampleFileName: string = selectedExample.label.replace('$(graph) ', '');
+    const exampleFileUri: Uri = Uri.file(path.join(examplesPath, exampleFileName));
+    workspace.openTextDocument(exampleFileUri).then(document => {
+      window.showTextDocument(document, ViewColumn.One);
     });
   }
 }

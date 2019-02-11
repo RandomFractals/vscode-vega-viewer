@@ -18,8 +18,8 @@ export class TemplateManager implements ITemplateManager {
   }
 
   private loadTemplates(): Array<Template> {
-    const fileNames = fs.readdirSync(this.templateFolder).filter(f => f.endsWith('.html') || f.endsWith('.json'));
-    let templates: Array<Template> = [];
+    const fileNames: string[] = fs.readdirSync(this.templateFolder).filter(f => f.endsWith('.html') || f.endsWith('.json'));
+    const templates: Array<Template> = [];
     fileNames.forEach(fileName => templates.push(
       {name: fileName, content: fs.readFileSync(path.join(this.templateFolder, fileName), 'utf8')}
     ));

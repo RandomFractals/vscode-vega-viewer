@@ -2,7 +2,7 @@
   "name": "vscode-vega-viewer",
   "displayName": "Vega Viewer",
   "description": "Vega Viewer",
-  "version": "1.6.1",
+  "version": "2.0.0",
   "publisher": "RandomFractalsInc",
   "author": "Taras Novak",
   "contributors": [
@@ -29,7 +29,9 @@
     "Programming Languages"
   ],
   "activationEvents": [
+    "onCommand:vega.create",
     "onCommand:vega.preview",
+    "onCommand:vega.examples",
     "onWebviewPanel:vega.preview",
     "onLanguage:json"
   ],
@@ -37,24 +39,33 @@
   "contributes": {
     "commands": [
       {
-        "command": "vega.preview",
-        "title": "Preview",
+        "command": "vega.create",
+        "title": "Create Vega $(graph)",
         "category": "Vega"
       },
       {
-        "command": "vega.create",
-        "title": "Create Vega document",
+        "command": "vega.preview",
+        "title": "Preview $(graph)",
+        "category": "Vega"
+      },
+      {
+        "command": "vega.examples",
+        "title": "Examples $(graph)",
         "category": "Vega"
       }
     ],
     "keybindings": [
       {
+        "command": "vega.create",
+        "key": "ctrl+alt+c"
+      },
+      {
         "command": "vega.preview",
         "key": "ctrl+alt+v"
       },
       {
-        "command": "vega.create",
-        "key": "ctrl+alt+c"
+        "command": "vega.examples",
+        "key": "ctrl+alt+x"
       }
     ],
     "languages": [

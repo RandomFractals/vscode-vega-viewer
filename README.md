@@ -41,30 +41,6 @@ Run `Vega: Examples 📊` command to view the list of built-in Vega specificatio
 ![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-commands.png?raw=true 
  "Vega Viewer VSCode Commands")
 
-## Vega Preview Menu Shortcuts
-
-The following Preview navigation menu items are added for quick Vega chart previews:
-
-### 1. Vega: Preview Command
-
-![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-preview-command.png?raw=true 
- "Vega: Preview Command")
-
-### 2. Explorer/context Preview
-
-![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-explorer-context-preview.png?raw=true 
- "Explorer/context Preview")
-
-### 3. Editor/title/context Preview
-
-![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-editor-title-preview.png?raw=true 
- "Editor/title Preview")
-
-### 4. Editor/title Preview
-
-![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-editor-title-context-preview.png?raw=true 
- "Editor/title/context Preview")
-
 # Dev Log
 
 See [#VegaViewer tag on Twitter](https://twitter.com/hashtag/vegaviewer?f=tweets&vertical=default&src=hash) for the latest and greatest updates on this vscode extension and what's in store next.

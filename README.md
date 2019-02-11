@@ -36,6 +36,11 @@ Run `Vega: Examples 📊` command to view the list of built-in Vega specificatio
 ![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-2.0-contribs.png?raw=true 
  "Vega Viewer VSCode Contributions")
 
+# Vega Viewer Commands
+
+![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-commands.png?raw=true 
+ "Vega Viewer VSCode Commands")
+
 ## Vega Preview Menu Shortcuts
 
 The following Preview navigation menu items are added for quick Vega chart previews:

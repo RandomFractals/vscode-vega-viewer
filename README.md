@@ -33,7 +33,7 @@ Run `Vega: Examples 📊` command to view the list of built-in Vega specificatio
 
 # Vega Viewer VSCode Contributions
 
-![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-contribs.png?raw=true 
+![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-2.0-contribs.png?raw=true 
  "Vega Viewer VSCode Contributions")
 
 ## Vega Preview Menu Shortcuts

@@ -58,3 +58,8 @@ $ code .
 ![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vscode-vega-viewer-dev-screen.png?raw=true 
  "Vega Viewer Dev Preview")
 
+# Contributions
+
+Any and all test, code or feedback contributions are welcome. 
+
+Open an issue or create a pull request to make Vega Viewer work better for all. 

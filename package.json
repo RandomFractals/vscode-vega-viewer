@@ -2,7 +2,7 @@
   "name": "vscode-vega-viewer",
   "displayName": "Vega Viewer",
   "description": "Vega Viewer",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "publisher": "RandomFractalsInc",
   "author": "Taras Novak",
   "contributors": [
@@ -40,17 +40,17 @@
     "commands": [
       {
         "command": "vega.create",
-        "title": "Create Vega $(graph)",
+        "title": "Create Vega 📊",
         "category": "Vega"
       },
       {
         "command": "vega.preview",
-        "title": "Preview $(graph)",
+        "title": "Preview 📊",
         "category": "Vega"
       },
       {
         "command": "vega.examples",
-        "title": "Examples $(graph)",
+        "title": "Examples 📊",
         "category": "Vega"
       }
     ],
@@ -110,23 +110,23 @@
     "menus": {
       "explorer/context": [
         {
-          "when": "resourceLangId == json || resourceLangId == vega || resourceLangId == vg || resourceLangId == vl",
+          "when": "resourceLangId == json",
           "command": "vega.preview",
-          "group": "navigation"
+          "group": "Vega"
         }
       ],
       "editor/title": [
         {
-          "when": "resourceLangId == json || resourceLangId == vega || resourceLangId == vg || resourceLangId == vl",
+          "when": "resourceLangId == json",
           "command": "vega.preview",
-          "group": "navigation"
+          "group": "Vega"
         }
       ],
       "editor/title/context": [
         {
-          "when": "resourceLangId == json || resourceLangId == vega || resourceLangId == vg || resourceLangId == vl",
+          "when": "resourceLangId == json",
           "command": "vega.preview",
-          "group": "navigation"
+          "group": "Vega"
         }
       ]
     }

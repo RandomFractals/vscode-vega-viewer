@@ -26,6 +26,10 @@ OR
 
 Run `Vega: Examples 📊` command to view the list of built-in Vega specification examples.
 
+...
+
+the best part of Vega Viewer is you can use it disconnected unlike other online #dataViz #devTools to prototype your #maps 🌍 and #graphs 📈 on a go, on a ✈️, on a 🚄, on a 🚤, in a 📦 with a 🐐, and no #d3 #py || #rstats required!
+
 ## Example: [Vega Contour Plot Preview](https://vega.github.io/vega/examples/contour-plot/)
 
 ![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-contour.png?raw=true 

@@ -2,7 +2,7 @@
   "name": "vscode-vega-viewer",
   "displayName": "Vega Viewer",
   "description": "Vega Viewer",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "publisher": "RandomFractalsInc",
   "author": "Taras Novak",
   "contributors": [
@@ -20,7 +20,8 @@
     "vega",
     "vega-lite",
     "viewer",
-    "preview"
+    "preview",
+    "charts"
   ],
   "engines": {
     "vscode": "^1.30.0"
@@ -110,23 +111,23 @@
     "menus": {
       "explorer/context": [
         {
-          "when": "resourceLangId == json",
+          "when": "resourceFilename =~ /.*\\.(vega|vg.json|vl.json|vg|vl)/",
           "command": "vega.preview",
-          "group": "Vega"
+          "group": "navigation"
         }
       ],
       "editor/title": [
         {
-          "when": "resourceLangId == json",
+          "when": "resourceFilename =~ /.*\\.(vega|vg.json|vl.json|vg|vl)/",
           "command": "vega.preview",
-          "group": "Vega"
+          "group": "navigation"
         }
       ],
       "editor/title/context": [
         {
-          "when": "resourceLangId == json",
+          "when": "resourceFilename =~ /.*\\.(vega|vg.json|vl.json|vg|vl)/",
           "command": "vega.preview",
-          "group": "Vega"
+          "group": "navigation"
         }
       ]
     }

@@ -11,21 +11,24 @@ in [VSCode](https://github.com/Microsoft/vscode)
 - Vega and Vega-Lite charts Preview
 - Local data files support
 - SVG and PNG export
-- Built-in Vega Examples
+- 66 built-in Vega & 370 Vega-Lite Examples
 
 # Usage 
 
 1. Run `Vega: Create Vega 📊` command from `View -> Command Pallette...` menu 
-to create and save new Vega or Vega-Lite document with the corresponding Vega JSON schema reference.
+to create and save new Vega or Vega-Lite document with the corresponding Vega JSON schema reference
 
-2. Run `Vega: Preview 📊` on open `.vega`, `.vg.json` or `.vl.json` Vega spec document to Preview it.
+2. Run `Vega: Preview 📊` on open `.vega`, `.vg.json` or `.vl.json` Vega spec document to Preview it
 
-3. Save updated Vega spec JSON document to Preview updated Vega viz.
+3. Save updated Vega spec JSON document to Preview updated Vega viz
 
 OR
 
-Run `Vega: Examples 📊` command to view the list of built-in Vega specification examples.
+Run `Vega: Examples 📊` command to view the list of built-in Vega specification examples
 
+OR 
+
+Run `Vega: Vega-Lite Examples 📊` command to view all the 370 Vega Lite #maps 🗺️ and #charts 📊 updates 🤗
 ...
 
 the best part of Vega Viewer is you can use it disconnected unlike other online #dataViz #devTools to prototype your #maps 🌍 and #graphs 📈 on a go, on a ✈️, on a 🚄, on a 🚤, in a 📦 with a 🐐, and no #d3 #py || #rstats required!

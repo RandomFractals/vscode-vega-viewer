@@ -46,7 +46,13 @@ export function activate(context: ExtensionContext) {
 
   // Vega: Examples command
   const vegaExamplesCommand: Disposable = commands.registerCommand('vega.examples', () => 
-    showVegaExamples(context.asAbsolutePath('examples'))
+    showVegaExamples(context.asAbsolutePath('examples'), 'vg.json')
+  );
+  context.subscriptions.push(vegaExamplesCommand);
+
+  // Vega: Examples command
+  const vegaExamplesLiteCommand: Disposable = commands.registerCommand('vega.examples.lite', () => 
+    showVegaExamples(context.asAbsolutePath('examples'), 'vl.json')
   );
   context.subscriptions.push(vegaExamplesCommand);
 
@@ -139,8 +145,8 @@ async function createVegaDocument(vegaTemplate: string, vegaLiteTemplate: string
   }
 }
 
-async function showVegaExamples(examplesPath: string): Promise<void> {
-  const fileNames: string[] = fs.readdirSync(examplesPath).filter(f => f.endsWith('vg.json'));
+async function showVegaExamples(examplesPath: string, examplesExtension: string): Promise<void> {
+  const fileNames: string[] = fs.readdirSync(examplesPath).filter(f => f.endsWith(examplesExtension));
   const fileItems: Array<QuickPickItem> = [];
   fileNames.forEach(fileName => fileItems.push(
     {label: `$(graph) ${fileName}`}

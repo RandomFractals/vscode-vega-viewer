@@ -50,11 +50,11 @@ export function activate(context: ExtensionContext) {
   );
   context.subscriptions.push(vegaExamplesCommand);
 
-  // Vega: Examples command
+  // Vega: Examples Lite command
   const vegaExamplesLiteCommand: Disposable = commands.registerCommand('vega.examples.lite', () => 
     showVegaExamples(context.asAbsolutePath('examples'), 'vl.json')
   );
-  context.subscriptions.push(vegaExamplesCommand);
+  context.subscriptions.push(vegaExamplesLiteCommand);
 
   // Vega: Preview command
   const vegaWebview: Disposable = commands.registerCommand('vega.preview', (uri) => {

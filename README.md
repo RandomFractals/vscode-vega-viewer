@@ -40,7 +40,7 @@ the best part of Vega Viewer is you can use it disconnected unlike other online 
 
 # Vega Viewer VSCode Contributions
 
-![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-2.0-contribs.png?raw=true 
+![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-contribs-3.0.png?raw=true 
  "Vega Viewer VSCode Contributions")
 
 # Vega Viewer Commands

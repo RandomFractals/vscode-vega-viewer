@@ -28,7 +28,7 @@ Run `Vega: Examples 📊` command to view the list of built-in Vega specificatio
 
 OR 
 
-Run `Vega: Vega-Lite Examples 📊` command to view all the 370 Vega Lite #maps 🗺️ and #charts 📊 updates 🤗
+Run `Vega: Lite Examples 📊` command to view all the 370 Vega Lite #maps 🗺️ and #graphs 📊 🤗
 ...
 
 the best part of Vega Viewer is you can use it disconnected unlike other online #dataViz #devTools to prototype your #maps 🌍 and #graphs 📈 on a go, on a ✈️, on a 🚄, on a 🚤, in a 📦 with a 🐐, and no #d3 #py || #rstats required!

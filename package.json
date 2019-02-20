@@ -2,7 +2,7 @@
   "name": "vscode-vega-viewer",
   "displayName": "Vega Viewer",
   "description": "Vega Viewer",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "publisher": "RandomFractalsInc",
   "author": "Taras Novak",
   "contributors": [
@@ -58,7 +58,7 @@
       },
       {
         "command": "vega.examples.lite",
-        "title": "Vega-Lite Examples 📊",
+        "title": "Lite Examples 📊",
         "category": "Vega"
       }
     ],

@@ -2,13 +2,13 @@
 
 [Vega Viewer](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-vega-viewer) provides language support and
 Interactive Preview of [Vega](https://vega.github.io/vega/) 
-and [Vega-Lite](https://vega.github.io/vega-lite/) JSON spec charts 
+and [Vega-Lite](https://vega.github.io/vega-lite/) JSON spec graphs 📈
 in [VSCode](https://github.com/Microsoft/vscode)
 
 # Features
 
 - Create Vega document command
-- Vega and Vega-Lite charts Preview
+- Vega and Vega-Lite graphs Preview
 - Local data files support
 - SVG and PNG export
 - 66 built-in Vega & 370 Vega-Lite Examples
@@ -28,10 +28,10 @@ Run `Vega: Examples 📊` command to view the list of built-in Vega specificatio
 
 OR 
 
-Run `Vega: Lite Examples 📊` command to view all the 370 Vega Lite #maps 🗺️ and #graphs 📊 🤗
+Run `Vega: Lite Examples 📊` command to view all the 370 Vega Lite #maps 🗺️ & #graphs 📊 created by the Vega dev community 🤗
 ...
 
-the best part of Vega Viewer is you can use it disconnected unlike other online #dataViz #devTools to prototype your #maps 🌍 and #graphs 📈 on a go, on a ✈️, on a 🚄, on a 🚤, in a 📦 with a 🐐, and no #d3 #py || #rstats required!
+The best part of Vega Viewer is you can use it disconnected unlike other online #dataViz #devTools to prototype your #maps 🌍 & #graphs 📈 on a go, on a ✈️, on a 🚄, on a 🚤, in a 📦 with a 🐐, and no #d3 #py || #rstats required!
 
 ## Example: [Vega Contour Plot Preview](https://vega.github.io/vega/examples/contour-plot/)
 

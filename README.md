@@ -28,10 +28,10 @@ Run `Vega: Examples 📊` command to view the list of built-in Vega specificatio
 
 OR 
 
-Run `Vega: Lite Examples 📊` command to view all the 370 Vega Lite #maps 🗺️ & #graphs 📊 created by the Vega dev community 🤗
+Run `Vega: Lite Examples 📊` command to view all the 370 Vega Lite 🗺️'s & 📊's created by the Vega dev community 🤗
 ...
 
-The best part of Vega Viewer is you can use it disconnected unlike other online #dataViz #devTools to prototype your #maps 🌍 & #graphs 📈 on a go, on a ✈️, on a 🚄, on a 🚤, in a 📦 with a 🐐, and no #d3 #py || #rstats required!
+The best part of Vega Viewer is you can use it disconnected unlike other online #dataViz #devTools to prototype your 🗺️'️s & 📈's on a go, on a ✈️, on a 🚄, on a 🚤, in a 📦 with a 🐐, and no #d3 #py || #rstats required!
 
 ## Example: [Vega Contour Plot Preview](https://vega.github.io/vega/examples/contour-plot/)
 

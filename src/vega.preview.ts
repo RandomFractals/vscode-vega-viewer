@@ -15,6 +15,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { previewManager } from './preview.manager';
 import { ENGINE_METHOD_STORE } from 'constants';
+import { stringify } from 'querystring';
 
 export class VegaPreviewSerializer implements WebviewPanelSerializer {
   constructor(private extensionPath: string, private template: string) {
@@ -149,44 +150,51 @@ export class VegaPreview {
 
   private getData(spec:any): any {
     const dataFiles = {};
+    const dataUrls: Array<string> = this.getDataUrls(spec);
+    dataUrls.filter(url => !url.startsWith('http')).forEach(url => {
+      // get local file data
+      const fileData: string = this.getFileData(url);
+      if (fileData) {
+        dataFiles[url] = fileData;
+      }
+      // console.log(url);
+    });
+    return dataFiles;
+  }
+  
+  private getDataUrls(spec: any): Array<string> {
+    let dataUrls: Array<string> = [];
     const data = spec['data'];
-    let fileData;
+    const layer = spec['layer'];
     if (data !== undefined) {
+      // get top level data references
       if (Array.isArray(data)) {
-        data.filter(d => d['url'] !== undefined)
-          .forEach(d => {
-            fileData = this.getFileData(d['url']);
-            if (fileData) {
-              dataFiles[fileData.url] = fileData.data;
-            }
-          });
+        data.filter(d => d['url'] !== undefined).forEach(d => {
+          dataUrls.push(d['url']);
+        });
       }
       else if (data['url'] !== undefined) {
-        const url = data['url'];
-         fileData = this.getFileData(url);
-         if (fileData) {
-          dataFiles[url] = fileData.data;
-         }
+        dataUrls.push(data['url']);
       }
+    } else if (layer !== undefined && Array.isArray(layer)) {
+      // get layer data references
+      layer.forEach(data => {
+        dataUrls = dataUrls.concat(this.getDataUrls(data));
+      });
     }
-    // console.log('vega.viewer:dataFiles:', dataFiles);
-    return dataFiles;
+    // console.log('vega.viewer:dataUrls:', dataUrls);
+    return dataUrls;
   }
 
   // TODO: change this to async later
-  private getFileData(filePath: string) {
-    let data = {url: filePath, data: filePath};
-    if (!filePath.startsWith('http')) {
-      // must be local data file reference
-      const dataFilePath = path.join(path.dirname(this._uri.fsPath), filePath);
-      // console.log(dataFilePath);
-      if (fs.existsSync(dataFilePath)) {
-        data['data'] = fs.readFileSync(dataFilePath, 'utf8');
-      }
-      else {
-        data = null;
-        console.error('vega.viewer:', `${filePath} doesn't exist`);
-      }
+  private getFileData(filePath: string): string {
+    let data:string = null;
+    const dataFilePath = path.join(path.dirname(this._uri.fsPath), filePath);
+    if (fs.existsSync(dataFilePath)) {
+      data = fs.readFileSync(dataFilePath, 'utf8');
+    }
+    else {
+      console.error('vega.viewer:', `${filePath} doesn't exist`);
     }
     return data;
   }

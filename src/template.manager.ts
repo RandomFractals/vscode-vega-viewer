@@ -18,12 +18,13 @@ export class TemplateManager implements ITemplateManager {
   }
 
   private loadTemplates(): Array<Template> {
+    // console.info('vega.viewer: loading vega templates...');
     const fileNames: string[] = fs.readdirSync(this.templateFolder).filter(f => f.endsWith('.html') || f.endsWith('.json'));
     const templates: Array<Template> = [];
     fileNames.forEach(fileName => templates.push(
       {name: fileName, content: fs.readFileSync(path.join(this.templateFolder, fileName), 'utf8')}
     ));
-    console.log('vega.viewer:templates:', fileNames);
+    // console.log('vega.viewer:templates:', fileNames);
     return templates;
   }
 

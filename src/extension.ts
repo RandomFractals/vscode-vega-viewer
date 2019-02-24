@@ -26,8 +26,6 @@ const VEGA_FILE_EXTENSIONS: string[] = [
 ];
 
 export function activate(context: ExtensionContext) {
-  console.info('vega.viewer: loading vega templates...');
-
   // initialize Vega templates
   const templateManager: ITemplateManager = new TemplateManager(context.asAbsolutePath('templates'));
   const previewTemplate: Template = templateManager.getTemplate('vega.preview.html');

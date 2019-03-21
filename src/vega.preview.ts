@@ -152,8 +152,12 @@ export class VegaPreview {
     const dataFiles = {};
     // get top level data urls
     let dataUrls: Array<string> = this.getDataUrls(spec);
+
     // append nested spec data urls for view compositions (facets, repeats, etc.)
     dataUrls = dataUrls.concat(this.getDataUrls(spec['spec']));
+    // console.log('vega.viewer:dataUrls:', dataUrls);
+
+    // get all local files data
     dataUrls.filter(url => !url.startsWith('http')).forEach(url => {
       // get local file data
       const fileData: string = this.getFileData(url);
@@ -167,9 +171,12 @@ export class VegaPreview {
   
   private getDataUrls(spec: any): Array<string> {
     let dataUrls: Array<string> = [];
+    if (spec === undefined){
+      return dataUrls; // base case
+    }
     const data = spec['data'];
-    const layer = spec['layer'];
-    const transform = spec['transform'];
+    const layers = spec['layer'];
+    const transforms = spec['transform'];
     if (data !== undefined) {
       // get top level data references
       if (Array.isArray(data)) {
@@ -181,19 +188,18 @@ export class VegaPreview {
         dataUrls.push(data['url']);
       }
     }
-    if (layer !== undefined && Array.isArray(layer)) {
-      // get layer data references
-      layer.forEach(data => {
-        dataUrls = dataUrls.concat(this.getDataUrls(data));
+    if (layers !== undefined && Array.isArray(layers)) {
+      // get layers data references
+      layers.forEach(layer => {
+        dataUrls = dataUrls.concat(this.getDataUrls(layer));
       });
     }
-    if (transform !== undefined) {
+    if (transforms !== undefined) {
       // get transform data references
-      transform.forEach(data => {
-        dataUrls = dataUrls.concat(this.getDataUrls(data['from']));
+      transforms.forEach(transformData => {
+        dataUrls = dataUrls.concat(this.getDataUrls(transformData['from']));
       });
     }
-    // console.log('vega.viewer:dataUrls:', dataUrls);
     return dataUrls;
   }
 

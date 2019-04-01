@@ -32,7 +32,7 @@
       ]
     },
     {
-      "window": [
+      "joinaggregate": [
         {
           "op": "min",
           "field": "stack_count_Origin1",
@@ -46,10 +46,6 @@
       ],
       "groupby": [
         "Origin"
-      ],
-      "frame": [
-        null,
-        null
       ]
     },
     {
@@ -189,6 +185,7 @@
     "view": {
       "stroke": ""
     },
+    "concat": {"spacing": 10},
     "axis": {
       "domain": false,
       "ticks": false,

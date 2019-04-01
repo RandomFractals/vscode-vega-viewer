@@ -1,5 +1,5 @@
 {
-  "$schema": "https://vega.github.io/schema/vega/v4.json",
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
   "width": 600,
   "height": 600,
   "padding": 5,
@@ -8,7 +8,7 @@
   "data": [
     {
       "name": "tree",
-      "url": "./data/flare.json",
+      "url": "data/flare.json",
       "transform": [
         {
           "type": "stratify",
@@ -48,7 +48,7 @@
           "x": {"field": "x"},
           "y": {"field": "y"},
           "size": {"signal": "4 * datum.r * datum.r"},
-          "stroke": {"value": "black"},
+          "stroke": {"value": "white"},
           "strokeWidth": {"value": 0.5}
         },
         "hover": {

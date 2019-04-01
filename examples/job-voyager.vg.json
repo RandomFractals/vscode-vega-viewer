@@ -1,5 +1,5 @@
 {
-  "$schema": "https://vega.github.io/schema/vega/v4.json",
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
   "width": 800,
   "height": 500,
   "padding": 5,
@@ -22,7 +22,7 @@
   "data": [
     {
       "name": "jobs",
-      "url": "./data/jobs.json",
+      "url": "data/jobs.json",
       "transform": [
         {
           "type": "filter",

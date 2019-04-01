@@ -1,5 +1,5 @@
 {
-  "$schema": "https://vega.github.io/schema/vega/v4.json",
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
   "autosize": "pad",
 
   "signals": [
@@ -41,7 +41,7 @@
     },
     {
       "name": "world",
-      "url": "./data/world-110m.json",
+      "url": "data/world-110m.json",
       "format": {
         "type": "topojson",
         "feature": "countries"

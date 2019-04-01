@@ -2,7 +2,7 @@
   "name": "vscode-vega-viewer",
   "displayName": "Vega Viewer",
   "description": "Vega Viewer",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "publisher": "RandomFractalsInc",
   "author": "Taras Novak",
   "contributors": [
@@ -159,7 +159,7 @@
     "vscode": "^1.1.33"
   },
   "dependencies": {
-    "vega": "^5.3.2",
+    "vega": "^5.3.4",
     "vega-lite": "^3.0.3",
     "vega-embed": "^4.0.0"
   }

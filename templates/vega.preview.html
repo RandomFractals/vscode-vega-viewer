@@ -65,7 +65,7 @@
     <div id="vis"></div>
     <script type="text/javascript">
       // start with blank vega spec
-      let vscode, view, message, data, title, themeSelector;
+      let vscode, view, message, data, title, themeSelector, theme;
       let spec = {
         "$schema": "https://vega.github.io/schema/vega/v4.json",
         "width": 400,
@@ -122,7 +122,7 @@
               title.innerText = event.data.fileName.replace('.json', '');
               spec = JSON.parse(event.data.spec);
               data = event.data.data;
-              view = preview(spec);
+              view = preview(spec, theme);
             }
             catch (error) {
               console.error('vega.preview:', error.message);
@@ -133,7 +133,8 @@
       });
 
       function changeTheme() {
-        preview(spec, themeSelector.value);
+        theme = themeSelector.value;
+        preview(spec, theme);
       }
 
       // vega preview update

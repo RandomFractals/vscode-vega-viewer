@@ -45,7 +45,17 @@
   </head>
   <body>
     <div id="toolbar">
-      <div style="float: right; width: 54px;">
+      <div style="float: right; width: 130px;">
+        <select id="theme-selector" onChange="changeTheme()">
+          <option value="">theme:</option>
+          <option value="dark">dark</option>
+          <option value="excel">excel</option>
+          <option value="ggplot2">ggplot2</option>
+          <option value="quartz">quartz</option>
+          <option value="latimes">la times</option>
+          <option value="vox">vox</option>
+          <option value="fivethirtyeight">538</option>
+        </select>
         <a title="export svg" href="#" onclick="exportView('svg')">svg</a> |
         <a title="export png" href="#" onclick="exportView('png')">png</a>
       </div>
@@ -55,7 +65,7 @@
     <div id="vis"></div>
     <script type="text/javascript">
       // start with blank vega spec
-      let vscode, view, message, data, title;
+      let vscode, view, message, data, title, themeSelector;
       let spec = {
         "$schema": "https://vega.github.io/schema/vega/v4.json",
         "width": 400,
@@ -83,9 +93,11 @@
 
       // display blank vega spec on webview content loaded
       document.addEventListener('DOMContentLoaded', event => {
-        // get title and message display containers
+        // initialize page elements
         title = document.getElementById('title');
         message = document.getElementById('message');
+        themeSelector = document.getElementById('theme-selector');
+
         // create blank vega embed view
         view = preview(spec);
         try {
@@ -120,10 +132,14 @@
         }
       });
 
+      function changeTheme() {
+        preview(spec, themeSelector.value);
+      }
+
       // vega preview update
-      function preview(spec) {
+      function preview(spec, theme) {
         showMessage(''); // 'Loading Vega spec preview...';
-        vegaEmbed('#vis', spec, {loader: dataLoader})
+        vegaEmbed('#vis', spec, {loader: dataLoader, theme: theme})
         .then (result => {
           view = result.view;
         })

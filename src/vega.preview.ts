@@ -150,12 +150,13 @@ export class VegaPreview {
 
   private getData(spec:any): any {
     const dataFiles = {};
+
     // get top level data urls
     let dataUrls: Array<string> = this.getDataUrls(spec);
 
-    // append nested spec data urls for view compositions (facets, repeats, etc.)
+    // add nested spec data urls for view compositions (facets, repeats, etc.)
     dataUrls = dataUrls.concat(this.getDataUrls(spec['spec']));
-    // console.log('vega.viewer:dataUrls:', dataUrls);
+    console.log('vega.viewer:dataUrls:', dataUrls);
 
     // get all local files data
     dataUrls.filter(url => !url.startsWith('http')).forEach(url => {
@@ -174,9 +175,14 @@ export class VegaPreview {
     if (spec === undefined){
       return dataUrls; // base case
     }
-    const data = spec['data'];
-    const layers = spec['layer'];
-    const transforms = spec['transform'];
+    const data: any = spec['data'];
+    const transforms: Array<any> = spec['transform'];
+    let layers: Array<any> = [];
+    layers = layers.concat(spec['layer']);
+    layers = layers.concat(spec['concat']);
+    layers = layers.concat(spec['hconcat']);
+    layers = layers.concat(spec['vconcat']);
+
     if (data !== undefined) {
       // get top level data references
       if (Array.isArray(data)) {

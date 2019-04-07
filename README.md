@@ -11,7 +11,7 @@ in [VSCode](https://github.com/Microsoft/vscode)
 - Vega and Vega-Lite graphs Preview
 - Local data files support
 - SVG and PNG export
-- 450 built-in Vega & Vega-Lite Examples
+- Over 460 built-in Vega & Vega-Lite Examples
 
 # Usage 
 

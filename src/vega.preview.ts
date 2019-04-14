@@ -156,7 +156,7 @@ export class VegaPreview {
 
     // add nested spec data urls for view compositions (facets, repeats, etc.)
     dataUrls = dataUrls.concat(this.getDataUrls(spec['spec']));
-    console.log('vega.viewer:dataUrls:', dataUrls);
+    // console.log('vega.viewer:dataUrls:', dataUrls);
 
     // get all local files data
     dataUrls.filter(url => !url.startsWith('http')).forEach(url => {

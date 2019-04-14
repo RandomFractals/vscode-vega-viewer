@@ -2,7 +2,7 @@
   "name": "vscode-vega-viewer",
   "displayName": "Vega Viewer",
   "description": "Vega Viewer",
-  "version": "4.3.0",
+  "version": "4.4.0",
   "publisher": "RandomFractalsInc",
   "author": "Taras Novak",
   "contributors": [
@@ -23,7 +23,10 @@
     "preview",
     "charts",
     "maps",
-    "graphs"
+    "graphs",
+    "dataViz",
+    "vegaViz",
+    "devTools"
   ],
   "engines": {
     "vscode": "^1.32.3"
@@ -160,7 +163,7 @@
   },
   "dependencies": {
     "vega": "^5.3.5",
-    "vega-lite": "^3.1.0",
+    "vega-lite": "^3.2.0",
     "vega-embed": "^4.0.0"
   }
 }

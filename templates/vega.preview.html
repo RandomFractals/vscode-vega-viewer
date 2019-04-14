@@ -26,7 +26,15 @@
         color: #333;
       }
       #toolbar a {
+        color: dodgerblue;
+        font-size: 10pt;
+        font-weight: bold;
         text-decoration: none;
+      }
+      #title {
+        padding: 0px;
+        margin-top: 10px;
+        margin-bottom: 5px;
       }
       /* hide vega embed actions menu */
       .vega-embed {
@@ -45,7 +53,7 @@
   </head>
   <body>
     <div id="toolbar">
-      <div style="float: right; width: 130px;">
+      <div style="float: right; width: 140px;">
         <select id="theme-selector" onChange="changeTheme()">
           <option value="">theme:</option>
           <option value="dark">dark</option>
@@ -55,7 +63,7 @@
           <option value="latimes">la times</option>
           <option value="vox">vox</option>
           <option value="fivethirtyeight">538</option>
-        </select>
+        </select> &nbsp;
         <a title="export svg" href="#" onclick="exportView('svg')">svg</a> |
         <a title="export png" href="#" onclick="exportView('png')">png</a>
       </div>

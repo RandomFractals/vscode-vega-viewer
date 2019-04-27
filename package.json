@@ -2,7 +2,7 @@
   "name": "vscode-vega-viewer",
   "displayName": "Vega Viewer",
   "description": "Vega Viewer",
-  "version": "4.4.1",
+  "version": "4.5.0",
   "publisher": "RandomFractalsInc",
   "author": "Taras Novak",
   "contributors": [
@@ -156,14 +156,14 @@
   },
   "devDependencies": {
     "@types/mocha": "^5.2.6",
-    "@types/node": "^11.12.2",
-    "tslint": "^5.14.0",
-    "typescript": "^3.4.1",
+    "@types/node": "^11.13.8",
+    "tslint": "^5.16.0",
+    "typescript": "^3.4.5",
     "vscode": "^1.1.33"
   },
   "dependencies": {
     "vega": "^5.3.5",
-    "vega-lite": "^3.2.0",
+    "vega-lite": "^3.2.1",
     "vega-embed": "^4.0.0"
   }
 }

@@ -12,6 +12,7 @@ in [VSCode](https://github.com/Microsoft/vscode)
 - Local data files support
 - SVG and PNG export
 - 468 built-in Vega & Vega-Lite Examples
+- [Vega themes](https://twitter.com/search?q=%23vegaThemes&src=typed_query) Preview
 
 # Usage 
 

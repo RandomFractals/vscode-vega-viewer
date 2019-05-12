@@ -4,7 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Security-Policy" 
-      content="default-src * vscode-resource: https: 'unsafe-inline' 'unsafe-eval'; script-src vscode-resource: https: 'unsafe-inline' 'unsafe-eval'; img-src vscode-resource: https:; connect-src vscode-resource: https: http:;">
+      content="default-src * vscode-resource: https: 'unsafe-inline' 'unsafe-eval';
+        script-src vscode-resource: https: 'unsafe-inline' 'unsafe-eval';
+        style-src vscode-resource: https: 'unsafe-inline';
+        img-src vscode-resource: https:;
+        connect-src vscode-resource: https: http:;">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vega Preview</title>
     <meta name="description" content="Vega is a declarative format for creating, saving, and sharing visualization designs. With Vega, visualizations are described in JSON, and generate interactive views using either HTML5 Canvas or SVG.">
@@ -15,10 +19,11 @@
     <script src="{scripts}/vega-embed.min.js"></script>
     <style>
       body {
-        background: white;
+        background:#fff;
         color: #333;
         margin: 0px;
       }
+
       #toolbar {
         border-bottom: 1px solid #999;
         margin-bottom: 10px;
@@ -31,11 +36,13 @@
         font-weight: bold;
         text-decoration: none;
       }
+
       #title {
         padding: 0px;
         margin-top: 10px;
         margin-bottom: 5px;
       }
+
       /* hide vega embed actions menu */
       .vega-embed {
         padding-right: 0px !important;
@@ -43,10 +50,11 @@
       .vega-embed summary {
         display: none !important;
       }
+
       #message {
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         color: red;
-        font-size: 12pt;
+        font-size: 11pt;
         text-align: center;
       }
     </style>
@@ -72,6 +80,8 @@
     <div id="message">Loading Vega spec preview...</div>
     <div id="vis"></div>
     <script type="text/javascript">
+      console.info('vega.preview:scriptsDir:', '{scripts}');
+
       // start with blank vega spec
       let vscode, view, message, data, title, themeSelector, theme;
       let spec = {

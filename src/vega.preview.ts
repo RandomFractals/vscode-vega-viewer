@@ -14,8 +14,6 @@ import {
 import * as fs from 'fs';
 import * as path from 'path';
 import { previewManager } from './preview.manager';
-import { ENGINE_METHOD_STORE } from 'constants';
-import { stringify } from 'querystring';
 
 export class VegaPreviewSerializer implements WebviewPanelSerializer {
   constructor(private extensionPath: string, private template: string) {

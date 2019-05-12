@@ -26,7 +26,14 @@
     "graphs",
     "dataViz",
     "vegaViz",
-    "devTools"
+    "dev tools",
+    "data preview",
+    "csv",
+    "csv data",
+    "json",
+    "json data",
+    "arrow",
+    "arrow data"
   ],
   "engines": {
     "vscode": "^1.32.3"
@@ -162,6 +169,11 @@
     "vscode": "^1.1.33"
   },
   "dependencies": {
+    "apache-arrow": "^0.4.1",
+    "d3-fetch": "^1.1.2",
+    "@finos/perspective": "^0.3.0-rc.1",
+    "@finos/perspective-viewer": "^0.3.0-rc.1",
+    "@finos/perspective-viewer-hypergrid": "^0.3.0-rc.1",
     "vega": "^5.4.0",
     "vega-lite": "^3.2.1",
     "vega-embed": "^4.0.0"

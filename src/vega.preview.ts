@@ -61,7 +61,7 @@ export class VegaPreview {
     this.configure();
   }
 
-  private initWebview(viewColumn: ViewColumn) {
+  private initWebview(viewColumn: ViewColumn): void {
     if (!this._panel) {
     // create webview panel
     this._panel = window.createWebviewPanel('vega.preview', 
@@ -92,7 +92,7 @@ export class VegaPreview {
           break;
       }
     }, null, this._disposables);
-  }
+  } // end of initWebview()
 
   private getWebviewOptions(): any {
     return {
@@ -118,7 +118,7 @@ export class VegaPreview {
     return localResourceRoots;
   }
 
-  public configure() {
+  public configure(): void {
     this.webview.html = this.html;
     // NOTE: let webview fire refresh message
     // when vega preview DOM content is initialized
@@ -150,7 +150,7 @@ export class VegaPreview {
     });
   }
 
-  private getData(spec:any): any {
+  private getData(spec: any): any {
     const dataFiles = {};
 
     // get top level data urls
@@ -233,7 +233,7 @@ export class VegaPreview {
       fs.writeFile(svgFileUri.fsPath, svg, (error) => {
         if (error) {
           const errorMessage: string = `Failed to save file: ${svgFileUri.fsPath}`;
-          this._logger.logMessage(LogLevel.Error, 'exportPng():', errorMessage);
+          this._logger.logMessage(LogLevel.Error, 'exportSvg():', errorMessage);
           window.showErrorMessage(errorMessage);
         }
       });

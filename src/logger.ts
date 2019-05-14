@@ -1,15 +1,15 @@
 export class Logger {
-  constructor(private category:string, private logLevel = LogLevel.Debug) {
+  constructor(private category: string, private logLevel: LogLevel = LogLevel.Debug) {
   }
 
-  public logMessage(logLevel:LogLevel, message:string, params:any = null): void{
+  public logMessage(logLevel: LogLevel, message: string, params: any = null): void{
     console.log(this.category + message, params);
     if (logLevel >= this.logLevel) {
       this.log(logLevel, message, params);
     }
   }
 
-  private log(logLevel:LogLevel, message:string, params:any = null): void {
+  private log(logLevel: LogLevel, message: string, params: any = null): void {
     switch (logLevel) {
       case LogLevel.Warn:
         console.warn(this.category + message, params);

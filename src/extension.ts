@@ -28,17 +28,23 @@ const VEGA_FILE_EXTENSIONS: string[] = [
 export function activate(context: ExtensionContext) {
   // initialize Vega templates
   const templateManager: ITemplateManager = new TemplateManager(context.asAbsolutePath('templates'));
-  const previewTemplate: Template = templateManager.getTemplate('vega.preview.html');
+  const vegaPreviewTemplate: Template = templateManager.getTemplate('vega.preview.html');
+  const dataPreviewTemplate: Template = templateManager.getTemplate('data.preview.html');
 
   // register Vega preview serializer for restore on vscode restart
   window.registerWebviewPanelSerializer('vega.preview', 
-    new VegaPreviewSerializer(context.extensionPath, previewTemplate.content));
+    new VegaPreviewSerializer(context.extensionPath, vegaPreviewTemplate.content));
+
+  // register Vega Data preview serializer for restore on vscode restart
+  window.registerWebviewPanelSerializer('vega.data.preview', 
+    new VegaPreviewSerializer(context.extensionPath, dataPreviewTemplate.content));
 
   // Vega: Create Vega document 
   const createVegaDocumentCommand: Disposable = commands.registerCommand('vega.create', () => 
     createVegaDocument(
       templateManager.getTemplate('vega.vg.json').content, 
-      templateManager.getTemplate('vega.lite.vl.json').content)
+      templateManager.getTemplate('vega.lite.vl.json').content
+    )
   );
   context.subscriptions.push(createVegaDocumentCommand);
 
@@ -62,18 +68,36 @@ export function activate(context: ExtensionContext) {
       if (window.activeTextEditor) {
         resource = window.activeTextEditor.document.uri;
       } else {
-        window.showInformationMessage('Open a Vega file first to Preview.');
+        window.showInformationMessage('Open a Vega file to Preview.');
         return;
       }
     }
-    const preview: VegaPreview = 
-      new VegaPreview(context.extensionPath, resource, viewColumn, previewTemplate.content);
+    const preview: VegaPreview = new VegaPreview(context.extensionPath, resource, 
+      viewColumn, vegaPreviewTemplate.content);
     previewManager.add(preview);
     return preview.webview;
   });
-
-  // add disposable commands to subscriptions
   context.subscriptions.push(vegaWebview);
+
+  // Vega: Preview command
+  const dataWebview: Disposable = commands.registerCommand('vega.data.preview', (uri) => {
+    let resource: any = uri;
+    let viewColumn: ViewColumn = getViewColumn();
+    if (!(resource instanceof Uri)) {
+      if (window.activeTextEditor) {
+        resource = window.activeTextEditor.document.uri;
+      } else {
+        window.showInformationMessage('Open a Vega file to Preview.');
+        return;
+      }
+    }
+    const preview: VegaPreview = new VegaPreview(context.extensionPath, resource, 
+      viewColumn, dataPreviewTemplate.content);
+    previewManager.add(preview);
+    return preview.webview;
+  });
+  context.subscriptions.push(dataWebview);
+
 
   // refresh associated preview on Vega file save
   workspace.onDidSaveTextDocument((document: TextDocument) => {

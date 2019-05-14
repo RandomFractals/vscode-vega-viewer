@@ -45,14 +45,17 @@ export class VegaPreview {
   private _panel: WebviewPanel;
   private _logger = new Logger('vega.preview:', LogLevel.Debug); // .Info for prod
 
-  constructor(extensionPath: string, 
-    uri: Uri, viewColumn: ViewColumn, 
-    template: string, panel?: WebviewPanel) {
+  constructor(
+    extensionPath: string, 
+    uri: Uri, 
+    viewColumn: ViewColumn, 
+    template: string, 
+    panel?: WebviewPanel) {
     this._extensionPath = extensionPath;
     this._uri = uri;
     this._fileName = path.basename(uri.fsPath);
     this._previewUri = this._uri.with({scheme: 'vega'});
-    this._title = `Preview ${this._fileName} 📊`;
+    this._title = template.startsWith('data') ? `Data Preview ${this._fileName}`:  `Preview ${this._fileName} 📊`;
     const scriptsPath: string = Uri.file(path.join(this._extensionPath, 'scripts'))
       .with({scheme: 'vscode-resource'}).toString(true);
     this._html = template.replace(/\{scripts\}/g, scriptsPath);

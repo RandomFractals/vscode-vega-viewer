@@ -44,9 +44,11 @@
   "activationEvents": [
     "onCommand:vega.create",
     "onCommand:vega.preview",
+    "onCommand:vega.data.preview",
     "onCommand:vega.examples",
     "onCommand:vega.examples.lite",
     "onWebviewPanel:vega.preview",
+    "onWebviewPanel:vega.data.preview",
     "onLanguage:json"
   ],
   "main": "./out/extension",
@@ -60,6 +62,11 @@
       {
         "command": "vega.preview",
         "title": "Preview 📊",
+        "category": "Vega"
+      },
+      {
+        "command": "vega.data.preview",
+        "title": "Preview Data",
         "category": "Vega"
       },
       {
@@ -81,6 +88,10 @@
       {
         "command": "vega.preview",
         "key": "ctrl+alt+v"
+      },
+      {
+        "command": "vega.data.preview",
+        "key": "ctrl+alt+d"
       },
       {
         "command": "vega.examples",

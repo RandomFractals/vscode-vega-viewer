@@ -79,7 +79,7 @@ export function activate(context: ExtensionContext) {
   });
   context.subscriptions.push(vegaWebview);
 
-  // Vega: Preview command
+  // Vega: Data Preview command
   const dataWebview: Disposable = commands.registerCommand('vega.data.preview', (uri) => {
     let resource: any = uri;
     let viewColumn: ViewColumn = getViewColumn();

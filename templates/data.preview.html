@@ -10,9 +10,10 @@
         img-src vscode-resource: https:;
         connect-src vscode-resource: https: http:;">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vega Preview</title>
-    <meta name="description" content="Vega is a declarative format for creating, saving, and sharing visualization designs. With Vega, visualizations are described in JSON, and generate interactive views using either HTML5 Canvas or SVG.">
+    <meta name="description" content="Vega is a declarative JSON format for creating
+      and sharing data visualization designs.">
     <base href="https://vega.github.io/" target="_blank" />
+    <title>Preview</title>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <script src="{scripts}/vega.min.js"></script>
     <script src="{scripts}/vega-lite.min.js"></script>
@@ -23,7 +24,6 @@
         color: #333;
         margin: 0px;
       }
-
       #toolbar {
         border-bottom: 1px solid #999;
         margin-bottom: 10px;
@@ -36,13 +36,11 @@
         font-weight: bold;
         text-decoration: none;
       }
-
       #title {
         padding: 0px;
         margin-top: 10px;
         margin-bottom: 5px;
       }
-
       /* hide vega embed actions menu */
       .vega-embed {
         padding-right: 0px !important;
@@ -50,7 +48,6 @@
       .vega-embed summary {
         display: none !important;
       }
-
       #message {
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         color: red;
@@ -62,35 +59,23 @@
   <body>
     <div id="toolbar">
       <div style="float: right; width: 140px;">
-        <select id="theme-selector" onChange="changeTheme()">
-          <option value="">theme:</option>
-          <option value="dark">dark</option>
-          <option value="excel">excel</option>
-          <option value="ggplot2">ggplot2</option>
-          <option value="quartz">quartz</option>
-          <option value="latimes">la times</option>
-          <option value="vox">vox</option>
-          <option value="fivethirtyeight">538</option>
+        data:
+        <select id="data-selector" onChange="changeData()">
         </select> &nbsp;
-        <a title="export svg" href="#" onclick="exportView('svg')">svg</a> |
-        <a title="export png" href="#" onclick="exportView('png')">png</a>
       </div>
       <h3 id="title">loading...</h3>
     </div>
     <div id="message">Loading Vega spec preview...</div>
     <div id="vis"></div>
     <script type="text/javascript">
-      console.info('vega.preview:scriptsDir:', '{scripts}');
-
+      let vscode, view, message, data, title, dataSelector, theme = '';
       // start with blank vega spec
-      let vscode, view, message, data, title, themeSelector, theme;
       let spec = {
         "$schema": "https://vega.github.io/schema/vega/v4.json",
         "width": 400,
         "height": 200,
         "padding": 5
       };
-
       // create custom vega data loader
       const vegaLoader = vega.loader();
       const dataLoader = vega.loader();
@@ -108,14 +93,11 @@
           } 
         });
       };
-
-      // display blank vega spec on webview content loaded
       document.addEventListener('DOMContentLoaded', event => {
         // initialize page elements
         title = document.getElementById('title');
         message = document.getElementById('message');
-        themeSelector = document.getElementById('theme-selector');
-
+        dataSelector = document.getElementById('data-selector');
         // create blank vega embed view
         view = preview(spec);
         try {
@@ -127,7 +109,6 @@
           // ignore: must be loaded outside of vscode webview
         }
       });
-
       // vega spec update handler
       window.addEventListener('message', event => {
         switch (event.data.command) {
@@ -150,9 +131,10 @@
         }
       });
 
-      function changeTheme() {
-        theme = themeSelector.value;
-        preview(spec, theme);
+      function changeData() {
+        dataSource = dataSelector.value;
+        console.log('dataSource:', dataSource);
+        preview(spec);
       }
 
       // vega preview update

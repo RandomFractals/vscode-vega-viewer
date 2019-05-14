@@ -13,14 +13,16 @@ import {
 } from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
-import { previewManager } from './preview.manager';
+import {Logger, LogLevel} from './logger';
+import {previewManager} from './preview.manager';
 
 export class VegaPreviewSerializer implements WebviewPanelSerializer {
   constructor(private extensionPath: string, private template: string) {
   }
 
   async deserializeWebviewPanel(webviewPanel: WebviewPanel, state: any) {
-    // console.log('vega.viewer:deserialize:', state.uri.toString());
+    const logger = new Logger('vega.preview.serializer:', LogLevel.Debug); // .Info for prod
+    logger.logMessage(LogLevel.Debug, 'deserializeWeviewPanel(): url:', state.uri.toString());
     previewManager.add(
       new VegaPreview(
         this.extensionPath, 
@@ -33,6 +35,7 @@ export class VegaPreviewSerializer implements WebviewPanelSerializer {
 }
 export class VegaPreview {
     
+  protected _disposables: Disposable[] = [];
   private _extensionPath: string;
   private _uri: Uri;
   private _previewUri: Uri;
@@ -40,7 +43,7 @@ export class VegaPreview {
   private _title: string;
   private _html: string;
   private _panel: WebviewPanel;
-  protected _disposables: Disposable[] = [];
+  private _logger = new Logger('vega.preview:', LogLevel.Debug); // .Info for prod
 
   constructor(extensionPath: string, 
     uri: Uri, viewColumn: ViewColumn, 
@@ -75,6 +78,7 @@ export class VegaPreview {
       let active = viewStateEvent.webviewPanel.visible;
     }, null, this._disposables);
 
+    // process web view messages
     this.webview.onDidReceiveMessage(message => {
       switch (message.command) {
         case 'refresh':
@@ -110,15 +114,15 @@ export class VegaPreview {
     }
     // add vega preview js scripts
     localResourceRoots.push(Uri.file(path.join(this._extensionPath, 'scripts')));
-    // console.log(localResourceRoots);
+    this._logger.logMessage(LogLevel.Debug, 'getLocalResourceRoots():', localResourceRoots);
     return localResourceRoots;
   }
 
   public configure() {
     this.webview.html = this.html;
-    // NOTE: let webview fire refresh
+    // NOTE: let webview fire refresh message
     // when vega preview DOM content is initialized
-    // this.refresh();
+    // see: this.refresh();
   }
 
   public refresh(): void {
@@ -126,7 +130,7 @@ export class VegaPreview {
     this._panel.reveal(this._panel.viewColumn, true); // preserve focus
     // open Vega json spec text document
     workspace.openTextDocument(this.uri).then(document => {
-      // console.log('vega.preview.refresh:', this._fileName);
+      this._logger.logMessage(LogLevel.Debug, 'refresh(): file:', this._fileName);
       const vegaSpec: string = document.getText();
       try {
         const spec = JSON.parse(vegaSpec);
@@ -140,7 +144,7 @@ export class VegaPreview {
         });
       }
       catch (error) {
-        console.error('vega.viewer:', error.message);
+        this._logger.logMessage(LogLevel.Error, 'refresh():', error.message);
         this.webview.postMessage({error: error});
       }
     });
@@ -154,7 +158,7 @@ export class VegaPreview {
 
     // add nested spec data urls for view compositions (facets, repeats, etc.)
     dataUrls = dataUrls.concat(this.getDataUrls(spec['spec']));
-    // console.log('vega.viewer:dataUrls:', dataUrls);
+    this._logger.logMessage(LogLevel.Debug, 'getData(): dataUrls:', dataUrls);
 
     // get all local files data
     dataUrls.filter(url => !url.startsWith('http')).forEach(url => {
@@ -163,7 +167,7 @@ export class VegaPreview {
       if (fileData) {
         dataFiles[url] = fileData;
       }
-      // console.log(url);
+      this._logger.logMessage(LogLevel.Debug, 'getData(): localDataUrl:', url);
     });
     return dataFiles;
   }
@@ -180,7 +184,6 @@ export class VegaPreview {
     layers = layers.concat(spec['concat']);
     layers = layers.concat(spec['hconcat']);
     layers = layers.concat(spec['vconcat']);
-
     if (data !== undefined) {
       // get top level data references
       if (Array.isArray(data)) {
@@ -215,7 +218,7 @@ export class VegaPreview {
       data = fs.readFileSync(dataFilePath, 'utf8');
     }
     else {
-      console.error('vega.viewer:', `${filePath} doesn't exist`);
+      this._logger.logMessage(LogLevel.Error, 'getFileData():', `${filePath} doesn't exist`);
     }
     return data;
   }
@@ -229,7 +232,9 @@ export class VegaPreview {
     if (svgFileUri) {
       fs.writeFile(svgFileUri.fsPath, svg, (error) => {
         if (error) {
-          window.showErrorMessage(`Failed to save file: ${svgFileUri.fsPath}`);
+          const errorMessage: string = `Failed to save file: ${svgFileUri.fsPath}`;
+          this._logger.logMessage(LogLevel.Error, 'exportPng():', errorMessage);
+          window.showErrorMessage(errorMessage);
         }
       });
     }
@@ -246,7 +251,9 @@ export class VegaPreview {
     if (pngFileUri) {
       fs.writeFile(pngFileUri.fsPath, base64, 'base64', (error) => {
         if (error) {
-          window.showErrorMessage(`Failed to save file: ${pngFileUri.fsPath}`);
+          const errorMessage: string = `Failed to save file: ${pngFileUri.fsPath}`;
+          this._logger.logMessage(LogLevel.Error, 'exportPng():', errorMessage);
+          window.showErrorMessage(errorMessage);
         }
       });
     }

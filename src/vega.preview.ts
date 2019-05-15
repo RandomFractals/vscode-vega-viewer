@@ -16,6 +16,9 @@ import * as path from 'path';
 import {Logger, LogLevel} from './logger';
 import {previewManager} from './preview.manager';
 
+/**
+ * Vega preview web panel serializer for restoring previews on vscode reload.
+ */
 export class VegaPreviewSerializer implements WebviewPanelSerializer {
   constructor(private extensionPath: string, private template: string) {
   }
@@ -33,6 +36,10 @@ export class VegaPreviewSerializer implements WebviewPanelSerializer {
     ));
   }
 }
+
+/**
+ * Main vega preview webview implementation for this vscode extension.
+ */
 export class VegaPreview {
     
   protected _disposables: Disposable[] = [];
@@ -45,6 +52,14 @@ export class VegaPreview {
   private _panel: WebviewPanel;
   private _logger = new Logger('vega.preview:', LogLevel.Debug); // .Info for prod
 
+  /**
+   * Creates new Vega preview.
+   * @param extensionPath Extension path for loading webview scripts, etc.
+   * @param uri Vega spec json doc uri to preview.
+   * @param viewColumn vscode IDE view column to display vega preview in.
+   * @param template Webview html template reference.
+   * @param panel Optional webview panel reference for restore on vscode IDE reload.
+   */
   constructor(
     extensionPath: string, 
     uri: Uri, 
@@ -64,18 +79,24 @@ export class VegaPreview {
     this.configure();
   }
 
+  /**
+   * Initializes vega preview webview panel.
+   * @param viewColumn vscode IDE view column to display preview in.
+   */
   private initWebview(viewColumn: ViewColumn): void {
     if (!this._panel) {
-    // create webview panel
+    // create new webview panel
     this._panel = window.createWebviewPanel('vega.preview', 
       this._title, viewColumn, 
       this.getWebviewOptions());
     }
 
+    // dispose preview panel 
     this._panel.onDidDispose(() => {
       this.dispose();
     }, null, this._disposables);
 
+    // TODO: handle view state changes later
     this._panel.onDidChangeViewState(
       (viewStateEvent: WebviewPanelOnDidChangeViewStateEvent) => {
       let active = viewStateEvent.webviewPanel.visible;
@@ -97,6 +118,10 @@ export class VegaPreview {
     }, null, this._disposables);
   } // end of initWebview()
 
+  /**
+   * Creates webview options with local resource roots, etc
+   * for vega preview webview display.
+   */
   private getWebviewOptions(): any {
     return {
       enableScripts: true,
@@ -106,6 +131,9 @@ export class VegaPreview {
     };
   }
 
+  /**
+   * Creates local resource roots for loading scripts in vega preview webview.
+   */
   private getLocalResourceRoots(): Uri[] {
     const localResourceRoots: Uri[] = [];
     const workspaceFolder: WorkspaceFolder = workspace.getWorkspaceFolder(this.uri);
@@ -121,6 +149,9 @@ export class VegaPreview {
     return localResourceRoots;
   }
 
+  /**
+   * Configures webview html for preview.
+   */
   public configure(): void {
     this.webview.html = this.html;
     // NOTE: let webview fire refresh message
@@ -128,6 +159,9 @@ export class VegaPreview {
     // see: this.refresh();
   }
 
+  /**
+   * Reload vega preview on vega spec json doc save changes or vscode IDE reload.
+   */
   public refresh(): void {
     // reveal corresponding Vega preview panel
     this._panel.reveal(this._panel.viewColumn, true); // preserve focus
@@ -153,6 +187,10 @@ export class VegaPreview {
     });
   }
 
+  /**
+   * Extracts data urls and loads local data files to pass to vega preview webview.
+   * @param spec Vega json doc spec root or nested data references to extract.
+   */
   private getData(spec: any): any {
     const dataFiles = {};
 
@@ -175,6 +213,11 @@ export class VegaPreview {
     return dataFiles;
   }
   
+  /**
+   * Recursively extracts data urls from the specified vega json doc spec 
+   * or knowwn nested data elements for loading local data content.
+   * @param spec Vega json doc spec root or nested data references to extract.
+   */
   private getDataUrls(spec: any): Array<string> {
     let dataUrls: Array<string> = [];
     if (spec === undefined){
@@ -213,7 +256,11 @@ export class VegaPreview {
     return dataUrls;
   }
 
-  // TODO: change this to async later
+  /**
+   * Loads actual local data file content.
+   * @param filePath Local data file path.
+   * TODO: change this to async later
+   */
   private getFileData(filePath: string): string {
     let data:string = null;
     const dataFilePath = path.join(path.dirname(this._uri.fsPath), filePath);
@@ -226,6 +273,10 @@ export class VegaPreview {
     return data;
   }
 
+  /**
+   * Displays Save SVG dialog and saves it for export SVG feature from preview panel.
+   * @param svg Svg document export to save.
+   */
   private async exportSvg(svg: string): Promise<void> {
     const svgFilePath: string = this._uri.fsPath.replace('.json', '');
     const svgFileUri: Uri = await window.showSaveDialog({
@@ -244,6 +295,10 @@ export class VegaPreview {
     this.webview.postMessage({command: 'showMessage', message: ''});
   }
 
+  /**
+   * Displays Save PNG dialog and saves it for export PNG feature from preview panel.
+   * @param imageData Image data to save in png format.
+   */
   private async exportPng(imageData: string): Promise<void> {
     const base64: string = imageData.replace('data:image/png;base64,', '');
     const pngFilePath: string = this._uri.fsPath.replace('.json', '');
@@ -263,6 +318,9 @@ export class VegaPreview {
     this.webview.postMessage({command: 'showMessage', message: ''});
   }
 
+  /**
+   * Disposes this preview resources.
+   */
   public dispose() {
     previewManager.remove(this);
     this._panel.dispose();
@@ -274,22 +332,37 @@ export class VegaPreview {
     }
   }
 
+  /**
+   * Gets preview panel visibility status.
+   */
   get visible(): boolean {
     return this._panel.visible;
   }
 
+  /**
+   * Gets the underlying webview instance for this preview.
+   */
   get webview(): Webview {
     return this._panel.webview;
   }
     
+  /**
+   * Gets the source vega spec json doc uri for this preview.
+   */
   get uri(): Uri {
     return this._uri;
   }
 
+  /**
+   * Gets the preview uri to load on commands triggers or vscode IDE reload. 
+   */
   get previewUri(): Uri {
     return this._previewUri;
   }
   
+  /**
+   * Gets the html content to load for this preview.
+   */
   get html(): string {
     return this._html;
   }

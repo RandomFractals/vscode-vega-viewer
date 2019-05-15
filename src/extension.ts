@@ -13,10 +13,11 @@ import {
 } from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
-import { VegaPreview, VegaPreviewSerializer } from './vega.preview';
-import { previewManager } from './preview.manager';
-import { Template, ITemplateManager, TemplateManager } from './template.manager';
+import {VegaPreview, VegaPreviewSerializer} from './vega.preview';
+import {previewManager} from './preview.manager';
+import {Template, ITemplateManager, TemplateManager} from './template.manager';
 
+// supported vega spec json file extensions
 const VEGA_FILE_EXTENSIONS: string[] = [
   '.vega',
   '.vg',
@@ -25,6 +26,10 @@ const VEGA_FILE_EXTENSIONS: string[] = [
   '.vl.json'
 ];
 
+/**
+ * Activates this extension per rules set in package.json.
+ * @param context vscode extension context.
+ */
 export function activate(context: ExtensionContext) {
   // initialize Vega templates
   const templateManager: ITemplateManager = new TemplateManager(context.asAbsolutePath('templates'));
@@ -130,9 +135,17 @@ export function activate(context: ExtensionContext) {
   console.info('vega.viewer: activated!');
 } // end of activate()
 
+/**
+ * Deactivates this vscode extension to free up resources.
+ */
 export function deactivate() {
+  // TODO: add extension cleanup code, if needed
 }
 
+/**
+ * Checks if open text document is a vega file.
+ * @param document The open text document.
+ */
 function isVegaFile(document: TextDocument): boolean {
   const fileName: string = path.basename(document.uri.fsPath).replace('.json', ''); // strip out .json ext
   const fileExt: string = fileName.substr(fileName.lastIndexOf('.'));
@@ -140,11 +153,19 @@ function isVegaFile(document: TextDocument): boolean {
   return VEGA_FILE_EXTENSIONS.findIndex(vegaFileExt => vegaFileExt === fileExt) >= 0;
 }
 
+/**
+ * Gets 2nd panel view column, if vega json doc is open.
+ */
 function getViewColumn(): ViewColumn {
   const activeEditor = window.activeTextEditor;
   return activeEditor ? (activeEditor.viewColumn + 1) : ViewColumn.One;
 }
 
+/**
+ * Creates new vega spec file.
+ * @param vegaTemplate Vega spec file template to use.
+ * @param vegaLiteTemplate Vega Lite spec file template to use.
+ */
 async function createVegaDocument(vegaTemplate: string, vegaLiteTemplate: string): Promise<void> {
   const vegaFileUri: Uri = await window.showSaveDialog({
     defaultUri: Uri.parse(path.join(workspace.rootPath, 'chart')).with({scheme: 'file'}),
@@ -167,6 +188,11 @@ async function createVegaDocument(vegaTemplate: string, vegaLiteTemplate: string
   }
 }
 
+/**
+ * Displays vega examples list to preview.
+ * @param examplesPath Examples file path.
+ * @param examplesExtension Examples extension, .vg || .vl.
+ */
 async function showVegaExamples(examplesPath: string, examplesExtension: string): Promise<void> {
   const fileNames: string[] = fs.readdirSync(examplesPath).filter(f => f.endsWith(examplesExtension));
   const fileItems: Array<QuickPickItem> = [];

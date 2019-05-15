@@ -1,7 +1,19 @@
 export class Logger {
+
+  /**
+   * Creates new logger instance.
+   * @param category Logger category, usually the source class name.
+   * @param logLevel Log level to use or supress logging.
+   */
   constructor(private category: string, private logLevel: LogLevel = LogLevel.Debug) {
   }
 
+  /**
+   * Logs new message.
+   * @param logLevel log message level.
+   * @param message log message.
+   * @param params log message params, if any.
+   */
   public logMessage(logLevel: LogLevel, message: string, params: any = null): void{
     console.log(this.category + message, params);
     if (logLevel >= this.logLevel) {
@@ -9,6 +21,12 @@ export class Logger {
     }
   }
 
+  /**
+   * Logs new message to console based on the specified log level.
+   * @param logLevel log message level.
+   * @param message log message.
+   * @param params log message params, if any.
+   */
   private log(logLevel: LogLevel, message: string, params: any = null): void {
     switch (logLevel) {
       case LogLevel.Warn:
@@ -27,6 +45,7 @@ export class Logger {
 
 }
 
+// supported log levels
 export enum LogLevel {
   Debug = 0,
   Warn = 1,

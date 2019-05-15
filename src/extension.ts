@@ -29,6 +29,7 @@ const VEGA_FILE_EXTENSIONS: string[] = [
 /**
  * Activates this extension per rules set in package.json.
  * @param context vscode extension context.
+ * @see https://code.visualstudio.com/api/references/activation-events for more info.
  */
 export function activate(context: ExtensionContext) {
   // initialize Vega templates
@@ -143,8 +144,8 @@ export function deactivate() {
 }
 
 /**
- * Checks if open text document is a vega file.
- * @param document The open text document.
+ * Checks if the vscode text document is a vega spec json file.
+ * @param document The vscode text document to check.
  */
 function isVegaFile(document: TextDocument): boolean {
   const fileName: string = path.basename(document.uri.fsPath).replace('.json', ''); // strip out .json ext
@@ -154,7 +155,7 @@ function isVegaFile(document: TextDocument): boolean {
 }
 
 /**
- * Gets 2nd panel view column, if vega json doc is open.
+ * Gets 2nd panel view column, if vega json spec doc is open.
  */
 function getViewColumn(): ViewColumn {
   const activeEditor = window.activeTextEditor;

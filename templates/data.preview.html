@@ -15,9 +15,9 @@
     <base href="https://vega.github.io/" target="_blank" />
     <title>Preview</title>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-    <script src="{scripts}/vega.min.js"></script>
-    <script src="{scripts}/vega-lite.min.js"></script>
-    <script src="{scripts}/vega-embed.min.js"></script>
+    <script src="{scripts}/perspective.js"></script>
+    <script src="{scripts}/perspective.view.js"></script>
+    <script src="{scripts}/hypergrid.plugin.js"></script>
     <style>
       body {
         background:#fff;
@@ -44,18 +44,23 @@
       #data-selector {
         width: 140px;
       }
-      /* hide vega embed actions menu */
-      .vega-embed {
-        padding-right: 0px !important;
-      }
-      .vega-embed summary {
-        display: none !important;
-      }
       #message {
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         color: red;
         font-size: 11pt;
         text-align: center;
+      }
+      #viewer {
+        width: 100%;
+        height: 600px;
+        border: 1px solid #666;
+      }
+      perspective-viewer {
+        position: absolute;
+        top: 100;
+        left: 0;
+        right: 0;
+        bottom: 0;
       }
     </style>
   </head>
@@ -68,41 +73,18 @@
       </div>
       <h3 id="title">loading...</h3>
     </div>
-    <div id="message">Loading Vega spec preview...</div>
-    <div id="vis"></div>
+    <div id="message">Loading data preview...</div>
+    <div id="viewer">
+      <perspective-viewer view="grid">                
+      </perspective-viewer>
+    </div>
     <script type="text/javascript">
-      let vscode, view, message, data, title, dataSelector, theme = '';
-      // start with blank vega spec
-      let spec = {
-        "$schema": "https://vega.github.io/schema/vega/v4.json",
-        "width": 400,
-        "height": 200,
-        "padding": 5
-      };
-      // create custom vega data loader
-      const vegaLoader = vega.loader();
-      const dataLoader = vega.loader();
-      dataLoader.load = (uri) => {
-        if (uri.startsWith('http')) {
-          return vegaLoader.load(uri);
-        }
-        return new Promise((resolve, reject) => {
-          if (data !== undefined && data[uri]) {
-            resolve(data[uri]);
-          }
-          else {
-            message.innerHTML += `<p>${uri} doesn't exist</p>`;
-            reject(`${uri} doesn't exist`);
-          } 
-        });
-      };
+      let vscode, view, message, data, title, dataSelector, selectedData;
       document.addEventListener('DOMContentLoaded', event => {
         // initialize page elements
         title = document.getElementById('title');
         message = document.getElementById('message');
         dataSelector = document.getElementById('data-selector');
-        // create blank vega embed view
-        view = preview(spec);
         try {
           // notify webview
           vscode = acquireVsCodeApi();
@@ -125,13 +107,17 @@
               spec = JSON.parse(event.data.spec);
               data = event.data.data;
               dataSelector.innerHTML = '';
+              const dataSources = [];
               Object.keys(data).forEach(key => {
                 dataSelector.innerHTML += `<option value="${key}">${key}</option>"`;
+                dataSources.push(key);
               });
-              view = preview(spec, theme);
+              if (dataSources.length > 0) {
+                view = preview(dataSources[0]);
+              }
             }
             catch (error) {
-              console.error('vega.preview:', error.message);
+              console.error('data.preview:', error.message);
               showMessage(error.message);
             }
             break;
@@ -139,47 +125,19 @@
       });
 
       function changeData() {
-        dataSource = dataSelector.value;
-        console.log('dataSource:', dataSource);
-        preview(spec);
+        const dataUrl = dataSelector.value;
+        console.log('data.preview:changeData():dataUrl:', dataUrl);
+        preview(dataUrl);
       }
 
-      // vega preview update
-      function preview(spec, theme) {
-        showMessage(''); // 'Loading Vega spec preview...';
-        vegaEmbed('#vis', spec, {loader: dataLoader, theme: theme})
-        .then (result => {
-          view = result.view;
-        })
-        .catch (error => {
-          console.error('vega.preview:', error.message);
-          showMessage(error.message);
-          view = null;
-        });
+      // data preview update
+      function preview(dataUrl) {
+        showMessage(''); // 'Loading data preview...';
+        console.log('data.preview:preview():dataUrl:', dataUrl);
+        selectedData = dataUrl;
+        let view = null;
+        // TODO
         return view;
-      }
-
-      function exportView(exportType) {
-        if (!view) return;
-        switch (exportType) {
-          case 'svg':
-            showMessage('Exporting SVG...');
-            view.toSVG().then(svg => {
-              vscode.postMessage({command: 'exportSvg', svg: svg});
-            })
-            .catch(error => showMessage(error.message));
-            break;
-          case 'png':
-            showMessage('Exporting PNG...');
-            view.toCanvas().then(canvas => {
-              vscode.postMessage({
-                command: 'exportPng', 
-                imageData: canvas.toDataURL()
-              });
-            })
-            .catch(error => showMessage(error.message));            
-            break;
-        }
       }
 
       function showMessage(text) {

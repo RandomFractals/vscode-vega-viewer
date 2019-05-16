@@ -50,17 +50,9 @@
         font-size: 11pt;
         text-align: center;
       }
-      #viewer {
-        width: 100%;
-        height: 600px;
-        border: 1px solid #666;
-      }
       perspective-viewer {
-        position: absolute;
-        top: 100;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        width: 100%;
+        height: 100%;
       }
     </style>
   </head>
@@ -75,16 +67,17 @@
     </div>
     <div id="message">Loading data preview...</div>
     <div id="viewer">
-      <perspective-viewer view="grid">                
-      </perspective-viewer>
     </div>
+    <perspective-viewer view="grid">
+    </perspective-viewer>
     <script type="text/javascript">
-      let vscode, view, message, data, title, dataSelector, selectedData;
+      let vscode, viewer, message, data, title, dataSelector, selectedData;
       document.addEventListener('DOMContentLoaded', event => {
         // initialize page elements
         title = document.getElementById('title');
         message = document.getElementById('message');
         dataSelector = document.getElementById('data-selector');
+        viewer = document.getElementsByTagName('perspective-viewer')[0];
         try {
           // notify webview
           vscode = acquireVsCodeApi();
@@ -113,7 +106,7 @@
                 dataSources.push(key);
               });
               if (dataSources.length > 0) {
-                view = preview(dataSources[0]);
+                preview(dataSources[0]);
               }
             }
             catch (error) {
@@ -135,9 +128,10 @@
         showMessage(''); // 'Loading data preview...';
         console.log('data.preview:preview():dataUrl:', dataUrl);
         selectedData = dataUrl;
-        let view = null;
-        // TODO
-        return view;
+        viewer.reset();
+        viewer.load(data[dataUrl]);
+        viewer.update(data[dataUrl]);
+        viewer.toggleConfig();
       }
 
       function showMessage(text) {

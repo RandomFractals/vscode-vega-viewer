@@ -41,6 +41,9 @@
         margin-top: 10px;
         margin-bottom: 5px;
       }
+      #data-selector {
+        width: 140px;
+      }
       /* hide vega embed actions menu */
       .vega-embed {
         padding-right: 0px !important;
@@ -58,7 +61,7 @@
   </head>
   <body>
     <div id="toolbar">
-      <div style="float: right; width: 140px;">
+      <div style="float: right; width: 180px;">
         data:
         <select id="data-selector" onChange="changeData()">
         </select> &nbsp;
@@ -121,6 +124,10 @@
               title.innerText = event.data.fileName.replace('.json', '');
               spec = JSON.parse(event.data.spec);
               data = event.data.data;
+              dataSelector.innerHTML = '';
+              Object.keys(data).forEach(key => {
+                dataSelector.innerHTML += `<option value="${key}">${key}</option>"`;
+              });
               view = preview(spec, theme);
             }
             catch (error) {

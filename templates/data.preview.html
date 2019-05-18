@@ -8,7 +8,7 @@
         script-src vscode-resource: blob: https: 'unsafe-inline' 'unsafe-eval';
         style-src vscode-resource: https: 'unsafe-inline';
         img-src vscode-resource: data: https:;
-        connect-src vscode-resource: https: http:;">
+        connect-src vscode-resource: blob: data: https: http:;">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Vega is a declarative JSON format for creating
       and sharing data visualization designs.">
@@ -16,6 +16,7 @@
     <title>Preview</title>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <script src="{scripts}/perspective.js"></script>
+    <script src="{scripts}/perspective.wasm.worker.js"></script>
     <script src="{scripts}/perspective.view.js"></script>
     <script src="{scripts}/hypergrid.plugin.js"></script>
     <style>
@@ -66,12 +67,13 @@
       <h3 id="title">loading...</h3>
     </div>
     <div id="message">Loading data preview...</div>
-    <div id="viewer">
-    </div>
-    <perspective-viewer view="grid">
-    </perspective-viewer>
+    <perspective-viewer view="grid"></perspective-viewer>
     <script type="text/javascript">
-      let vscode, viewer, message, data, title, dataSelector, selectedData;
+      let vscode, viewer, message, data, title, dataSelector, selectedData = '';
+
+      // check web assembly support
+      console.log(supportsWebAssembly() ? 'WebAssembly is supported' : 'WebAssembly is not supported');
+
       document.addEventListener('DOMContentLoaded', event => {
         // initialize page elements
         title = document.getElementById('title');
@@ -128,14 +130,29 @@
         showMessage(''); // 'Loading data preview...';
         console.log('data.preview:preview():dataUrl:', dataUrl);
         selectedData = dataUrl;
+        let textData = data[dataUrl];
         viewer.reset();
-        viewer.load(data[dataUrl]);
-        viewer.update(data[dataUrl]);
+        viewer.load(textData);
+        viewer.update(textData);
         viewer.toggleConfig();
       }
 
       function showMessage(text) {
         message.innerText = text;
+      }
+
+      function supportsWebAssembly() {
+        try {
+          if (typeof WebAssembly === 'object' &&
+              typeof WebAssembly.instantiate === 'function') {
+            const module = new WebAssembly.Module(Uint8Array.of(0x0, 0x61, 0x73, 0x6d, 0x01, 0x00, 0x00, 0x00));
+            if (module instanceof WebAssembly.Module) {
+                return new WebAssembly.Instance(module) instanceof WebAssembly.Instance;
+            }
+          }
+        } catch (e) {
+        }
+        return false;        
       }
     </script>
   </body>

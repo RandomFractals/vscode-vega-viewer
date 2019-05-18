@@ -25,7 +25,7 @@ export class VegaPreviewSerializer implements WebviewPanelSerializer {
 
   async deserializeWebviewPanel(webviewPanel: WebviewPanel, state: any) {
     const logger = new Logger('vega.preview.serializer:', LogLevel.Debug); // .Info for prod
-    logger.logMessage(LogLevel.Debug, 'deserializeWeviewPanel(): url:', state.uri.toString());
+    logger.logMessage(LogLevel.Info, 'deserializeWeviewPanel(): url:', state.uri.toString());
     previewManager.add(
       new VegaPreview(
         this.extensionPath, 
@@ -50,7 +50,7 @@ export class VegaPreview {
   private _title: string;
   private _html: string;
   private _panel: WebviewPanel;
-  private _logger = new Logger('vega.preview:', LogLevel.Debug); // .Info for prod
+  private _logger = new Logger('vega.preview:', LogLevel.Info); // change to .Debug for debug
 
   /**
    * Creates new Vega preview.

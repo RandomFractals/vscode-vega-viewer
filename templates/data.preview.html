@@ -50,9 +50,13 @@
         font-size: 11pt;
         text-align: center;
       }
-      perspective-viewer {
-        width: 100%;
-        height: 100%;
+      #data-viewer {
+        position: absolute;
+        top: 36px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border: 1px solid #999;
       }
     </style>
   </head>
@@ -61,12 +65,12 @@
       <div style="float: right; width: 180px;">
         data:
         <select id="data-selector" onChange="changeData()">
-        </select> &nbsp;
+        </select>
       </div>
       <h3 id="title">loading...</h3>
     </div>
     <div id="message">Loading data preview...</div>
-    <perspective-viewer view="grid"></perspective-viewer>
+    <perspective-viewer id="data-viewer" view="grid"></perspective-viewer>
     <script type="text/javascript">
       let vscode, viewer, message, data, title, dataSelector, selectedData = '';
       // check web assembly support

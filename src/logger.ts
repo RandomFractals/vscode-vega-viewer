@@ -15,7 +15,6 @@ export class Logger {
    * @param params log message params, if any.
    */
   public logMessage(logLevel: LogLevel, message: string, params: any = null): void{
-    console.log(this.category + message, params);
     if (logLevel >= this.logLevel) {
       this.log(logLevel, message, params);
     }
@@ -39,7 +38,8 @@ export class Logger {
         console.error(this.category + message, params);
         break;
       default: // debug
-        console.debug(this.category + message, params);
+        console.log(this.category + message, params);
+        break;
     }
   }
 

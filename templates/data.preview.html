@@ -133,9 +133,17 @@
         console.log('data.preview:preview():dataUrl:', dataUrl);
         selectedData = dataUrl;
         let textData = data[dataUrl];
+        let tableData = [];
+        // TODO: change this to data format type switch
+        // + add arrow data display later
+        if (dataUrl.endsWith('.csv')) {
+          tableData = textData;
+        } else if (dataUrl.endsWith('.json')) {
+          tableData = JSON.parse(textData);
+        }
         viewer.reset();
-        viewer.load(textData);
-        viewer.update(textData);
+        viewer.load(tableData);
+        viewer.update(tableData);
         viewer.toggleConfig();
       }
 

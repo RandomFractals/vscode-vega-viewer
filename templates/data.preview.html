@@ -69,10 +69,11 @@
     <perspective-viewer view="grid"></perspective-viewer>
     <script type="text/javascript">
       let vscode, viewer, message, data, title, dataSelector, selectedData = '';
-
       // check web assembly support
       console.log(supportsWebAssembly() ? 'WebAssembly is supported' : 'WebAssembly is not supported');
-
+      window.addEventListener('WebComponentsReady', event => {
+        console.log('data.preview:WebComponentsReady: loading perspective data view...');
+      });
       document.addEventListener('DOMContentLoaded', event => {
         // initialize page elements
         title = document.getElementById('title');
@@ -85,6 +86,7 @@
           vscode.postMessage({command: 'refresh'});
         }
         catch (error) {
+          console.error('data.preview:', error.message);
           // ignore: must be loaded outside of vscode webview
         }
       });

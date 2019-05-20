@@ -13,6 +13,8 @@ import {
 } from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as config from './config';
+import {Logger, LogLevel} from './logger';
 import {VegaPreview, VegaPreviewSerializer} from './vega.preview';
 import {previewManager} from './preview.manager';
 import {Template, ITemplateManager, TemplateManager} from './template.manager';
@@ -26,13 +28,15 @@ const VEGA_FILE_EXTENSIONS: string[] = [
   '.vl.json'
 ];
 
+const logger: Logger = new Logger('vega.viewer:', config.logLevel);
+
 /**
  * Activates this extension per rules set in package.json.
  * @param context vscode extension context.
  * @see https://code.visualstudio.com/api/references/activation-events for more info.
  */
 export function activate(context: ExtensionContext) {
-  // initialize Vega templates
+  // initialize vega and data preview webview panel templates
   const templateManager: ITemplateManager = new TemplateManager(context.asAbsolutePath('templates'));
   const vegaPreviewTemplate: Template = templateManager.getTemplate('vega.preview.html');
   const dataPreviewTemplate: Template = templateManager.getTemplate('data.preview.html');
@@ -45,7 +49,7 @@ export function activate(context: ExtensionContext) {
   window.registerWebviewPanelSerializer('vega.data.preview', 
     new VegaPreviewSerializer(context.extensionPath, dataPreviewTemplate.content));
 
-  // Vega: Create Vega document 
+  // Vega: Create Vega document command 
   const createVegaDocumentCommand: Disposable = commands.registerCommand('vega.create', () => 
     createVegaDocument(
       templateManager.getTemplate('vega.vg.json').content, 
@@ -104,7 +108,6 @@ export function activate(context: ExtensionContext) {
   });
   context.subscriptions.push(dataWebview);
 
-
   // refresh associated preview on Vega file save
   workspace.onDidSaveTextDocument((document: TextDocument) => {
     if (isVegaFile(document)) {
@@ -133,7 +136,7 @@ export function activate(context: ExtensionContext) {
     previewManager.configure();
   });
 
-  console.info('vega.viewer: activated!');
+  logger.logMessage(LogLevel.Info, 'activate(): activated! extPath:', context.extensionPath);
 } // end of activate()
 
 /**
@@ -150,7 +153,8 @@ export function deactivate() {
 function isVegaFile(document: TextDocument): boolean {
   const fileName: string = path.basename(document.uri.fsPath).replace('.json', ''); // strip out .json ext
   const fileExt: string = fileName.substr(fileName.lastIndexOf('.'));
-  // console.info('vega.viewer:isVegaFile:', fileName, document.languageId, 'file');
+  logger.logMessage(LogLevel.Debug, 'isVegaFile(): document:', document);
+  logger.logMessage(LogLevel.Debug, 'isVegaFile(): file:', fileName);
   return VEGA_FILE_EXTENSIONS.findIndex(vegaFileExt => vegaFileExt === fileExt) >= 0;
 }
 

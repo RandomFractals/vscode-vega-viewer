@@ -1,5 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import * as config from './config';
+import {Logger, LogLevel} from './logger';
 
 /**
  * Template manager api interface.
@@ -9,7 +11,8 @@ export interface ITemplateManager {
 }
 
 /**
- * Template type for loading file templates.
+ * Template type for loading file templates
+ * and template file content.
  */
 export class Template {
   // template name
@@ -20,12 +23,12 @@ export class Template {
 }
 
 /**
- * Template manager implementation for html files.
+ * Template manager implementation for html and json files.
  */
 export class TemplateManager implements ITemplateManager {
   
-  // loaded templates
-  private templates: Array<Template>;
+  private templates: Array<Template>; // loaded templates
+  private logger: Logger = new Logger('template.manager:', config.logLevel);
 
   /**
    * Creates new template manager and loads templates 
@@ -41,22 +44,24 @@ export class TemplateManager implements ITemplateManager {
    * @param templateFolder Template folder to inspect.
    */
   private loadTemplates(): Array<Template> {
-    // console.info('vega.viewer: loading vega templates...');
+    this.logger.logMessage(LogLevel.Debug, 
+      'loadTemplates(): loading file templates... templateFolder:', this.templateFolder);
     const fileNames: string[] = fs.readdirSync(this.templateFolder)
       .filter(fileName => fileName.endsWith('.html') || fileName.endsWith('.json'));
     const templates: Array<Template> = [];
+    // TODO: change this to read file async ???
     fileNames.forEach(fileName => templates.push(
       {name: fileName, content: fs.readFileSync(path.join(this.templateFolder, fileName), 'utf8')}
     ));
-    // console.log('vega.viewer:templates:', fileNames);
+    this.logger.logMessage(LogLevel.Debug, 'loadTemplates(): templates:', fileNames);
     return templates;
   }
 
   /**
    * Gets file template with the specified name.
-   * @param name template name to find.
+   * @param name Template name to find.
    */
   public getTemplate(name: string): Template {
-    return this.templates.find(t => t.name === name);
+    return this.templates.find(template => template.name === name);
   }
 }

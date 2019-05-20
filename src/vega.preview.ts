@@ -13,6 +13,7 @@ import {
 } from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as config from './config';
 import {Logger, LogLevel} from './logger';
 import {previewManager} from './preview.manager';
 
@@ -24,8 +25,8 @@ export class VegaPreviewSerializer implements WebviewPanelSerializer {
   }
 
   async deserializeWebviewPanel(webviewPanel: WebviewPanel, state: any) {
-    const logger = new Logger('vega.preview.serializer:', LogLevel.Debug); // .Info for prod
-    logger.logMessage(LogLevel.Info, 'deserializeWeviewPanel(): url:', state.uri.toString());
+    const logger = new Logger('vega.preview.serializer:', config.logLevel);
+    logger.logMessage(LogLevel.Debug, 'deserializeWeviewPanel(): url:', state.uri.toString());
     previewManager.add(
       new VegaPreview(
         this.extensionPath, 
@@ -50,7 +51,7 @@ export class VegaPreview {
   private _title: string;
   private _html: string;
   private _panel: WebviewPanel;
-  private _logger = new Logger('vega.preview:', LogLevel.Info); // change to .Debug for debug
+  private _logger = new Logger('vega.preview:', config.logLevel);
 
   /**
    * Creates new Vega preview.

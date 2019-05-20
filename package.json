@@ -48,7 +48,7 @@
     "onCommand:vega.examples",
     "onCommand:vega.examples.lite",
     "onWebviewPanel:vega.preview",
-    "onWebviewPanel:vega.data.preview",
+    "onWebviewPanel:vega.preview.data",
     "onLanguage:json"
   ],
   "main": "./out/extension",
@@ -65,7 +65,7 @@
         "category": "Vega"
       },
       {
-        "command": "vega.data.preview",
+        "command": "vega.preview.data",
         "title": "Preview Data",
         "category": "Vega"
       },
@@ -90,7 +90,7 @@
         "key": "ctrl+alt+v"
       },
       {
-        "command": "vega.data.preview",
+        "command": "vega.preview.data",
         "key": "ctrl+alt+d"
       },
       {

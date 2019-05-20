@@ -90,7 +90,7 @@ export function activate(context: ExtensionContext) {
   context.subscriptions.push(vegaWebview);
 
   // Vega: Data Preview command
-  const dataWebview: Disposable = commands.registerCommand('vega.data.preview', (uri) => {
+  const dataWebview: Disposable = commands.registerCommand('vega.preview.data', (uri) => {
     let resource: any = uri;
     let viewColumn: ViewColumn = getViewColumn();
     if (!(resource instanceof Uri)) {

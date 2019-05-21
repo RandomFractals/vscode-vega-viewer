@@ -2,15 +2,15 @@
 
 [Vega Viewer](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-vega-viewer) provides language support and
 Interactive Preview of [Vega](https://vega.github.io/vega/) 
-and [Vega-Lite](https://vega.github.io/vega-lite/) JSON spec graphs 📈
-in [VSCode](https://github.com/Microsoft/vscode)
+and [Vega-Lite](https://vega.github.io/vega-lite/) JSON spec graphs 📈, CSV and JSON array data display and filtering in [VSCode](https://github.com/Microsoft/vscode)
 
 # Features
 
 - Create Vega document command
 - Vega and Vega-Lite graphs Preview
 - Local data files support
-- SVG and PNG export
+- CSV and JSON array data Preview
+- SVG and PNG graph export
 - 472 built-in Vega & Vega-Lite Examples
 - [Vega themes](https://twitter.com/search?q=%23vegaThemes&src=typed_query) Preview
 

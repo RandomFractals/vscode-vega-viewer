@@ -21,12 +21,14 @@ import {previewManager} from './preview.manager';
  * Vega preview web panel serializer for restoring previews on vscode reload.
  */
 export class VegaPreviewSerializer implements WebviewPanelSerializer {
+
+  private logger: Logger = new Logger('vega.preview.serializer:', config.logLevel);
+  
   constructor(private extensionPath: string, private template: string) {
   }
 
   async deserializeWebviewPanel(webviewPanel: WebviewPanel, state: any) {
-    const logger = new Logger('vega.preview.serializer:', config.logLevel);
-    logger.logMessage(LogLevel.Debug, 'deserializeWeviewPanel(): url:', state.uri.toString());
+    this.logger.logMessage(LogLevel.Debug, 'deserializeWeviewPanel(): url:', state.uri.toString());
     previewManager.add(
       new VegaPreview(
         this.extensionPath, 

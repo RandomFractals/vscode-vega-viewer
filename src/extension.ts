@@ -36,24 +36,27 @@ const logger: Logger = new Logger('vega.viewer:', config.logLevel);
  * @see https://code.visualstudio.com/api/references/activation-events for more info.
  */
 export function activate(context: ExtensionContext) {
+  const extensionPath: string = context.extensionPath;
+  logger.logMessage(LogLevel.Info, 'activate(): activating from extPath:', context.extensionPath);
+
   // initialize vega and data preview webview panel templates
   const templateManager: ITemplateManager = new TemplateManager(context.asAbsolutePath('templates'));
   const vegaPreviewTemplate: Template = templateManager.getTemplate('vega.preview.html');
   const dataPreviewTemplate: Template = templateManager.getTemplate('data.preview.html');
-
+  
   // register Vega preview serializer for restore on vscode restart
   window.registerWebviewPanelSerializer('vega.preview', 
-    new VegaPreviewSerializer(context.extensionPath, vegaPreviewTemplate.content));
+    new VegaPreviewSerializer('vega.preview', extensionPath, vegaPreviewTemplate));
 
-  // register Vega Data preview serializer for restore on vscode restart
-  window.registerWebviewPanelSerializer('vega.data.preview', 
-    new VegaPreviewSerializer(context.extensionPath, dataPreviewTemplate.content));
+  // register Vega preview data serializer for restore on vscode restart
+  window.registerWebviewPanelSerializer('vega.preview.data', 
+    new VegaPreviewSerializer('vega.preview.data', extensionPath, dataPreviewTemplate));
 
   // Vega: Create Vega document command 
   const createVegaDocumentCommand: Disposable = commands.registerCommand('vega.create', () => 
     createVegaDocument(
-      templateManager.getTemplate('vega.vg.json').content, 
-      templateManager.getTemplate('vega.lite.vl.json').content
+      templateManager.getTemplate('vega.vg.json'), // vega json template
+      templateManager.getTemplate('vega.lite.vl.json') // vega-lite json template
     )
   );
   context.subscriptions.push(createVegaDocumentCommand);
@@ -71,41 +74,13 @@ export function activate(context: ExtensionContext) {
   context.subscriptions.push(vegaExamplesLiteCommand);
 
   // Vega: Preview command
-  const vegaWebview: Disposable = commands.registerCommand('vega.preview', (uri) => {
-    let resource: any = uri;
-    let viewColumn: ViewColumn = getViewColumn();
-    if (!(resource instanceof Uri)) {
-      if (window.activeTextEditor) {
-        resource = window.activeTextEditor.document.uri;
-      } else {
-        window.showInformationMessage('Open a Vega file to Preview.');
-        return;
-      }
-    }
-    const preview: VegaPreview = new VegaPreview(context.extensionPath, resource, 
-      viewColumn, vegaPreviewTemplate.content);
-    previewManager.add(preview);
-    return preview.webview;
-  });
+  const vegaWebview: Disposable = 
+    createVegaPreviewCommand('vega.preview', extensionPath, vegaPreviewTemplate);
   context.subscriptions.push(vegaWebview);
 
-  // Vega: Data Preview command
-  const dataWebview: Disposable = commands.registerCommand('vega.preview.data', (uri) => {
-    let resource: any = uri;
-    let viewColumn: ViewColumn = getViewColumn();
-    if (!(resource instanceof Uri)) {
-      if (window.activeTextEditor) {
-        resource = window.activeTextEditor.document.uri;
-      } else {
-        window.showInformationMessage('Open a Vega file to Preview.');
-        return;
-      }
-    }
-    const preview: VegaPreview = new VegaPreview(context.extensionPath, resource, 
-      viewColumn, dataPreviewTemplate.content);
-    previewManager.add(preview);
-    return preview.webview;
-  });
+  // Vega: Preview Data command
+  const dataWebview: Disposable = 
+    createVegaPreviewCommand('vega.preview.data', extensionPath, dataPreviewTemplate);    
   context.subscriptions.push(dataWebview);
 
   // refresh associated preview on Vega file save
@@ -147,6 +122,33 @@ export function deactivate() {
 }
 
 /**
+ * Creates vega and data preview commands.
+   * @param viewType Preview command type.
+   * @param extensionPath Extension path for loading scripts, examples and data.
+   * @param viewTemplate Preview html template.
+ */
+function createVegaPreviewCommand(viewType: string, extensionPath: string, viewTemplate: Template): Disposable {
+  const vegaWebview: Disposable = commands.registerCommand(viewType, (uri) => {
+    let resource: any = uri;
+    let viewColumn: ViewColumn = getViewColumn();
+    if (!(resource instanceof Uri)) {
+      if (window.activeTextEditor) {
+        resource = window.activeTextEditor.document.uri;
+      } else {
+        window.showInformationMessage('Open a Vega file to Preview.');
+        return;
+      }
+    }
+    const preview: VegaPreview = new VegaPreview(viewType,
+      extensionPath, resource, 
+      viewColumn, viewTemplate);
+    previewManager.add(preview);
+    return preview.webview;
+  });
+  return vegaWebview;
+}
+
+/**
  * Checks if the vscode text document is a vega spec json file.
  * @param document The vscode text document to check.
  */
@@ -171,7 +173,7 @@ function getViewColumn(): ViewColumn {
  * @param vegaTemplate Vega spec file template to use.
  * @param vegaLiteTemplate Vega Lite spec file template to use.
  */
-async function createVegaDocument(vegaTemplate: string, vegaLiteTemplate: string): Promise<void> {
+async function createVegaDocument(vegaTemplate: Template, vegaLiteTemplate: Template): Promise<void> {
   const vegaFileUri: Uri = await window.showSaveDialog({
     defaultUri: Uri.parse(path.join(workspace.rootPath, 'chart')).with({scheme: 'file'}),
     filters: {
@@ -180,7 +182,8 @@ async function createVegaDocument(vegaTemplate: string, vegaLiteTemplate: string
     }
   });
   if (vegaFileUri) {
-    const vegaContent: string = vegaFileUri.fsPath.endsWith('.vg') ? vegaTemplate : vegaLiteTemplate;
+    const vegaContent: string = vegaFileUri.fsPath.endsWith('.vg') ? 
+      vegaTemplate.content : vegaLiteTemplate.content;
     fs.writeFile(vegaFileUri.fsPath, vegaContent, (error) => {
       if (error) {
         window.showErrorMessage(`Failed to create Vega document: ${vegaFileUri.fsPath}`);

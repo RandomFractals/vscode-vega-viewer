@@ -16,21 +16,35 @@ import * as path from 'path';
 import * as config from './config';
 import {Logger, LogLevel} from './logger';
 import {previewManager} from './preview.manager';
+import {Template} from './template.manager';
 
 /**
  * Vega preview web panel serializer for restoring previews on vscode reload.
  */
 export class VegaPreviewSerializer implements WebviewPanelSerializer {
 
-  private logger: Logger = new Logger('vega.preview.serializer:', config.logLevel);
+  private _logger: Logger;
   
-  constructor(private extensionPath: string, private template: string) {
+  /**
+   * Creates new webview serializer.
+   * @param viewType Web view type.
+   * @param extensionPath Extension path for loading scripts, examples and data.
+   * @param template Webview preview html template.
+   */
+  constructor(private viewType: string, private extensionPath: string, private template: Template) {
+    this._logger = new Logger(`${this.viewType}.serializer:`, config.logLevel);
   }
 
+  /**
+   * Restores webview panel on vscode reload for vega and data previews.
+   * @param webviewPanel Webview panel to restore.
+   * @param state Saved web view panel state.
+   */
   async deserializeWebviewPanel(webviewPanel: WebviewPanel, state: any) {
-    this.logger.logMessage(LogLevel.Debug, 'deserializeWeviewPanel(): url:', state.uri.toString());
+    this._logger.logMessage(LogLevel.Debug, 'deserializeWeviewPanel(): url:', state.uri.toString());
     previewManager.add(
       new VegaPreview(
+        this.viewType,
         this.extensionPath, 
         Uri.parse(state.uri),
         webviewPanel.viewColumn, 
@@ -53,10 +67,11 @@ export class VegaPreview {
   private _title: string;
   private _html: string;
   private _panel: WebviewPanel;
-  private _logger = new Logger('vega.preview:', config.logLevel);
+  private _logger: Logger;
 
   /**
    * Creates new Vega preview.
+   * @param viewType Preview webview type, i.e. vega.preview or vega.data.preview.
    * @param extensionPath Extension path for loading webview scripts, etc.
    * @param uri Vega spec json doc uri to preview.
    * @param viewColumn vscode IDE view column to display vega preview in.
@@ -64,34 +79,53 @@ export class VegaPreview {
    * @param panel Optional webview panel reference for restore on vscode IDE reload.
    */
   constructor(
+    viewType: string,
     extensionPath: string, 
     uri: Uri, 
     viewColumn: ViewColumn, 
-    template: string, 
+    template: Template, 
     panel?: WebviewPanel) {
+
+    // save ext path, document uri, and create prview uri
     this._extensionPath = extensionPath;
     this._uri = uri;
     this._fileName = path.basename(uri.fsPath);
     this._previewUri = this._uri.with({scheme: 'vega'});
-    this._title = template.startsWith('data') ? `Data Preview ${this._fileName}`:  `Preview ${this._fileName} 📊`;
+    this._logger = new Logger(`${viewType}:`, config.logLevel);
+
+    // create preview panel title
+    switch (viewType) {
+      case 'vega.preview':
+        this._title = `Preview ${this._fileName} 📊`;
+        break;
+      case 'vega.preview.data':
+        this._title = `Data Preview ${this._fileName}`;
+        break;
+      default: // vega.help
+        this._title = 'Vega Help';
+        break;
+    }
+
+    // create html template for the webview with scripts path replaced
     const scriptsPath: string = Uri.file(path.join(this._extensionPath, 'scripts'))
       .with({scheme: 'vscode-resource'}).toString(true);
-    this._html = template.replace(/\{scripts\}/g, scriptsPath);
+    this._html = template.content.replace(/\{scripts\}/g, scriptsPath);
+
+    // initialize webview panel
     this._panel = panel;
-    this.initWebview(viewColumn);
+    this.initWebview(viewType, viewColumn);
     this.configure();
-  }
+  } // end of constructor()
 
   /**
    * Initializes vega preview webview panel.
+   * @param viewType Preview webview type, i.e. vega.preview or vega.data.preview.
    * @param viewColumn vscode IDE view column to display preview in.
    */
-  private initWebview(viewColumn: ViewColumn): void {
+  private initWebview(viewType: string, viewColumn: ViewColumn): void {
     if (!this._panel) {
-    // create new webview panel
-    this._panel = window.createWebviewPanel('vega.preview', 
-      this._title, viewColumn, 
-      this.getWebviewOptions());
+      // create new webview panel
+      this._panel = window.createWebviewPanel(viewType, this._title, viewColumn, this.getWebviewOptions());
     }
 
     // dispose preview panel 

@@ -66,7 +66,7 @@
       },
       {
         "command": "vega.preview.data",
-        "title": "Preview Data",
+        "title": "Data 🈸",
         "category": "Vega"
       },
       {
@@ -147,6 +147,11 @@
           "when": "resourceFilename =~ /.*\\.(vega|vg.json|vl.json|vg|vl)/",
           "command": "vega.preview",
           "group": "navigation"
+        },
+        {
+          "when": "resourceFilename =~ /.*\\.(vega|vg.json|vl.json|vg|vl)/",
+          "command": "vega.preview.data",
+          "group": "navigation"
         }
       ],
       "editor/title": [
@@ -154,12 +159,22 @@
           "when": "resourceFilename =~ /.*\\.(vega|vg.json|vl.json|vg|vl)/",
           "command": "vega.preview",
           "group": "navigation"
+        },
+        {
+          "when": "resourceFilename =~ /.*\\.(vega|vg.json|vl.json|vg|vl)/",
+          "command": "vega.preview.data",
+          "group": "navigation"
         }
       ],
       "editor/title/context": [
         {
           "when": "resourceFilename =~ /.*\\.(vega|vg.json|vl.json|vg|vl)/",
           "command": "vega.preview",
+          "group": "navigation"
+        },
+        {
+          "when": "resourceFilename =~ /.*\\.(vega|vg.json|vl.json|vg|vl)/",
+          "command": "vega.preview.data",
           "group": "navigation"
         }
       ]

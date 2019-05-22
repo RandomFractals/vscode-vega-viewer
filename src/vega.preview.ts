@@ -99,7 +99,7 @@ export class VegaPreview {
         this._title = `Preview ${this._fileName} 📊`;
         break;
       case 'vega.preview.data':
-        this._title = `Data Preview ${this._fileName}`;
+        this._title = `Data Preview ${this._fileName} 🈸`;
         break;
       default: // vega.help
         this._title = 'Vega Help';

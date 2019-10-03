@@ -142,11 +142,11 @@
       },
       {
         "fileMatch": "*.vl",
-        "url": "https://vega.github.io/schema/vega-lite/v3.json"
+        "url": "https://vega.github.io/schema/vega-lite/v4.json"
       },
       {
         "fileMatch": "*.vl.json",
-        "url": "https://vega.github.io/schema/vega-lite/v3.json"
+        "url": "https://vega.github.io/schema/vega-lite/v4.json"
       }
     ],
     "menus": {

@@ -57,12 +57,12 @@
     "commands": [
       {
         "command": "vega.create",
-        "title": "Create Vega 📊",
+        "title": "Create Vega 📈",
         "category": "Vega"
       },
       {
         "command": "vega.preview",
-        "title": "Preview 📊",
+        "title": "Preview 📈",
         "category": "Vega"
       },
       {
@@ -72,12 +72,12 @@
       },
       {
         "command": "vega.examples",
-        "title": "Examples 📊",
+        "title": "Examples 📈",
         "category": "Vega"
       },
       {
         "command": "vega.examples.lite",
-        "title": "Lite Examples 📊",
+        "title": "Lite Examples 📈",
         "category": "Vega"
       }
     ],

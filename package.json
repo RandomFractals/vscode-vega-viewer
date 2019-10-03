@@ -43,6 +43,10 @@
   "categories": [
     "Programming Languages"
   ],
+  "galleryBanner": {
+    "color": "#333",
+    "theme": "dark"
+  },
   "activationEvents": [
     "onCommand:vega.create",
     "onCommand:vega.preview",

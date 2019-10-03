@@ -16,20 +16,20 @@ and [Vega-Lite](https://vega.github.io/vega-lite/) JSON spec graphs 📈, CSV an
 
 # Usage 
 
-1. Run `Vega: Create Vega 📊` command from `View -> Command Pallette...` menu 
+1. Run `Vega: Create Vega 📈` command from `View -> Command Pallette...` menu 
 to create and save new Vega or Vega-Lite document with the corresponding Vega JSON schema reference
 
-2. Run `Vega: Preview 📊` on open `.vega`, `.vg.json` or `.vl.json` Vega spec document to Preview it
+2. Run `Vega: Preview Vega 📈` on open `.vega`, `.vg.json` or `.vl.json` Vega spec document to Preview it
 
 3. Save updated Vega spec JSON document to Preview updated Vega viz
 
 OR
 
-Run `Vega: Examples 📊` command to view the list of built-in Vega specification examples
+Run `Vega: Examples 📈` command to view the list of built-in Vega specification examples
 
 OR 
 
-Run `Vega: Lite Examples 📊` command to view all the Vega Lite 🗺️'s & 📊's created by the Vega dev community 🤗
+Run `Vega: Lite Examples 📈` command to view all the Vega Lite 🗺️'s & 📈's created by the Vega dev community 🤗
 ...
 
 The best part of Vega Viewer is you can use it disconnected unlike other online #dataViz #devTools to prototype your 🗺️'️s & 📈's on a go, on a ✈️, on a 🚄, on a 🚤, in a 📦 with a 🐐, and no #d3 #py || #rstats required!

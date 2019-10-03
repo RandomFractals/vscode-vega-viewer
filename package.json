@@ -32,9 +32,7 @@
     "csv",
     "csv data",
     "json",
-    "json data",
-    "arrow",
-    "arrow data"
+    "json data"
   ],
   "engines": {
     "vscode": "^1.36.0",

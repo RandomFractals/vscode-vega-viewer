@@ -63,8 +63,12 @@
       },
       {
         "command": "vega.preview",
-        "title": "Preview 📈",
-        "category": "Vega"
+        "title": "Preview Vega",
+        "category": "Vega",
+        "icon": {
+          "light": "./images/vega-viewer.svg",
+          "dark": "./images/vega-viewer.svg"
+        }
       },
       {
         "command": "vega.preview.data",

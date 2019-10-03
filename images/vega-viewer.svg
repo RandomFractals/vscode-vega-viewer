@@ -2,5 +2,5 @@
   width="16" height="16" 
   enable-background="new 0.414 0 16 16" 
   viewBox="0.414 0 16 16">
-    <text x="0" y="15" fill="red">📈</text>
+    <text x="0" y="15" fill="#bbb">📈</text>
 </svg>

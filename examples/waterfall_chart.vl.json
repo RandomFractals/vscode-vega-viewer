@@ -1,5 +1,5 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
   "data": {
     "values": [
       {"label": "Begin", "amount": 4000},
@@ -50,7 +50,12 @@
     }
   ],
   "encoding": {
-    "x": {"field": "label", "type": "ordinal", "sort": null, "title": "Months"}
+    "x": {
+      "field": "label",
+      "type": "ordinal",
+      "sort": null,
+      "axis": {"labelAngle": 0, "title": "Months"}
+    }
   },
   "layer": [
     {

@@ -1,13 +1,13 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
   "description": "A bar graph showing what activites consume what percentage of the day.",
   "data": {
     "values": [
-      {"Activity": "Sleeping","Time": 8},
-      {"Activity": "Eating","Time": 2},
-      {"Activity": "TV","Time": 4},
-      {"Activity": "Work","Time": 8},
-      {"Activity": "Exercise","Time": 2}
+      {"Activity": "Sleeping", "Time": 8},
+      {"Activity": "Eating", "Time": 2},
+      {"Activity": "TV", "Time": 4},
+      {"Activity": "Work", "Time": 8},
+      {"Activity": "Exercise", "Time": 2}
     ]
   },
   "transform": [{
@@ -21,6 +21,7 @@
     "calculate": "datum.Time/datum.TotalTime * 100",
     "as": "PercentOfTotal"
   }],
+  "height": {"step": 12},
   "mark": "bar",
   "encoding": {
     "x": {
@@ -32,10 +33,7 @@
     },
     "y": {
       "field": "Activity",
-      "type": "nominal",
-      "scale": {
-        "rangeStep": 12
-      }
+      "type": "nominal"
     }
   }
 }

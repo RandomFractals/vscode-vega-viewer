@@ -1,5 +1,5 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
   "data": {"url": "data/driving.json"},
   "mark": {"type": "line", "point": true},
   "encoding": {
@@ -11,6 +11,6 @@
       "field": "gas", "type": "quantitative",
       "scale": {"zero": false}
     },
-    "order": {"field": "year","type": "temporal"}
+    "order": {"field": "year", "type": "temporal"}
   }
 }

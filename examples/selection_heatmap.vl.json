@@ -15,7 +15,7 @@
   "selection": {
     "highlight": {"type": "single"}
   },
-  "mark": "bar",
+  "mark": {"type": "rect", "strokeWidth": 2},
   "encoding": {
     "y": {
       "field": "actual",
@@ -25,25 +25,37 @@
       "field": "predicted",
       "type": "nominal"
     },
-    "color": {
+    "fill": {
       "field": "count",
       "type": "quantitative"
+    },
+    "stroke": {
+      "condition": {"test": {"and": [{"selection": "highlight"}, "length(data(\"highlight_store\"))"]}, "value": "black"},
+      "value": null
     },
     "opacity": {
       "condition": {"selection": "highlight", "value": 1},
       "value": 0.5
+    },
+    "order": {
+      "condition": {"selection": "highlight", "value": 1},
+      "value": 0
     }
   },
   "config": {
     "scale": {
       "bandPaddingInner": 0,
-      "bandPaddingOuter": 0,
-      "rangeStep": 40
+      "bandPaddingOuter": 0
     },
+    "view": {"step": 40},
     "range": {
       "ramp": {
         "scheme": "yellowgreenblue"
       }
+    },
+    "axis": {
+      "domain": false,
+      "zindex": 0
     }
   }
 }

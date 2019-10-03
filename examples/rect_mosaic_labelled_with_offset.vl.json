@@ -1,5 +1,5 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
   "data": {
     "url": "data/cars.json"
   },
@@ -168,8 +168,7 @@
               "axis": null
             },
             "x2": {
-              "field": "nx2",
-              "type": "quantitative"
+              "field": "nx2"
             },
             "y": {
               "field": "ny",
@@ -177,8 +176,7 @@
               "axis": null
             },
             "y2": {
-              "field": "ny2",
-              "type": "quantitative"
+              "field": "ny2"
             },
             "color": {
               "field": "Origin",

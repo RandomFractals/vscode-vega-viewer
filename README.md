@@ -1,5 +1,11 @@
 # Vega Viewer
 
+[![Version](https://vsmarketplacebadge.apphb.com/version/RandomFractalsInc.vscode-vega-viewer.svg?color=orange&style=?style=for-the-badge&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-vega-viewer)
+[![Installs](https://vsmarketplacebadge.apphb.com/installs/RandomFractalsInc.vscode-vega-viewer.svg?color=orange)](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-vega-viewer)
+[![Downloads](https://vsmarketplacebadge.apphb.com/downloads/RandomFractalsInc.vscode-vega-viewer.svg?color=orange)](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-vega-viewer)
+<a href='https://ko-fi.com/F1F812DLR' target='_blank' title='support: https://ko-fi.com/dataPixy'>
+  <img height='24' style='border:0px;height:20px;' src='https://az743702.vo.msecnd.net/cdn/kofi3.png?v=2' alt='https://ko-fi.com/dataPixy' /></a>
+
 [Vega Viewer](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-vega-viewer) provides language support and
 Interactive Preview of [Vega](https://vega.github.io/vega/) 
 and [Vega-Lite](https://vega.github.io/vega-lite/) JSON spec graphs 📈, CSV and JSON array data display and filtering in [VSCode](https://github.com/Microsoft/vscode)

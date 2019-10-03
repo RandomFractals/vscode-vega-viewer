@@ -205,11 +205,11 @@ async function showVegaExamples(examplesPath: string, examplesExtension: string)
   const fileNames: string[] = fs.readdirSync(examplesPath).filter(f => f.endsWith(examplesExtension));
   const fileItems: Array<QuickPickItem> = [];
   fileNames.forEach(fileName => fileItems.push(
-    {label: `$(graph) ${fileName}`}
+    {label: `📈 ${fileName}`}
   ));
   const selectedExample: QuickPickItem = await window.showQuickPick(fileItems, {canPickMany: false});
   if (selectedExample) {
-    const exampleFileName: string = selectedExample.label.replace('$(graph) ', '');
+    const exampleFileName: string = selectedExample.label.replace('📈 ', '');
     const exampleFileUri: Uri = Uri.file(path.join(examplesPath, exampleFileName));
     workspace.openTextDocument(exampleFileUri).then(document => {
       window.showTextDocument(document, ViewColumn.One);

@@ -3,6 +3,7 @@
   "displayName": "Vega Viewer",
   "description": "Vega Viewer",
   "version": "6.0.0",
+  "icon": "images/vega-viewer.png",
   "publisher": "RandomFractalsInc",
   "author": "Taras Novak",
   "contributors": [

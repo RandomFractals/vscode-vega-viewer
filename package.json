@@ -37,7 +37,8 @@
     "arrow data"
   ],
   "engines": {
-    "vscode": "^1.32.3"
+    "vscode": "^1.36.0",
+    "node": ">=10.2.0"
   },
   "categories": [
     "Programming Languages"
@@ -189,11 +190,11 @@
     "test": "npm run compile && node ./node_modules/vscode/bin/test"
   },
   "devDependencies": {
-    "@types/mocha": "^5.2.6",
-    "@types/node": "^11.13.8",
-    "tslint": "^5.16.0",
-    "typescript": "^3.4.5",
-    "vscode": "^1.1.33"
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.7.9",
+    "tslint": "^5.20.0",
+    "typescript": "^3.6.3",
+    "vscode": "^1.1.36"
   },
   "dependencies": {
     "apache-arrow": "^0.4.1",

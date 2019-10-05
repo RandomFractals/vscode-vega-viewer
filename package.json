@@ -114,6 +114,7 @@
       {
         "id": "json",
         "aliases": [
+          "JSON",
           "Vega",
           "vg",
           "vl"
@@ -124,7 +125,8 @@
           ".vg.json",
           ".vl",
           ".vl.json"
-        ]
+        ],
+        "configuration": "./language-configuration.json"
       }
     ],
     "jsonValidation": [

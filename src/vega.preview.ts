@@ -134,6 +134,9 @@ export class VegaPreview {
         case 'vega.preview.data':
           panelIconPath = './images/data-preview.svg';
           break;
+        case 'vega.visual.vocabulary':
+          panelIconPath = './images/visual-vocabulary.svg';
+          break;  
         default: // vega.help, etc.
           panelIconPath = './images/vega-viewer.svg';
           break;

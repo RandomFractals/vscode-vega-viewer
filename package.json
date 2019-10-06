@@ -114,7 +114,7 @@
       },
       {
         "command": "vega.visual.vocabulary",
-        "key": "shift+alt+s v"
+        "key": "ctrl+alt+q"
       },
       {
         "command": "vega.examples",

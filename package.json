@@ -74,8 +74,12 @@
       },
       {
         "command": "vega.preview.data",
-        "title": "Data 🈸",
-        "category": "Vega"
+        "title": "Data Preview",
+        "category": "Vega",
+        "icon": {
+          "light": "./images/data-preview.svg",
+          "dark": "./images/data-preview.svg"
+        }
       },
       {
         "command": "vega.examples",

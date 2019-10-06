@@ -96,10 +96,10 @@ export class VegaPreview {
     // create preview panel title
     switch (viewType) {
       case 'vega.preview':
-        this._title = `${this._fileName} 📈`;
+        this._title = this._fileName;
         break;
       case 'vega.preview.data':
-        this._title = `${this._fileName} 🈸`;
+        this._title = this._fileName;
         break;
       default: // vega.help
         this._title = 'Vega Help';
@@ -126,6 +126,19 @@ export class VegaPreview {
     if (!this._panel) {
       // create new webview panel
       this._panel = window.createWebviewPanel(viewType, this._title, viewColumn, this.getWebviewOptions());
+      let panelIconPath: string;
+      switch (viewType) {
+        case 'vega.preview':
+          panelIconPath = './images/vega-viewer.svg';
+          break;
+        case 'vega.preview.data':
+          panelIconPath = './images/data-preview.svg';
+          break;
+        default: // vega.help, etc.
+          panelIconPath = './images/vega-viewer.svg';
+          break;
+      }
+      this._panel.iconPath = Uri.file(path.join(this._extensionPath, panelIconPath));
     }
 
     // dispose preview panel 

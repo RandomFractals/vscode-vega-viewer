@@ -49,10 +49,12 @@
     "onCommand:vega.create",
     "onCommand:vega.preview",
     "onCommand:vega.data.preview",
+    "onCommand:vega.visual.vocabulary",
     "onCommand:vega.examples",
     "onCommand:vega.examples.lite",
     "onWebviewPanel:vega.preview",
     "onWebviewPanel:vega.preview.data",
+    "onWebviewPanel:vega.visual.vocabulary",
     "onLanguage:json"
   ],
   "main": "./out/extension",
@@ -82,6 +84,11 @@
         }
       },
       {
+        "command": "vega.visual.vocabulary",
+        "title": "Visual Vocabulary 📈",
+        "category": "Vega"
+      },
+      {
         "command": "vega.examples",
         "title": "Examples 📈",
         "category": "Vega"
@@ -104,6 +111,10 @@
       {
         "command": "vega.preview.data",
         "key": "ctrl+alt+d"
+      },
+      {
+        "command": "vega.visual.vocabulary",
+        "key": "shift+alt+s v"
       },
       {
         "command": "vega.examples",

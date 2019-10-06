@@ -43,7 +43,8 @@ export function activate(context: ExtensionContext) {
   const templateManager: ITemplateManager = new TemplateManager(context.asAbsolutePath('templates'));
   const vegaPreviewTemplate: Template = templateManager.getTemplate('vega.preview.html');
   const dataPreviewTemplate: Template = templateManager.getTemplate('data.preview.html');
-  
+  const visualVocabularyTemplate: Template = templateManager.getTemplate('visual.vocabulary.html');
+
   // register Vega preview serializer for restore on vscode restart
   window.registerWebviewPanelSerializer('vega.preview', 
     new VegaPreviewSerializer('vega.preview', extensionPath, vegaPreviewTemplate));
@@ -51,6 +52,10 @@ export function activate(context: ExtensionContext) {
   // register Vega preview data serializer for restore on vscode restart
   window.registerWebviewPanelSerializer('vega.preview.data', 
     new VegaPreviewSerializer('vega.preview.data', extensionPath, dataPreviewTemplate));
+
+  // register Vega visual vocabulary serializer for restore on vscode restart
+  window.registerWebviewPanelSerializer('vega.visual.vocabulary', 
+    new VegaPreviewSerializer('vega.visual.vocabulary', extensionPath, visualVocabularyTemplate));
 
   // Vega: Create Vega document command 
   const createVegaDocumentCommand: Disposable = commands.registerCommand('vega.create', () => 
@@ -80,7 +85,12 @@ export function activate(context: ExtensionContext) {
 
   // Vega: Preview Data command
   const dataWebview: Disposable = 
-    createVegaPreviewCommand('vega.preview.data', extensionPath, dataPreviewTemplate);    
+    createVegaPreviewCommand('vega.preview.data', extensionPath, dataPreviewTemplate);
+  context.subscriptions.push(dataWebview);
+
+  // Vega: Visual Vocabulary command
+  const visualVocabularyWebview: Disposable = 
+    createVegaPreviewCommand('vega.visual.vocabulary', extensionPath, visualVocabularyTemplate);
   context.subscriptions.push(dataWebview);
 
   // refresh associated preview on Vega file save

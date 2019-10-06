@@ -101,6 +101,9 @@ export class VegaPreview {
       case 'vega.preview.data':
         this._title = this._fileName;
         break;
+      case 'vega.visual.vocabulary':
+        this._title = 'Visual Vocabulary';
+        break;  
       default: // vega.help
         this._title = 'Vega Help';
         break;

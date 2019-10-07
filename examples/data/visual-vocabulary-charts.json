@@ -1,0 +1,520 @@
+[
+  {
+    "description": "A simple standard bar chart that can handle both negative and positive magnitude values",
+    "id": "diverging-bar",
+    "name": "Diverging bar",
+    "row": 1,
+    "type": "Deviation"
+  },
+  {
+    "description": "Perfect for presenting survey results which involve sentiment (eg disagree, neutral, agreed",
+    "id": "diverging-stacked-bar",
+    "name": "Diverging stacked bar",
+    "row": 1,
+    "type": "Deviation"
+  },
+  {
+    "description": "Splits a single value into 2 contrasting components (eg Male/Female)",
+    "id": "spine",
+    "name": "Spine",
+    "row": 2,
+    "type": "Deviation"
+  },
+  {
+    "description": "The shaded area of these charts allows a balance to be shown; either against a baseline or between two serie",
+    "id": "surplus-deficit-filled-line-2",
+    "name": "Surplus/deficit filled line",
+    "row": 2,
+    "type": "Deviation"
+  },
+  {
+    "description": "Same as before.",
+    "id": "surplus-deficit-filled-line",
+    "name": "Surplus/deficit filled area",
+    "row": 2,
+    "type": "Deviation"
+  },
+  {
+    "description": "The standard way to show the relationship between two variables, each of which has its own axis",
+    "id": "scatterplot",
+    "name": "Scatterplot",
+    "row": 1,
+    "type": "Correlation"
+  },
+  {
+    "description": "A good way of showing the relationship over time between an amount (columns) and a rate (line)",
+    "id": "column-line-timeline",
+    "name": "Column + line timeline",
+    "row": 1,
+    "type": "Correlation"
+  },
+  {
+    "description": "Usually used to show how the relationship between 2 variables has changed over time",
+    "id": "connected-scatterplot",
+    "name": "Connected scatterplot",
+    "row": 1,
+    "type": "Correlation"
+  },
+  {
+    "description": "Like a scatterplot, but adds additional detail by sizing the circles according to a third variable",
+    "id": "bubble",
+    "name": "Bubble",
+    "row": 2,
+    "type": "Correlation"
+  },
+  {
+    "description": "A good way of showing the patterns between 2 categories of data, less good at showing fine differences in amounts",
+    "id": "xy-heatmap",
+    "name": "X Y Heatmap",
+    "row": 2,
+    "type": "Correlation"
+  },
+  {
+    "description": "Standard bar charts display the ranks of values much more easily when sorted into order",
+    "id": "ordered-bar",
+    "name": "Ordered bar",
+    "row": 1,
+    "type": "Ranking"
+  },
+  {
+    "description": "See before",
+    "id": "ordered-column",
+    "name": "Ordered column",
+    "row": 1,
+    "type": "Ranking"
+  },
+  {
+    "description": "Use when there are big variations between values and/or seeing fine differences between data is not so important.",
+    "id": "ordered-proportional-symbol",
+    "name": "Ordered proportional symbol",
+    "row": 1,
+    "type": "Ranking"
+  },
+  {
+    "description": "Dots placed in order on a strip are a space-efficient method of laying out ranks across multiple categories.",
+    "id": "dot-strip-plot",
+    "name": "Dot strip plot",
+    "row": 2,
+    "type": "Ranking"
+  },
+  {
+    "description": "Perfect for showing how ranks have changed over time or vary between categories.",
+    "id": "slope",
+    "name": "Slope",
+    "row": 2,
+    "type": "Ranking"
+  },
+  {
+    "description": "Lollipop charts draw more attention to the data value than standard bar/column and can also show rank effectively",
+    "id": "lollipop",
+    "name": "Lollipop",
+    "row": 3,
+    "type": "Ranking"
+  },
+  {
+    "description": "Effective for showing changing rankings across multiple dates. For large datasets, consider grouping lines using colour.",
+    "id": "bump",
+    "name": "Bump",
+    "row": 3,
+    "type": "Ranking"
+  },
+  {
+    "description": "The standard way to show a statistical distribution - keep the gaps between columns small to highlight the 'shape' of the data.",
+    "id": "histogram",
+    "name": "Histogram",
+    "row": 1,
+    "type": "Distribution"
+  },
+  {
+    "description": "A simple way of showing the range (min/max) of data across multiple categories.",
+    "id": "dot-plot",
+    "name": "Dot plot",
+    "row": 1,
+    "type": "Distribution"
+  },
+  {
+    "description": "Good for showing individual values in a distribution, can be a problem when too many dots have the same value",
+    "id": "dot-strip-plot-2",
+    "name": "Dot strip plot",
+    "row": 1,
+    "type": "Distribution"
+  },
+  {
+    "description": "Like dot strip plots, good for displaying all the data in a table,they work best when highlighting individual values.",
+    "id": "barcode-plot",
+    "name": "Barcode plot",
+    "row": 2,
+    "type": "Distribution"
+  },
+  {
+    "description": "Summarise multiple distributions by showing the median (centre) and range of the data",
+    "id": "boxplot",
+    "name": "Boxplot",
+    "row": 2,
+    "type": "Distribution"
+  },
+  {
+    "description": "Similar to a box plot but more effective with complex distributions (data that cannot be summarised with simple average).",
+    "id": "violin-plot",
+    "name": "Violin plot",
+    "row": 2,
+    "type": "Distribution"
+  },
+  {
+    "description": "A standard way for showing the age and sex breakdown of a population distribution; effectively, back to back histograms",
+    "id": "population-pyramid",
+    "name": "Population pyramid",
+    "row": 3,
+    "type": "Distribution"
+  },
+  {
+    "description": "A good way of showing how unequal a distribution is: y axis is always cumulative frequency, x axis is always a measure.",
+    "id": "cumulative-curve",
+    "name": "Cumulative curve",
+    "row": 3,
+    "type": "Distribution"
+  },
+  {
+    "description": "For displaying multiple distributions of data. Like a regular line chart, best limited to a maximum of 3 or 4 datasets",
+    "id": "frequency-polygons",
+    "name": "Frequency polygons",
+    "row": 3,
+    "type": "Distribution"
+  },
+  {
+    "description": "The standard way to show a changing time series. If data are irregular, consider markers to represent data points",
+    "id": "line",
+    "name": "Line",
+    "row": 1,
+    "type": "Change-over-Time"
+  },
+  {
+    "description": "Columns work well for showing change over time - but usually best with only one series of data at a time",
+    "id": "column",
+    "name": "Column",
+    "row": 1,
+    "type": "Change-over-Time"
+  },
+  {
+    "description": "A good way of showing the relationship over time between an amount (columns) and a rate (line)",
+    "id": "column-line-timeline-2",
+    "name": "Column + line timeline",
+    "row": 1,
+    "type": "Change-over-Time"
+  },
+  {
+    "description": "Good for showing changing data as long as the data can be simplified into 2 or 3 points without missing a key part of story",
+    "id": "slope-2",
+    "name": "Slope",
+    "row": 1,
+    "type": "Change-over-Time"
+  },
+  {
+    "description": "Use with care. These are good at showing changes to total, but seeing change in components can be very difficult.",
+    "id": "area-chart",
+    "name": "Area chart",
+    "row": 2,
+    "type": "Change-over-Time"
+  },
+  {
+    "description": "Usually focused on day-to-day activity, these charts show opening/closing and hi/low points of each day",
+    "id": "candlestick",
+    "name": "Candlestick",
+    "row": 2,
+    "type": "Change-over-Time"
+  },
+  {
+    "description": "Use to show the uncertainty in future projections - usually this grows the further forward to projection",
+    "id": "fan-chart-projections",
+    "name": "Fan chart (projections)",
+    "row": 2,
+    "type": "Change-over-Time"
+  },
+  {
+    "description": "A good way of showing changing data for two variables whenever there is a relatively clear pattern of progression.",
+    "id": "connected-scatterplot-2",
+    "name": "Connected scatterplot",
+    "row": 3,
+    "type": "Change-over-Time"
+  },
+  {
+    "description": "A great way of showing temporal patterns (daily, weekly, monthly), at the expense of showing precision in quantity",
+    "id": "calendar-heatmap",
+    "name": "Calendar heatmap",
+    "row": 3,
+    "type": "Change-over-Time"
+  },
+  {
+    "description": "Great when date and duration are key elements of the story in the data",
+    "id": "priestley-timeline",
+    "name": "Priestley timeline",
+    "row": 3,
+    "type": "Change-over-Time"
+  },
+  {
+    "description": "Good for showing discrete values of varying size across multiple categories (eg earthquakes by contintent)",
+    "id": "circle-timeline",
+    "name": "Circle timeline",
+    "row": 4,
+    "type": "Change-over-Time"
+  },
+  {
+    "description": "Presents time on the Y axis. Good for displaying detailed time series that work especially well when scrolling on mobile",
+    "id": "vertical-timeline",
+    "name": "Vertical timeline",
+    "row": 4,
+    "type": "Change-over-Time"
+  },
+  {
+    "description": "Another alternative to the circle timeline for showing series where there are big variations in the data",
+    "id": "seismogram",
+    "name": "Seismogram",
+    "row": 4,
+    "type": "Change-over-Time"
+  },
+  {
+    "description": "A type of area chart; use when seeing changes in proportions over time is more important than individual values",
+    "id": "streamgraph",
+    "name": "Streamgraph",
+    "row": 4,
+    "type": "Change-over-Time"
+  },
+  {
+    "description": "The standard way to compare the size of things. Must always start at 0 on the axis",
+    "id": "column-2",
+    "name": "Column",
+    "row": 1,
+    "type": "Magnitude"
+  },
+  {
+    "description": "See before. Good when the data are not time series and labels have long category names.",
+    "id": "bar",
+    "name": "Bar",
+    "row": 1,
+    "type": "Magnitude"
+  },
+  {
+    "description": "As per standard column but allows for multiple series. Can become tricky to read with more than 2 series",
+    "id": "paired-column",
+    "name": "Paired column",
+    "row": 1,
+    "type": "Magnitude"
+  },
+  {
+    "description": "As per standard bar but allows for multiple series. Can become tricky to read with more than 2 series",
+    "id": "paired-bar",
+    "name": "Paired bar",
+    "row": 2,
+    "type": "Magnitude"
+  },
+  {
+    "description": "A good way of showing the size and proportion of data at the same time - as long as the data are not too complicated",
+    "id": "marimekko",
+    "name": "Marimekko",
+    "row": 2,
+    "type": "Magnitude"
+  },
+  {
+    "description": "Use when there are big variations between values and/or seeing fine di\u001ferences between data is not so important",
+    "id": "proportional-symbol",
+    "name": "Proportional symbol",
+    "row": 2,
+    "type": "Magnitude"
+  },
+  {
+    "description": "Excellent solution in some instances - use only with whole numbers (do not slice off an arm to represent a decimal).",
+    "id": "isotype",
+    "name": "Isotype (pictogram)",
+    "row": 3,
+    "type": "Magnitude"
+  },
+  {
+    "description": "Lollipop charts draw more attention to the data value than standard bar/column and can also show rank effectively",
+    "id": "lollipop-2",
+    "name": "Lollipop",
+    "row": 3,
+    "type": "Magnitude"
+  },
+  {
+    "description": "A space-efficient way of showing value pf multiple variables -  but make sure they are organised in a way that makes sense to reader.",
+    "id": "radar",
+    "name": "Radar",
+    "row": 3,
+    "type": "Magnitude"
+  },
+  {
+    "description": "An alternative to radar charts - again, the arrngement of the variables is important. Usually benefits from highlighting values",
+    "id": "parallel-coordinates",
+    "name": "Parallel coordinates",
+    "row": 4,
+    "type": "Magnitude"
+  },
+  {
+    "description": "Good for showing a measurement against the context of a target or performance range",
+    "id": "bullet",
+    "name": "Bullet",
+    "row": 4,
+    "type": "Magnitude"
+  },
+  {
+    "description": "An alternative to bar/column charts when being able to count data or highlight individual elements is useful.",
+    "id": "grouped-symbol",
+    "name": "Grouped symbol",
+    "row": 4,
+    "type": "Magnitude"
+  },
+  {
+    "description": "A simple way of showing part-to-whole relationships but can be difficult to read with more than a few components",
+    "id": "stacked-column",
+    "name": "Stacked column",
+    "row": 1,
+    "type": "Part-to-whole"
+  },
+  {
+    "description": "A good way of showing the size and proportion of data at the same time as long as the data are not too complicated.",
+    "id": "marimekko-2",
+    "name": "Marimekko",
+    "row": 1,
+    "type": "Part-to-whole"
+  },
+  {
+    "description": "A common way of showing part-to-whole data - but be aware that it's difficult to accurately compare the size of the segments.",
+    "id": "pie",
+    "name": "Pie",
+    "row": 1,
+    "type": "Part-to-whole"
+  },
+  {
+    "description": "Similar to a pie chart - but the centre can be a good way of making space to include more information about the data (eg. total)",
+    "id": "donut",
+    "name": "Donut",
+    "row": 1,
+    "type": "Part-to-whole"
+  },
+  {
+    "description": "Use for hierarchical part-to-whole relationships; can be difficult to read when there are many small segments",
+    "id": "treemap",
+    "name": "Treemap",
+    "row": 2,
+    "type": "Part-to-whole"
+  },
+  {
+    "description": "A way of turning points into areas - any point within the area is closer to the central point than any other point",
+    "id": "voronoi",
+    "name": "Voronoi",
+    "row": 2,
+    "type": "Part-to-whole"
+  },
+  {
+    "description": "A hemicycle, often used for visualising political results.",
+    "id": "arc",
+    "name": "Arc",
+    "row": 2,
+    "type": "Part-to-whole"
+  },
+  {
+    "description": "Good for showing % information, they work best when used on whole numbers and work well in multiple layout form.",
+    "id": "gridplot",
+    "name": "Gridplot",
+    "row": 3,
+    "type": "Part-to-whole"
+  },
+  {
+    "description": "Generally only used for schematic representation",
+    "id": "venn",
+    "name": "Venn",
+    "row": 3,
+    "type": "Part-to-whole"
+  },
+  {
+    "description": "Can be useful for showing part-to-whole relationships where some of the components are negative.",
+    "id": "waterfall",
+    "name": "Waterfall",
+    "row": 3,
+    "type": "Part-to-whole"
+  },
+  {
+    "description": "The standard approach for putting data on a map - should always be rates rather than totals and use a sensible base geography.",
+    "id": "basic-choropleth",
+    "name": "Basic choropleth (rate/ratio)",
+    "row": 1,
+    "type": "Spatial"
+  },
+  {
+    "description": "Use for totals rather than rates  - be wary that small differences in data will be hard to see.",
+    "id": "proportional-symbol-map",
+    "name": "Proportional symbol (count/magnitude)",
+    "row": 1,
+    "type": "Spatial"
+  },
+  {
+    "description": "For showing unambiguous movement across a map",
+    "id": "flow-map",
+    "name": "Flow map",
+    "row": 1,
+    "type": "Spatial"
+  },
+  {
+    "description": "For showing areas of equal value on a map. Can use deviation colour schemes for showing +/- values",
+    "id": "contour-map",
+    "name": "Contour map",
+    "row": 2,
+    "type": "Spatial"
+  },
+  {
+    "description": "Converting each unit on a map to a regular and equally-sized shape - good for representing voting regions with equal share.",
+    "id": "equalised-cartogram",
+    "name": "Equalised cartogram",
+    "row": 2,
+    "type": "Spatial"
+  },
+  {
+    "description": "Stretching and shrinking a map so that each area is sized according to a particular value.",
+    "id": "scaled-cartogram",
+    "name": "Scaled cartogram (value)",
+    "row": 2,
+    "type": "Spatial"
+  },
+  {
+    "description": "Used to show the location of individual events/locations - make sure to annotate any patterns the reader should see.",
+    "id": "dot-density",
+    "name": "Dot density",
+    "row": 3,
+    "type": "Spatial"
+  },
+  {
+    "description": "Grid-based data values mapped with an intensity colour scale. As choropleth map - but not snapped to an admin/political unit.",
+    "id": "heat-map",
+    "name": "Heat map",
+    "row": 3,
+    "type": "Spatial"
+  },
+  {
+    "description": "Shows changes in flows from one condition to at least one other; good for tracing the eventual outcome of a complex process.",
+    "id": "sankey",
+    "name": "Sankey",
+    "row": 1,
+    "type": "Flow"
+  },
+  {
+    "description": "Designed to show the sequencing of data through a flow process, typically budgets. Can include +/- components",
+    "id": "waterfall-2",
+    "name": "Waterfall",
+    "row": 1,
+    "type": "Flow"
+  },
+  {
+    "description": "A complex but powerful diagram which can illustrate 2-way flows (and net winner) in a matrix",
+    "id": "chord",
+    "name": "Chord",
+    "row": 2,
+    "type": "Flow"
+  },
+  {
+    "description": "Used for showing the complexity and inter-connectdness of relationships of varying types.",
+    "id": "network",
+    "name": "Network",
+    "row": 2,
+    "type": "Flow"
+  }
+]

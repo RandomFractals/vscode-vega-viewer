@@ -1,0 +1,72 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "todo",
+  "title": "Diverging Bar",
+  "width": 400,
+  "height": 250,
+  "padding": 5,
+  "autosize": {"type": "fit", "contains": "padding"},
+
+  "data": [
+    {
+      "name": "table",
+      "url":"./data/diverging-bar.csv",
+      "format": {"type": "csv", "parse": "auto"}
+    }
+  ],
+
+  "signals": [
+    {
+      "name": "spec_values",
+      "value": {"y": "Sub-Category", "x": "Profit Ratio"}
+    }
+  ],
+
+  "scales": [
+    {
+      "name": "yscale",
+      "type": "band",
+      "domain": {
+        "data": "table", "field": {"signal": "spec_values.y"},
+        "sort": {"op": "median", "field": "Profit Ratio", "order": "descending"}
+      },
+      "range": "height",
+      "padding": 0.05,
+      "round": true
+    },
+    {
+      "name": "xscale",
+      "domain": {"data": "table", "field": {"signal": "spec_values.x"}},
+      "nice": true,
+      "range": "width"
+    },
+    {
+      "name": "colorscale",
+      "type": "linear",
+      "domain": [-25, 0, 45],
+      "range": ["#DCB86D", "#C1CFD3", "#0F7B9E"]
+    }
+  ],
+
+  "axes": [
+    { "orient": "bottom", "scale": "xscale", "title": {"signal": "spec_values.x"}, "grid": true, "ticks": false, "domain": false},
+    { "orient": "left", "scale": "yscale", "ticks": false, "domain": false, "labelPadding": 5 }
+  ],
+
+  "marks": [
+    {
+      "type": "rect",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale", "field": {"signal": "spec_values.x"}},
+          "x2": {"scale": "xscale", "value": 0},
+          "height": {"scale": "yscale", "band": 0.9},
+          "y": {"scale": "yscale", "field": {"signal": "spec_values.y"}},
+          "fill": {"scale": "colorscale", "field": {"signal": "spec_values.x"}},
+          "tooltip": {"signal": "datum"}
+        }
+      }
+    }
+  ]
+}

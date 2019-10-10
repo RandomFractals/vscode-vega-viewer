@@ -28,7 +28,7 @@ and no `d3` `py`|| `rstats` required! :)
 1. Use `Vega: Create Vega Spec` command from `View -> Command Pallette...` menu 
 to create and save new Vega or Vega-Lite document with the corresponding Vega JSON schema reference
 
-2. Run `Vega: Preview Vega` command on an open `.vega`, `.vg.json` or `.vl.json` Vega spec document to Preview it
+2. Run `Vega: Preview Vega Graph` command on an open `.vega`, `.vg.json` or `.vl.json` Vega spec document to Preview it
 
 3. Run `Vega: Data Preview` command to view referenced CSV and JSON data in Grid View. 
 

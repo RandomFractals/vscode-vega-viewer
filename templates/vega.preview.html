@@ -71,7 +71,7 @@
   </head>
   <body>
     <div id="toolbar">
-      <div style="float: right; width: 150px;">
+      <div style="float: right; width: 165px;">
         <select id="theme-selector" onChange="changeTheme()">
           <option value="">theme:</option>
           <option value="dark">dark</option>
@@ -84,6 +84,8 @@
         </select> &nbsp;
         <a title="export svg" href="#" onclick="exportView('svg')">svg</a> |
         <a title="export png" href="#" onclick="exportView('png')">png</a>
+        <a title="help" style="color: black; font-weight: bold" 
+          href="#" onclick="showHelp()">&nbsp;&nbsp;?&nbsp;&nbsp;</a>
       </div>
       <h3><a id="title" title="open file" href="#" onclick="openFile()">loading...</a></h3>
     </div>
@@ -91,6 +93,7 @@
     <div id="vis"></div>
     <script type="text/javascript">
       let vscode, view, message, data, title, themeSelector, theme = '';
+
       // start with blank vega spec
       let spec = {
         "$schema": "https://vega.github.io/schema/vega/v4.json",
@@ -98,6 +101,7 @@
         "height": 200,
         "padding": 5
       };
+
       // create custom vega data loader
       const vegaLoader = vega.loader();
       const dataLoader = vega.loader();
@@ -115,6 +119,7 @@
           } 
         });
       };
+
       document.addEventListener('DOMContentLoaded', event => {
         // initialize page elements
         title = document.getElementById('title');
@@ -131,6 +136,7 @@
           // ignore: must be loaded outside of vscode webview
         }
       });
+
       // vega spec update handler
       window.addEventListener('message', event => {
         switch (event.data.command) {
@@ -175,6 +181,10 @@
 
       function openFile() {
         vscode.postMessage({command: 'openFile'});
+      }
+
+      function showHelp() {
+        vscode.postMessage({command: 'showHelp'});
       }
 
       function exportView(exportType) {

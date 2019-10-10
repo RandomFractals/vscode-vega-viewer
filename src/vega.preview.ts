@@ -172,11 +172,14 @@ export class VegaPreview {
           this.exportPng(message.imageData);
           break;
         case 'openFile':
-          // commands.executeCommand('vscode.open', this._uri);
           workspace.openTextDocument(this._uri).then(document => {
             window.showTextDocument(document, ViewColumn.One);
-          });      
+          });
           break;
+        case 'showHelp':
+          const helpUri: Uri = Uri.parse('https://github.com/RandomFractals/vscode-vega-viewer#usage');
+          commands.executeCommand('vscode.open', helpUri);
+          break;  
       }
     }, null, this._disposables);
   } // end of initWebview()

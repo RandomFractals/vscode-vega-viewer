@@ -13,6 +13,10 @@ and [Vega-Lite](https://vega.github.io/vega-lite/) JSON spec graphs 📈, CSV an
 The best part of Vega Viewer is you can use it disconnected unlike other online dataViz devTools to prototype your maps 🗺️ & graphs 📈 on a go, on a ✈️, on a 🚄, on a 🚤, in a 📦 with a 🐐, 
 and no `d3` `py`|| `rstats` required! :)
 
+![Box Plot](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-boxplot.png?raw=true 
+ "Vega Viewer Box Plot Preview")
+
+
 # Features
 
 - Create Vega documents
@@ -32,7 +36,7 @@ to create & save new Vega || Vega-Lite document with the corresponding Vega `jso
 
 3. Run `Vega: Data Preview` command to view referenced `csv` || `json` data in a Grid View ⊞
 
-4. Save updated Vega spec `json` document to Preview updated Graph 📈
+4. Save updated Vega spec `json` document to Preview updated graph 📈
 
 ## Built-in Examples
 

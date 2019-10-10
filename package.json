@@ -32,7 +32,9 @@
     "csv",
     "csv data",
     "json",
-    "json data"
+    "json data",
+    "visual vocabulary",
+    "chart examples"
   ],
   "engines": {
     "vscode": "^1.36.0",

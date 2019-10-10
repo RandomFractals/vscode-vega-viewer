@@ -15,9 +15,9 @@ and [Vega-Lite](https://vega.github.io/vega-lite/) JSON spec graphs 📈, CSV an
 - Create Vega document command
 - Vega and Vega-Lite graphs Preview
 - Local data files support
-- CSV and JSON array data Preview
+- CSV and JSON array Data Preview
 - SVG and PNG graph export
-- Over 500 built-in Vega & Vega-Lite Examples
+- Over 580 built-in Vega & Vega-Lite Examples
 - [Vega themes](https://twitter.com/search?q=%23vegaThemes&src=typed_query) Preview
 
 # Usage 
@@ -25,17 +25,20 @@ and [Vega-Lite](https://vega.github.io/vega-lite/) JSON spec graphs 📈, CSV an
 1. Run `Vega: Create Vega 📈` command from `View -> Command Pallette...` menu 
 to create and save new Vega or Vega-Lite document with the corresponding Vega JSON schema reference
 
-2. Run `Vega: Preview Vega 📈` on open `.vega`, `.vg.json` or `.vl.json` Vega spec document to Preview it
+2. Run `Vega: Preview Vega` on open `.vega`, `.vg.json` or `.vl.json` Vega spec document to Preview it
 
-3. Save updated Vega spec JSON document to Preview updated Vega viz
+3. Run `Vega: Data Preview` command to view referenced CSV and JSON data in Grid View. 
 
-OR
+4. Save updated Vega spec JSON document to Preview updated Vega viz
 
-Run `Vega: Examples 📈` command to view the list of built-in Vega specification examples
+## Built-in Vega and Vega-Lite Examples
 
-OR 
+1. Run `Vega: Examples 📈` command to view the list of built-in Vega specification examples
 
-Run `Vega: Lite Examples 📈` command to view all the Vega Lite 🗺️'s & 📈's created by the Vega dev community 🤗
+2. Run `Vega: Lite Examples 📈` command to view all the Vega Lite 🗺️'s & 📈's created by the Vega dev community 🤗
+
+3. Run `Vega: Visual Vocabulary ⿻` command to view quick list of [Visual Vocabulary Vega](https://github.com/gramener/visual-vocabulary-vega/) examples
+
 ...
 
 The best part of Vega Viewer is you can use it disconnected unlike other online #dataViz #devTools to prototype your 🗺️'️s & 📈's on a go, on a ✈️, on a 🚄, on a 🚤, in a 📦 with a 🐐, and no #d3 #py || #rstats required!

@@ -15,7 +15,7 @@ and no `d3` `py`|| `rstats` required! :)
 
 # Features
 
-- Create Vega document command
+- Create Vega documents
 - Vega and Vega-Lite Graphs Preview
 - Local data files support
 - CSV and JSON array Data Preview
@@ -26,13 +26,13 @@ and no `d3` `py`|| `rstats` required! :)
 # Usage 
 
 1. Use `Vega: Create Vega Spec` command from `View -> Command Pallette...` menu 
-to create and save new Vega or Vega-Lite document with the corresponding Vega JSON schema reference
+to create & save new Vega || Vega-Lite document with the corresponding Vega `json` `$schema` reference
 
-2. Run `Vega: Preview Vega Graph` command on an open `.vega`, `.vg.json` or `.vl.json` Vega spec document to Preview it
+2. Run `Vega: Preview Vega Graph` command on an open `.vg.json` or `.vl.json` Vega spec document to Preview 📈
 
-3. Run `Vega: Data Preview` command to view referenced CSV and JSON data in Grid View. 
+3. Run `Vega: Data Preview` command to view referenced `csv` || `json` data in a Grid View ⊞
 
-4. Save updated Vega spec JSON document to Preview updated Vega viz
+4. Save updated Vega spec `json` document to Preview updated Graph 📈
 
 ## Built-in Examples
 

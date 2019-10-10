@@ -35,7 +35,7 @@ to create and save new Vega or Vega-Lite document with the corresponding Vega JS
 
 1. Run `Vega: Examples 📈` command to view the list of built-in Vega specification examples
 
-2. Run `Vega: Lite Examples 📈` command to view all the Vega Lite 🗺️'s & 📈's created by the Vega dev community 🤗
+2. Run `Vega: Lite Examples 📈` command to view all the Vega-Lite 🗺️'s & 📈's created by the Vega dev community 🤗
 
 3. Run `Vega: Visual Vocabulary ⿻` command to view quick list of [Visual Vocabulary Vega](https://github.com/gramener/visual-vocabulary-vega/) examples
 

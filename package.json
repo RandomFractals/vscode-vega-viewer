@@ -64,12 +64,12 @@
     "commands": [
       {
         "command": "vega.create",
-        "title": "Create Vega 📈",
+        "title": "Create Vega Spec",
         "category": "Vega"
       },
       {
         "command": "vega.preview",
-        "title": "Preview Vega",
+        "title": "Preview Vega Graph",
         "category": "Vega",
         "icon": {
           "light": "./images/vega-viewer.svg",
@@ -87,17 +87,17 @@
       },
       {
         "command": "vega.visual.vocabulary",
-        "title": "Visual Vocabulary ⿻",
+        "title": "Visual Vocabulary Examples",
         "category": "Vega"
       },
       {
         "command": "vega.examples",
-        "title": "Examples 📈",
+        "title": "Examples",
         "category": "Vega"
       },
       {
         "command": "vega.examples.lite",
-        "title": "Lite Examples 📈",
+        "title": "Lite Examples",
         "category": "Vega"
       }
     ],

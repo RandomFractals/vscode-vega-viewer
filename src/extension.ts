@@ -90,8 +90,11 @@ export function activate(context: ExtensionContext) {
 
   // Vega: Visual Vocabulary command
   const visualVocabularyWebview: Disposable = 
-    createVegaPreviewCommand('vega.visual.vocabulary', extensionPath, visualVocabularyTemplate);
-  context.subscriptions.push(dataWebview);
+    // createVegaPreviewCommand('vega.visual.vocabulary', extensionPath, visualVocabularyTemplate);
+    commands.registerCommand('vega.visual.vocabulary', () => 
+      showVegaExamples(context.asAbsolutePath('examples/visual-vocabulary'), 'vg.json')
+    );
+  context.subscriptions.push(visualVocabularyWebview);
 
   // refresh associated preview on Vega file save
   workspace.onDidSaveTextDocument((document: TextDocument) => {

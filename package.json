@@ -225,9 +225,8 @@
     "@finos/perspective": "^0.3.9",
     "@finos/perspective-viewer": "^0.3.9",
     "@finos/perspective-viewer-hypergrid": "^0.3.9",
-    "vega": "^5.7.0",
+    "vega": "^5.7.2",
     "vega-lite": "^4.0.0-beta.9",
-    "vega-embed": "^5.1.3",
-    "vega-themes": "^2.5.0"
+    "vega-embed": "^6.0.0"
   }
 }

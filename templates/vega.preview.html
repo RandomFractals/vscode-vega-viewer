@@ -72,7 +72,7 @@
         <a title="export svg" href="#" onclick="exportView('svg')">svg</a> |
         <a title="export png" href="#" onclick="exportView('png')">png</a>
       </div>
-      <h3 id="title">loading...</h3>
+      <h3><a id="title" title="open file" href="#" onclick="openFile()">loading...</a></h3>
     </div>
     <div id="message">Loading Vega spec preview...</div>
     <div id="vis"></div>
@@ -158,6 +158,10 @@
           view = null;
         });
         return view;
+      }
+
+      function openFile() {
+        vscode.postMessage({command: 'openFile'});
       }
 
       function exportView(exportType) {

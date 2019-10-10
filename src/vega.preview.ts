@@ -9,7 +9,8 @@ import {
   Webview,
   WebviewPanel, 
   WebviewPanelOnDidChangeViewStateEvent, 
-  WebviewPanelSerializer
+  WebviewPanelSerializer,
+  commands
 } from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -169,6 +170,12 @@ export class VegaPreview {
           break;
         case 'exportPng':
           this.exportPng(message.imageData);
+          break;
+        case 'openFile':
+          // commands.executeCommand('vscode.open', this._uri);
+          workspace.openTextDocument(this._uri).then(document => {
+            window.showTextDocument(document, ViewColumn.One);
+          });      
           break;
       }
     }, null, this._disposables);

@@ -16,7 +16,7 @@ and no `d3` `py`|| `rstats` required! :)
 # Features
 
 - Create Vega document command
-- Vega and Vega-Lite graphs Preview
+- Vega and Vega-Lite Graphs Preview
 - Local data files support
 - CSV and JSON array Data Preview
 - SVG and PNG graph export
@@ -25,7 +25,7 @@ and no `d3` `py`|| `rstats` required! :)
 
 # Usage 
 
-1. Run `Vega: Create Vega 📈` command from `View -> Command Pallette...` menu 
+1. Use `Vega: Create Vega Spec` command from `View -> Command Pallette...` menu 
 to create and save new Vega or Vega-Lite document with the corresponding Vega JSON schema reference
 
 2. Run `Vega: Preview Vega` command on an open `.vega`, `.vg.json` or `.vl.json` Vega spec document to Preview it
@@ -36,11 +36,11 @@ to create and save new Vega or Vega-Lite document with the corresponding Vega JS
 
 ## Built-in Examples
 
-1. Run `Vega: Examples 📈` command to view the list of built-in [Vega examples](https://vega.github.io/vega/examples/)
+1. Run `Vega: Examples` command to view the list of built-in [Vega examples](https://vega.github.io/vega/examples/)
 
-2. Run `Vega: Lite Examples 📈` command to view all the [Vega-Lite maps 🗺 & graphs 📈](https://vega.github.io/vega-lite/examples/) created by the Vega dev community 🤗
+2. Run `Vega: Lite Examples` command to view all the [Vega-Lite maps 🗺 & graphs 📈](https://vega.github.io/vega-lite/examples/) created by the Vega dev community 🤗
 
-3. Run `Vega: Visual Vocabulary ⿻` command to view quick list of [Visual Vocabulary Vega](https://github.com/gramener/visual-vocabulary-vega/) examples
+3. Run `Vega: Visual Vocabulary Examples` command to view quick list of [Visual Vocabulary Vega](https://github.com/gramener/visual-vocabulary-vega/) examples
 
 ...
 

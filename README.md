@@ -6,12 +6,11 @@
 <a href='https://ko-fi.com/F1F812DLR' target='_blank' title='support: https://ko-fi.com/dataPixy'>
   <img height='24' style='border:0px;height:20px;' src='https://az743702.vo.msecnd.net/cdn/kofi3.png?v=2' alt='https://ko-fi.com/dataPixy' /></a>
 
-[Vega Viewer](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-vega-viewer) provides language support and
-Interactive Preview of [Vega](https://vega.github.io/vega/) 
-and [Vega-Lite](https://vega.github.io/vega-lite/) JSON spec graphs 📈, CSV and JSON array data display and filtering in [VSCode](https://github.com/Microsoft/vscode)
+[Vega Viewer](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-vega-viewer) provides language support & Interactive Preview of [Vega](https://vega.github.io/vega/) & 
+[Vega-Lite](https://vega.github.io/vega-lite/) JSON spec graphs 📈, CSV & JSON array data display & filtering in [VSCode](https://github.com/Microsoft/vscode)
 
-The best part of Vega Viewer is you can use it disconnected unlike other online dataViz devTools to prototype your maps 🗺️ & graphs 📈 on a go, on a ✈️, on a 🚄, on a 🚤, in a 📦 with a 🐐, 
-and no `d3` `py`|| `rstats` required! :)
+You can use it in disconnected mode, unlike other online dataViz devTools, to prototype your maps 🗺️ & graphs 📈 on a go, on a ✈️, on a 🚄, on a 🚤, in a 📦 with a 🐐, 
+and no `d3` `py` `plotly` || `rstats` required! :)
 
 ![Box Plot](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-boxplot.png?raw=true 
  "Vega Viewer Box Plot Preview")
@@ -19,32 +18,32 @@ and no `d3` `py`|| `rstats` required! :)
 
 # Features
 
-- Create Vega documents
-- Vega and Vega-Lite Graphs Preview
+- Create Vega Spec JSON documents
+- Vega & Vega-Lite Graphs Preview
 - Local data files support
-- CSV and JSON array Data Preview
-- SVG and PNG graph export
+- CSV & JSON array Data Preview
+- SVG & PNG Graph Export options
 - Over 580 built-in Vega & Vega-Lite Examples
-- [Vega themes](https://twitter.com/search?q=%23vegaThemes&src=typed_query) Preview
+- [Vega Themes](https://twitter.com/search?q=%23vegaThemes&src=typed_query) Preview
 
 # Usage 
 
 1. Use `Vega: Create Vega Spec` command from `View -> Command Pallette...` menu 
-to create & save new Vega || Vega-Lite document with the corresponding Vega `json` `$schema` reference
+to Create & Save new Vega || Vega-Lite document with the corresponding Vega `json` `$schema` reference
 
 2. Run `Vega: Preview Vega Graph` command on an open `.vg.json` or `.vl.json` Vega spec document to Preview 📈
 
-3. Run `Vega: Data Preview` command to view referenced `csv` || `json` data in a Grid View ⊞
+3. Run `Vega: Data Preview` command to View referenced `csv` || `json` data in a Grid View ⊞
 
-4. Save updated Vega spec `json` document to Preview updated graph 📈
+4. Save updated Vega spec `json` document to Preview updated Graph 📈
 
 ## Built-in Examples
 
-1. Run `Vega: Examples` command to view the list of built-in [Vega examples](https://vega.github.io/vega/examples/)
+1. Run `Vega: Examples` command to view the list of built-in [Vega Examples](https://vega.github.io/vega/examples/)
 
-2. Run `Vega: Lite Examples` command to view all the [Vega-Lite maps 🗺 & graphs 📈](https://vega.github.io/vega-lite/examples/) created by the Vega dev community 🤗
+2. Run `Vega: Lite Examples` command to view all the [Vega-Lite Maps 🗺 & Graphs 📈](https://vega.github.io/vega-lite/examples/) created by the Vega dev community 🤗
 
-3. Run `Vega: Visual Vocabulary Examples` command to view quick list of [Visual Vocabulary Vega](https://github.com/gramener/visual-vocabulary-vega/) examples
+3. Run `Vega: Visual Vocabulary Examples` command to View quick list of [Visual Vocabulary Vega](https://github.com/gramener/visual-vocabulary-vega/) examples
 
 ...
 

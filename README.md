@@ -31,7 +31,7 @@ and no `d3` `py` `plotly` || `rstats` required! :)
 1. Use `Vega: Create Vega Spec` command from `View -> Command Pallette...` menu 
 to Create & Save new Vega || Vega-Lite document with the corresponding Vega `json` `$schema` reference
 
-2. Run `Vega: Preview Vega Graph` command on an open `.vg.json` or `.vl.json` Vega spec document to Preview 📈
+2. Run `Vega: Preview Vega Graph` command on an open `.vg.json` || `.vl.json` Vega spec document to Preview 📈
 
 3. Run `Vega: Data Preview` command to View referenced `csv` || `json` data in a Grid View ⊞
 
@@ -43,7 +43,7 @@ to Create & Save new Vega || Vega-Lite document with the corresponding Vega `jso
 
 2. Run `Vega: Lite Examples` command to view all the [Vega-Lite Maps 🗺 & Graphs 📈](https://vega.github.io/vega-lite/examples/) created by the Vega dev community 🤗
 
-3. Run `Vega: Visual Vocabulary Examples` command to View quick list of [Visual Vocabulary Vega](https://github.com/gramener/visual-vocabulary-vega/) examples
+3. Run `Vega: Visual Vocabulary Examples` command to View quick list of [Visual Vocabulary Vega](https://github.com/gramener/visual-vocabulary-vega/) Examples
 
 ...
 

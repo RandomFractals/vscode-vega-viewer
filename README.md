@@ -64,7 +64,7 @@ to Create & Save new Vega || Vega-Lite document with the corresponding Vega `jso
 
 # Dev Log
 
-See [#VegaViewer tag on Twitter](https://twitter.com/hashtag/vegaviewer?f=tweets&vertical=default&src=hash) for the latest and greatest updates on this vscode extension and what's in store next.
+See [#VegaViewer 📈 tag on Twitter](https://twitter.com/hashtag/vegaviewer?f=tweets&vertical=default&src=hash) for the latest & greatest updates on this vscode extension & what's in store next.
 
 # Dev Build
 
@@ -81,6 +81,6 @@ $ code .
 
 # Contributions
 
-Any and all test, code or feedback contributions are welcome. 
+Any & all test, code || feedback contributions are welcome. 
 
-Open an issue or create a pull request to make Vega Viewer work better for all. 
+Open an issue || create a pull request to make Vega Viewer 📈 work better for all. 🤗

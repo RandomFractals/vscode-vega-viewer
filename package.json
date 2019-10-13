@@ -34,7 +34,9 @@
     "json",
     "json data",
     "visual vocabulary",
-    "chart examples"
+    "chart examples",
+    "svg chart",
+    "png chart"
   ],
   "engines": {
     "vscode": "^1.36.0",

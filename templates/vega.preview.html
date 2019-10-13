@@ -71,9 +71,12 @@
   </head>
   <body>
     <div id="toolbar">
-      <div style="float: right; width: 165px;">
-        <select id="theme-selector" onChange="changeTheme()">
-          <option value="">theme:</option>
+      <div style="float: right; width: 260px;">
+        <select id="data-selector" title="view data" onChange="showData()">
+          <option value="">🔡 data</option>
+        </select>
+        <select id="theme-selector" title="change theme" onChange="changeTheme()">
+          <option value="">🌃 theme</option>
           <option value="dark">dark</option>
           <option value="excel">excel</option>
           <option value="ggplot2">ggplot2</option>
@@ -82,8 +85,13 @@
           <option value="vox">vox</option>
           <option value="fivethirtyeight">538</option>
         </select> &nbsp;
-        <a title="export svg" href="#" onclick="exportView('svg')">svg</a> |
-        <a title="export png" href="#" onclick="exportView('png')">png</a>
+        <select id="save-file-type-selector" 
+          title="save graph"
+          onChange="saveGraph()">
+          <option value="">📥&nbsp;save</option>
+          <option value=".svg">&lt;/&gt; &nbsp;svg</option>
+          <option value=".png">&nbsp;🖼&nbsp;️ &nbsp;png</option>
+        </select>
         <a title="help" style="color: black; font-weight: bold" 
           href="#" onclick="showHelp()">&nbsp;&nbsp;?&nbsp;&nbsp;</a>
       </div>

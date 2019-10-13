@@ -72,7 +72,7 @@
   <body>
     <div id="toolbar">
       <div style="float: right; width: 260px;">
-        <select id="data-selector" title="view data" onChange="showData()">
+        <select id="data-source-selector" title="view data" onChange="showData()">
           <option value="">🔡 data</option>
         </select>
         <select id="theme-selector" title="change theme" onChange="changeTheme()">
@@ -84,7 +84,7 @@
           <option value="latimes">la times</option>
           <option value="vox">vox</option>
           <option value="fivethirtyeight">538</option>
-        </select> &nbsp;
+        </select>
         <select id="save-file-type-selector" 
           title="save graph"
           onChange="saveGraph()">
@@ -100,7 +100,9 @@
     <div id="message">Loading Vega spec preview...</div>
     <div id="vis"></div>
     <script type="text/javascript">
-      let vscode, view, message, data, title, themeSelector, theme = '';
+      let vscode, view, message, data, title, 
+        themeSelector, theme = '',
+        dataSourceSelector, saveFileTypeSelector;
 
       // start with blank vega spec
       let spec = {
@@ -132,7 +134,9 @@
         // initialize page elements
         title = document.getElementById('title');
         message = document.getElementById('message');
+        dataSourceSelector = document.getElementById('data-source-selector');
         themeSelector = document.getElementById('theme-selector');
+        saveFileTypeSelector = document.getElementById('save-file-type-selector');
         // create blank vega embed view
         view = preview(spec);
         try {
@@ -195,17 +199,18 @@
         vscode.postMessage({command: 'showHelp'});
       }
 
-      function exportView(exportType) {
+      function saveGraph() {
+        const fileType = saveFileTypeSelector.value;
         if (!view) return;
-        switch (exportType) {
-          case 'svg':
+        switch (fileType) {
+          case '.svg':
             showMessage('Exporting SVG...');
             view.toSVG().then(svg => {
               vscode.postMessage({command: 'exportSvg', svg: svg});
             })
             .catch(error => showMessage(error.message));
             break;
-          case 'png':
+          case '.png':
             showMessage('Exporting PNG...');
             view.toCanvas().then(canvas => {
               vscode.postMessage({

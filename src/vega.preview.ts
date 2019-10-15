@@ -176,6 +176,17 @@ export class VegaPreview {
             window.showTextDocument(document, ViewColumn.One);
           });
           break;
+        case 'showData':
+          const dataUrl: string = message.dataUri;
+          let dataUri: Uri;
+          if (dataUrl.startsWith('http://') || dataUrl.startsWith('https://')) {
+            dataUri = Uri.parse(dataUrl);
+          }
+          else { // join with spec file path
+            dataUri = Uri.parse(path.join(path.dirname(this._uri.fsPath), dataUrl));
+          }
+          commands.executeCommand('data.preview', dataUri);
+          break;
         case 'showHelp':
           const helpUri: Uri = Uri.parse('https://github.com/RandomFractals/vscode-vega-viewer#usage');
           commands.executeCommand('vscode.open', helpUri);

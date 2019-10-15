@@ -72,7 +72,9 @@
   <body>
     <div id="toolbar">
       <div style="float: right; width: 260px;">
-        <select id="data-source-selector" title="view data" onChange="showData()">
+        <select id="data-source-selector" title="view data"
+          style="max-width: 68px;"
+          onChange="showData()">
           <option value="">🔡 data</option>
         </select>
         <select id="theme-selector" title="change theme" onChange="changeTheme()">
@@ -88,9 +90,9 @@
         <select id="save-file-type-selector" 
           title="save graph"
           onChange="saveGraph()">
-          <option value="">📥&nbsp;save</option>
-          <option value=".svg">&lt;/&gt; &nbsp;svg</option>
-          <option value=".png">&nbsp;📈&nbsp; &nbsp;png</option>
+          <option value="">📥 save</option>
+          <option value=".svg">&lt;/&gt; svg</option>
+          <option value=".png">&nbsp;📈 png</option>
         </select>
         <a title="help" style="color: black; font-weight: bold" 
           href="#" onclick="showHelp()">&nbsp;&nbsp;?&nbsp;&nbsp;</a>
@@ -161,6 +163,7 @@
               title.innerText = event.data.fileName.replace('.json', '');
               spec = JSON.parse(event.data.spec);
               data = event.data.data;
+              loadDataSourceList(data, dataSourceSelector);
               view = preview(spec, theme);
             }
             catch (error) {
@@ -170,6 +173,15 @@
             break;
         }
       });
+
+      function loadDataSourceList(dataSources, dataSourceSelector) {
+        // clear data sources display
+        dataSourceSelector.innerHTML = '<option value="">🔡 data</option>';
+        // load data source uri's
+        Object.keys(dataSources).forEach(dataUri => {
+          dataSourceSelector.innerHTML += `<option value="${dataUri}">${dataUri}</option>"`;
+        });
+      }
 
       function changeTheme() {
         theme = themeSelector.value;
@@ -193,6 +205,16 @@
 
       function openFile() {
         vscode.postMessage({command: 'openFile'});
+      }
+
+      function showData() {
+        const dataUri = dataSourceSelector.value;
+        if (dataUri) {
+          vscode.postMessage({
+            command: 'showData',
+            dataUri: dataUri
+          });
+        }
       }
 
       function showHelp() {

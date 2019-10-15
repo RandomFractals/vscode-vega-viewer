@@ -26,6 +26,9 @@ and no `d3` `py` `plotly` || `rstats` required! :)
 - [Vega Themes](https://twitter.com/search?q=%23vegaThemes&src=typed_query) Preview
 - Referenced CSV & JSON data display via [Data Preview 🈸](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-data-preview)
 
+![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-data-preview.png?raw=true 
+ "Vega Viewer Data Preview")
+
 # Usage 
 
 1. Use `Vega: Create Vega Spec` command from `View -> Command Pallette...` menu 

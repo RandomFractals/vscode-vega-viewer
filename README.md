@@ -7,7 +7,7 @@
   <img height='24' style='border:0px;height:20px;' src='https://az743702.vo.msecnd.net/cdn/kofi3.png?v=2' alt='https://ko-fi.com/dataPixy' /></a>
 
 [Vega Viewer](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-vega-viewer) provides language support & Interactive Preview of [Vega](https://vega.github.io/vega/) & 
-[Vega-Lite](https://vega.github.io/vega-lite/) JSON spec graphs 📈, CSV & JSON array data display & filtering in [VSCode](https://github.com/Microsoft/vscode)
+[Vega-Lite](https://vega.github.io/vega-lite/) JSON spec graphs 📈
 
 You can use it in disconnected mode, unlike other online dataViz devTools, to prototype your maps 🗺️ & graphs 📈 on a go, on a ✈️, on a 🚄, on a 🚤, in a 📦 with a 🐐, 
 and no `d3` `py` `plotly` || `rstats` required! :)
@@ -21,10 +21,10 @@ and no `d3` `py` `plotly` || `rstats` required! :)
 - Create Vega Spec JSON documents
 - Vega & Vega-Lite Graphs Preview
 - Local data files support
-- CSV & JSON array Data Preview
 - SVG & PNG Graph Export options
 - Over 580 built-in Vega & Vega-Lite Examples
 - [Vega Themes](https://twitter.com/search?q=%23vegaThemes&src=typed_query) Preview
+- Referenced CSV & JSON data display via [Data Preview 🈸](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-data-preview)
 
 # Usage 
 
@@ -33,9 +33,7 @@ to Create & Save new Vega || Vega-Lite document with the corresponding Vega `jso
 
 2. Run `Vega: Preview Vega Graph` command on an open `.vg.json` || `.vl.json` Vega spec document to Preview 📈
 
-3. Run `Vega: Data Preview` command to View referenced `csv` || `json` data in a Grid View ⊞
-
-4. Save updated Vega spec `json` document to Preview updated Graph 📈
+3. Save updated Vega spec `json` document to Preview updated Graph 📈
 
 ## Built-in Examples
 

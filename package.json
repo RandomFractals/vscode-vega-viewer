@@ -28,11 +28,6 @@
     "dataViz",
     "vegaViz",
     "dev tools",
-    "data preview",
-    "csv",
-    "csv data",
-    "json",
-    "json data",
     "visual vocabulary",
     "chart examples",
     "svg chart",
@@ -52,12 +47,10 @@
   "activationEvents": [
     "onCommand:vega.create",
     "onCommand:vega.preview",
-    "onCommand:vega.data.preview",
     "onCommand:vega.visual.vocabulary",
     "onCommand:vega.examples",
     "onCommand:vega.examples.lite",
     "onWebviewPanel:vega.preview",
-    "onWebviewPanel:vega.preview.data",
     "onWebviewPanel:vega.visual.vocabulary",
     "onLanguage:json"
   ],
@@ -76,15 +69,6 @@
         "icon": {
           "light": "./images/vega-viewer.svg",
           "dark": "./images/vega-viewer.svg"
-        }
-      },
-      {
-        "command": "vega.preview.data",
-        "title": "Data Preview",
-        "category": "Vega",
-        "icon": {
-          "light": "./images/data-preview.svg",
-          "dark": "./images/data-preview.svg"
         }
       },
       {
@@ -111,10 +95,6 @@
       {
         "command": "vega.preview",
         "key": "ctrl+alt+v"
-      },
-      {
-        "command": "vega.preview.data",
-        "key": "ctrl+alt+d"
       },
       {
         "command": "vega.visual.vocabulary",
@@ -176,11 +156,6 @@
           "when": "resourceFilename =~ /.*\\.(vega|vg.json|vl.json|vg|vl)/",
           "command": "vega.preview",
           "group": "navigation"
-        },
-        {
-          "when": "resourceFilename =~ /.*\\.(vega|vg.json|vl.json|vg|vl)/",
-          "command": "vega.preview.data",
-          "group": "navigation"
         }
       ],
       "editor/title": [
@@ -188,22 +163,12 @@
           "when": "resourceFilename =~ /.*\\.(vega|vg.json|vl.json|vg|vl)/",
           "command": "vega.preview",
           "group": "navigation"
-        },
-        {
-          "when": "resourceFilename =~ /.*\\.(vega|vg.json|vl.json|vg|vl)/",
-          "command": "vega.preview.data",
-          "group": "navigation"
         }
       ],
       "editor/title/context": [
         {
           "when": "resourceFilename =~ /.*\\.(vega|vg.json|vl.json|vg|vl)/",
           "command": "vega.preview",
-          "group": "navigation"
-        },
-        {
-          "when": "resourceFilename =~ /.*\\.(vega|vg.json|vl.json|vg|vl)/",
-          "command": "vega.preview.data",
           "group": "navigation"
         }
       ]
@@ -224,11 +189,6 @@
     "vscode": "^1.1.36"
   },
   "dependencies": {
-    "apache-arrow": "^0.14.1",
-    "d3-fetch": "^1.1.2",
-    "@finos/perspective": "^0.3.9",
-    "@finos/perspective-viewer": "^0.3.9",
-    "@finos/perspective-viewer-hypergrid": "^0.3.9",
     "vega": "^5.7.2",
     "vega-lite": "^4.0.0-beta.10",
     "vega-embed": "^6.0.0"

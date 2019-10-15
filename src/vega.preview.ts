@@ -99,9 +99,6 @@ export class VegaPreview {
       case 'vega.preview':
         this._title = this._fileName;
         break;
-      case 'vega.preview.data':
-        this._title = this._fileName;
-        break;
       case 'vega.visual.vocabulary':
         this._title = 'Visual Vocabulary';
         break;  
@@ -134,9 +131,6 @@ export class VegaPreview {
       switch (viewType) {
         case 'vega.preview':
           panelIconPath = './images/vega-viewer.svg';
-          break;
-        case 'vega.preview.data':
-          panelIconPath = './images/data-preview.svg';
           break;
         case 'vega.visual.vocabulary':
           panelIconPath = './images/visual-vocabulary.svg';

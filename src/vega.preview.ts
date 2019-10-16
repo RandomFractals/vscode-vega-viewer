@@ -171,15 +171,7 @@ export class VegaPreview {
           });
           break;
         case 'showData':
-          const dataUrl: string = message.dataUri;
-          let dataUri: Uri;
-          if (dataUrl.startsWith('http://') || dataUrl.startsWith('https://')) {
-            dataUri = Uri.parse(dataUrl);
-          }
-          else { // join with spec file path
-            dataUri = Uri.parse(path.join(path.dirname(this._uri.fsPath), dataUrl));
-          }
-          commands.executeCommand('data.preview', dataUri);
+          this.showData(message.dataUri);
           break;
         case 'showHelp':
           const helpUri: Uri = Uri.parse('https://github.com/RandomFractals/vscode-vega-viewer#usage');
@@ -228,6 +220,23 @@ export class VegaPreview {
     // NOTE: let webview fire refresh message
     // when vega preview DOM content is initialized
     // see: this.refresh();
+  }
+
+  /**
+   * Launches referenced vega spec csv or json data preview.
+   * @param dataUrl The url of the data file to load.
+   */
+  public showData(dataUrl: string): void {
+    let dataUri: Uri;
+    if (dataUrl.startsWith('http://') || dataUrl.startsWith('https://')) {
+      dataUri = Uri.parse(dataUrl);
+    }
+    else { 
+      // join with vega spec file path for reletive data file loading
+      dataUri = Uri.parse(path.join(path.dirname(this._uri.fsPath), dataUrl));
+    }
+    this._logger.logMessage(LogLevel.Info, `showData(): ${this.dataPreviewCommand}`, dataUri.toString(true));
+    commands.executeCommand(this.dataPreviewCommand, dataUri);
   }
 
   /**
@@ -436,5 +445,12 @@ export class VegaPreview {
    */
   get html(): string {
     return this._html;
+  }
+
+  /**
+   * Gets vega data preview command setting.
+   */
+  get dataPreviewCommand(): string {
+    return <string>workspace.getConfiguration('vega.viewer').get('dataPreviewCommand');
   }
 }

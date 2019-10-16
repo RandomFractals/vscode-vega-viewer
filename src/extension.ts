@@ -37,7 +37,7 @@ const logger: Logger = new Logger('vega.viewer:', config.logLevel);
  */
 export function activate(context: ExtensionContext) {
   const extensionPath: string = context.extensionPath;
-  logger.logMessage(LogLevel.Info, 'activate(): activating from extPath:', context.extensionPath);
+  // logger.logMessage(LogLevel.Info, 'activate(): activating from extPath:', context.extensionPath);
 
   // initialize vega and data preview webview panel templates
   const templateManager: ITemplateManager = new TemplateManager(context.asAbsolutePath('templates'));

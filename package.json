@@ -172,6 +172,21 @@
           "group": "navigation"
         }
       ]
+    },
+    "configuration": {
+      "type": "object",
+      "title": "Vega Viewer",
+      "properties": {
+        "vega.viewer.dataPreviewCommand": {
+          "type": "string",
+          "enum": [
+            "data.preview",
+            "vscode.open"
+          ],
+          "default": "data.preview",
+          "description": "Vega spec CSV & JSON data files preview command"
+        }
+      }
     }
   },
   "scripts": {

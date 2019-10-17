@@ -31,7 +31,8 @@
     "visual vocabulary",
     "chart examples",
     "svg chart",
-    "png chart"
+    "png chart",
+    "data preview"
   ],
   "engines": {
     "vscode": "^1.36.0",

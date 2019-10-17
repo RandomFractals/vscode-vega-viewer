@@ -20,7 +20,7 @@ and no `d3` `py` `plotly` || `rstats` required! :)
 
 - Create Vega Spec JSON documents
 - Vega & Vega-Lite Graphs Preview
-- Local data files support
+- Local & http(s) data files support
 - SVG & PNG Graph Export options
 - Over 580 built-in Vega & Vega-Lite Examples
 - [Vega Themes](https://twitter.com/search?q=%23vegaThemes&src=typed_query) Preview

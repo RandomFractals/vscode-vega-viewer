@@ -118,9 +118,10 @@
       const vegaLoader = vega.loader();
       const dataLoader = vega.loader();
       dataLoader.load = (uri) => {
-        if (uri.startsWith('http')) {
+        if (uri.startsWith('http://') || uri.startsWith('https://')) {
           return vegaLoader.load(uri);
         }
+        // else use local data passed to this view
         return new Promise((resolve, reject) => {
           if (data !== undefined && data[uri]) {
             resolve(data[uri]);

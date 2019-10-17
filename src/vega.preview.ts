@@ -233,7 +233,7 @@ export class VegaPreview {
     }
     else { 
       // join with vega spec file path for reletive data file loading
-      dataUri = Uri.parse(path.join(path.dirname(this._uri.fsPath), dataUrl));
+      dataUri = Uri.file(path.join(path.dirname(this._uri.fsPath), dataUrl));
     }
     this._logger.logMessage(LogLevel.Info, `showData(): ${this.dataPreviewCommand}`, dataUri.toString(true));
     commands.executeCommand(this.dataPreviewCommand, dataUri);
@@ -282,13 +282,19 @@ export class VegaPreview {
     this._logger.logMessage(LogLevel.Debug, 'getData(): dataUrls:', dataUrls);
 
     // get all local files data
-    dataUrls.filter(url => !url.startsWith('http')).forEach(url => {
-      // get local file data
-      const fileData: string = this.getFileData(url);
-      if (fileData) {
-        dataFiles[url] = fileData;
+    dataUrls.forEach(dataUrl => {
+      if (dataUrl.startsWith('http://') || dataUrl.startsWith('https://')) {
+        // add remote data source reference
+        dataFiles[dataUrl] = dataUrl;
       }
-      this._logger.logMessage(LogLevel.Debug, 'getData(): localDataUrl:', url);
+      else {
+        // get local file data
+        const fileData: string = this.getFileData(dataUrl);
+        if (fileData) {
+          dataFiles[dataUrl] = fileData;
+        }
+        this._logger.logMessage(LogLevel.Debug, 'getData(): localDataUrl:', dataUrl);
+      }
     });
     return dataFiles;
   }

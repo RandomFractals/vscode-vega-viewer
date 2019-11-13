@@ -26,8 +26,16 @@ and no `d3` `py` `plotly` || `rstats` required! :)
 - [Vega Themes](https://twitter.com/search?q=%23vegaThemes&src=typed_query) Preview
 - Referenced CSV & JSON data display via [Data Preview 🈸](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-data-preview)
 
-![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-data-preview.png?raw=true 
+![Vega Viewer Data Preview](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-data-preview.png?raw=true 
  "Vega Viewer Data Preview")
+
+# Settings
+
+Install [Data Preview 🈸](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-data-preview),
+or change Vega Viewer Data Preview Command Setting to `vscode.open` to open referenced CSV & JSON data files with default vscode source code editors for those data file types.
+
+![Vega Viewer Data Preview Command Setting](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-data-preview-command-setting.png?raw=true 
+ "Vega Viewer Data Preview Command Setting")
 
 # Usage 
 

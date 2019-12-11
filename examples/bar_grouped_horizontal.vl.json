@@ -19,7 +19,7 @@
     },
     "color": {
       "field": "gender", "type": "nominal",
-      "scale": {"range": ["#EA98D2", "#659CCA"]}
+      "scale": {"range": ["#675193", "#ca8861"]}
     }
   },
   "config": {

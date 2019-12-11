@@ -180,10 +180,10 @@
         "vega.viewer.dataPreviewCommand": {
           "type": "string",
           "enum": [
-            "data.preview",
-            "vscode.open"
+            "vscode.open",
+            "data.preview"
           ],
-          "default": "data.preview",
+          "default": "vscode.open",
           "description": "Vega spec CSV & JSON data files preview command"
         }
       }

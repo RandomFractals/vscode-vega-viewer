@@ -31,8 +31,8 @@ and no `d3` `py` `plotly` || `rstats` required! :)
 
 # Settings
 
-Install [Data Preview 🈸](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-data-preview),
-or change Vega Viewer Data Preview Command Setting to `vscode.open` to open referenced CSV & JSON data files with default vscode source code editors for those data file types.
+Install [Data Preview 🈸](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-data-preview)
+or use built-in `vscode.open` command to open referenced CSV & JSON data files with the default vscode source code editors for those data source file types for your Vega graphs 📈
 
 ![Vega Viewer Data Preview Command Setting](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-data-preview-command-setting.png?raw=true 
  "Vega Viewer Data Preview Command Setting")

@@ -71,7 +71,7 @@
   </head>
   <body>
     <div id="toolbar">
-      <div style="float: right; width: 260px;">
+      <div style="float: right; width: 270px;">
         <select id="data-source-selector" title="view data"
           style="max-width: 68px;"
           onChange="showData()">
@@ -95,7 +95,9 @@
           <option value=".png">&nbsp;📈 png</option>
         </select>
         <a title="help" style="color: black; font-weight: bold" 
-          href="#" onclick="showHelp()">&nbsp;&nbsp;?&nbsp;&nbsp;</a>
+          href="#" onclick="showHelp()">&nbsp;?&nbsp;</a>
+        <a title="buy coffee" style="color: black; font-weight: bold" 
+          href="#" onclick="buyCoffee()">&nbsp;☕️&nbsp;</a>          
       </div>
       <h3><a id="title" title="open file" href="#" onclick="openFile()">loading...</a></h3>
     </div>
@@ -220,6 +222,10 @@
 
       function showHelp() {
         vscode.postMessage({command: 'showHelp'});
+      }
+
+      function buyCoffee() {
+        vscode.postMessage({command: 'buyCoffee'});
       }
 
       function saveGraph() {

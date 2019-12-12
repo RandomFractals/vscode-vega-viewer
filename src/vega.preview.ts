@@ -176,6 +176,10 @@ export class VegaPreview {
         case 'showHelp':
           const helpUri: Uri = Uri.parse('https://github.com/RandomFractals/vscode-vega-viewer#usage');
           commands.executeCommand('vscode.open', helpUri);
+          break;
+        case 'buyCoffee':
+          const buyCoffeeUri: Uri = Uri.parse('https://ko-fi.com/datapixy');
+          commands.executeCommand('vscode.open', buyCoffeeUri);
           break;  
       }
     }, null, this._disposables);

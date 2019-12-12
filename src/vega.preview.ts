@@ -236,7 +236,15 @@ export class VegaPreview {
       dataUri = Uri.file(path.join(path.dirname(this._uri.fsPath), dataUrl));
     }
     this._logger.logMessage(LogLevel.Info, `showData(): ${this.dataPreviewCommand}`, dataUri.toString(true));
-    commands.executeCommand(this.dataPreviewCommand, dataUri);
+    
+    // execute requested data preview command
+    let viewDataCommand: string = 'vscode.open'; // default
+    commands.getCommands().then(availableCommands => {
+      if (availableCommands.includes(this.dataPreviewCommand)) {
+        viewDataCommand = this.dataPreviewCommand;
+      }
+      commands.executeCommand(viewDataCommand, dataUri);
+    });
   }
 
   /**

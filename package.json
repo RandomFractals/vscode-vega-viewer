@@ -198,14 +198,14 @@
   },
   "devDependencies": {
     "@types/mocha": "^5.2.7",
-    "@types/node": "^12.12.17",
+    "@types/node": "^12.12.21",
     "tslint": "^5.20.1",
     "typescript": "^3.7.3",
     "vscode": "^1.1.36"
   },
   "dependencies": {
     "vega": "^5.9.0",
-    "vega-lite": "^4.0.0",
+    "vega-lite": "^4.0.2",
     "vega-embed": "^6.2.1"
   }
 }

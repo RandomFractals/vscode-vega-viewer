@@ -83,7 +83,7 @@ export function activate(context: ExtensionContext) {
     window.showInputBox({
       ignoreFocusOut: true,
       placeHolder: 'https://',
-      prompt: 'Enter remote Vega(-Lite) spec JSON url'
+      prompt: 'Enter Vega(-Lite) spec JSON URL'
     }).then((vegaSpecUrl: string) => {
       if (vegaSpecUrl && vegaSpecUrl !== undefined && vegaSpecUrl.length > 0) {
         const vegaSpecUri: Uri = Uri.parse(vegaSpecUrl);

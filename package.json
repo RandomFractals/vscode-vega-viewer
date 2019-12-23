@@ -47,6 +47,7 @@
   "activationEvents": [
     "onCommand:vega.create",
     "onCommand:vega.preview",
+    "onCommand:vega.preview.remote",
     "onCommand:vega.visual.vocabulary",
     "onCommand:vega.examples",
     "onCommand:vega.examples.lite",
@@ -72,6 +73,11 @@
         }
       },
       {
+        "command": "vega.preview.remote",
+        "title": "Preview Remote Vega Graph",
+        "category": "Data"
+      },
+      {
         "command": "vega.visual.vocabulary",
         "title": "Visual Vocabulary Examples",
         "category": "Vega"
@@ -95,6 +101,10 @@
       {
         "command": "vega.preview",
         "key": "ctrl+alt+v"
+      },
+      {
+        "command": "data.preview.remote",
+        "key": "ctrl+alt+r"
       },
       {
         "command": "vega.visual.vocabulary",
@@ -198,9 +208,9 @@
   },
   "devDependencies": {
     "@types/mocha": "^5.2.7",
-    "@types/node": "^12.12.21",
+    "@types/node": "^13.1.0",
     "tslint": "^5.20.1",
-    "typescript": "^3.7.3",
+    "typescript": "^3.7.4",
     "vscode": "^1.1.36"
   },
   "dependencies": {

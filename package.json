@@ -75,7 +75,7 @@
       {
         "command": "vega.preview.remote",
         "title": "Preview Remote Vega Graph",
-        "category": "Data"
+        "category": "Vega"
       },
       {
         "command": "vega.visual.vocabulary",
@@ -103,7 +103,7 @@
         "key": "ctrl+alt+v"
       },
       {
-        "command": "data.preview.remote",
+        "command": "vega.preview.remote",
         "key": "ctrl+alt+r"
       },
       {

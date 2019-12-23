@@ -78,6 +78,22 @@ export function activate(context: ExtensionContext) {
     createVegaPreviewCommand('vega.preview', extensionPath, vegaPreviewTemplate);
   context.subscriptions.push(vegaWebview);
 
+  // Vega: Preview Remote command
+  const vegaWebviewRemote: Disposable = commands.registerCommand('vega.preview.remote', () => {
+    window.showInputBox({
+      ignoreFocusOut: true,
+      placeHolder: 'https://',
+      prompt: 'Enter remote Vega(-Lite) spec JSON url'
+    }).then((vegaSpecUrl: string) => {
+      if (vegaSpecUrl && vegaSpecUrl !== undefined && vegaSpecUrl.length > 0) {
+        const vegaSpecUri: Uri = Uri.parse(vegaSpecUrl);
+        // launch new remote Vega spec preview
+        commands.executeCommand('vega.preview', vegaSpecUri);
+      }  
+    });
+  });
+  context.subscriptions.push(vegaWebviewRemote);
+
   // Vega: Visual Vocabulary command
   const visualVocabularyWebview: Disposable = 
     // createVegaPreviewCommand('vega.visual.vocabulary', extensionPath, visualVocabularyTemplate);
@@ -142,9 +158,7 @@ function createVegaPreviewCommand(viewType: string, extensionPath: string, viewT
         return;
       }
     }
-    const preview: VegaPreview = new VegaPreview(viewType,
-      extensionPath, resource, 
-      viewColumn, viewTemplate);
+    const preview: VegaPreview = new VegaPreview(viewType, extensionPath, resource, viewColumn, viewTemplate);
     previewManager.add(preview);
     return preview.webview;
   });

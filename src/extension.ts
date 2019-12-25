@@ -37,7 +37,7 @@ const logger: Logger = new Logger('vega.viewer:', config.logLevel);
  */
 export function activate(context: ExtensionContext) {
   const extensionPath: string = context.extensionPath;
-  // logger.logMessage(LogLevel.Info, 'activate(): activating from extPath:', context.extensionPath);
+  // logger.info('activate(): activating from extPath:', context.extensionPath);
 
   // initialize vega and data preview webview panel templates
   const templateManager: ITemplateManager = new TemplateManager(context.asAbsolutePath('templates'));
@@ -130,7 +130,7 @@ export function activate(context: ExtensionContext) {
     previewManager.configure();
   });
 
-  logger.logMessage(LogLevel.Info, 'activate(): activated! extPath:', context.extensionPath);
+  logger.info('activate(): activated! extPath:', context.extensionPath);
 } // end of activate()
 
 /**
@@ -172,8 +172,8 @@ function createVegaPreviewCommand(viewType: string, extensionPath: string, viewT
 function isVegaFile(document: TextDocument): boolean {
   const fileName: string = path.basename(document.uri.fsPath).replace('.json', ''); // strip out .json ext
   const fileExt: string = fileName.substr(fileName.lastIndexOf('.'));
-  logger.logMessage(LogLevel.Debug, 'isVegaFile(): document:', document);
-  logger.logMessage(LogLevel.Debug, 'isVegaFile(): file:', fileName);
+  logger.debug('isVegaFile(): document:', document);
+  logger.debug('isVegaFile(): file:', fileName);
   return VEGA_FILE_EXTENSIONS.findIndex(vegaFileExt => vegaFileExt === fileExt) >= 0;
 }
 

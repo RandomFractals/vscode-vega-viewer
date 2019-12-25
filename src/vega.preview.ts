@@ -15,7 +15,7 @@ import {
 import * as fs from 'fs';
 import * as path from 'path';
 import * as config from './config';
-import {Logger, LogLevel} from './logger';
+import {Logger} from './logger';
 import {previewManager} from './preview.manager';
 import {Template} from './template.manager';
 
@@ -42,7 +42,7 @@ export class VegaPreviewSerializer implements WebviewPanelSerializer {
    * @param state Saved web view panel state.
    */
   async deserializeWebviewPanel(webviewPanel: WebviewPanel, state: any) {
-    this._logger.logMessage(LogLevel.Debug, 'deserializeWeviewPanel(): url:', state.uri.toString());
+    this._logger.debug('deserializeWeviewPanel(): url:', state.uri.toString());
     previewManager.add(
       new VegaPreview(
         this.viewType,
@@ -212,7 +212,7 @@ export class VegaPreview {
     }
     // add vega preview js scripts
     localResourceRoots.push(Uri.file(path.join(this._extensionPath, 'scripts')));
-    this._logger.logMessage(LogLevel.Debug, 'getLocalResourceRoots():', localResourceRoots);
+    this._logger.debug('getLocalResourceRoots():', localResourceRoots);
     return localResourceRoots;
   }
 
@@ -239,7 +239,7 @@ export class VegaPreview {
       // join with vega spec file path for reletive data file loading
       dataUri = Uri.file(path.join(path.dirname(this._uri.fsPath), dataUrl));
     }
-    this._logger.logMessage(LogLevel.Info, `showData(): ${this.dataPreviewCommand}`, dataUri.toString(true));
+    this._logger.info(`showData(): ${this.dataPreviewCommand}`, dataUri.toString(true));
     
     // execute requested data preview command
     let viewDataCommand: string = 'vscode.open'; // default
@@ -259,7 +259,7 @@ export class VegaPreview {
     this._panel.reveal(this._panel.viewColumn, true); // preserve focus
     // open Vega json spec text document
     workspace.openTextDocument(this.uri).then(document => {
-      this._logger.logMessage(LogLevel.Debug, 'refresh(): file:', this._fileName);
+      this._logger.debug('refresh(): file:', this._fileName);
       const vegaSpec: string = document.getText();
       try {
         const spec = JSON.parse(vegaSpec);
@@ -273,7 +273,7 @@ export class VegaPreview {
         });
       }
       catch (error) {
-        this._logger.logMessage(LogLevel.Error, 'refresh():', error.message);
+        this._logger.error('refresh():', error.message);
         this.webview.postMessage({error: error});
       }
     });
@@ -291,7 +291,7 @@ export class VegaPreview {
 
     // add nested spec data urls for view compositions (facets, repeats, etc.)
     dataUrls = dataUrls.concat(this.getDataUrls(spec['spec']));
-    this._logger.logMessage(LogLevel.Debug, 'getData(): dataUrls:', dataUrls);
+    this._logger.debug('getData(): dataUrls:', dataUrls);
 
     // get all local files data
     dataUrls.forEach(dataUrl => {
@@ -305,7 +305,7 @@ export class VegaPreview {
         if (fileData) {
           dataFiles[dataUrl] = fileData;
         }
-        this._logger.logMessage(LogLevel.Debug, 'getData(): localDataUrl:', dataUrl);
+        this._logger.debug('getData(): localDataUrl:', dataUrl);
       }
     });
     return dataFiles;
@@ -366,7 +366,7 @@ export class VegaPreview {
       data = fs.readFileSync(dataFilePath, 'utf8');
     }
     else {
-      this._logger.logMessage(LogLevel.Error, 'getFileData():', `${filePath} doesn't exist`);
+      this._logger.error('getFileData():', `${filePath} doesn't exist`);
     }
     return data;
   }
@@ -385,7 +385,7 @@ export class VegaPreview {
       fs.writeFile(svgFileUri.fsPath, svg, (error) => {
         if (error) {
           const errorMessage: string = `Failed to save file: ${svgFileUri.fsPath}`;
-          this._logger.logMessage(LogLevel.Error, 'exportSvg():', errorMessage);
+          this._logger.error('exportSvg():', errorMessage);
           window.showErrorMessage(errorMessage);
         }
       });
@@ -408,7 +408,7 @@ export class VegaPreview {
       fs.writeFile(pngFileUri.fsPath, base64, 'base64', (error) => {
         if (error) {
           const errorMessage: string = `Failed to save file: ${pngFileUri.fsPath}`;
-          this._logger.logMessage(LogLevel.Error, 'exportPng():', errorMessage);
+          this._logger.error('exportPng():', errorMessage);
           window.showErrorMessage(errorMessage);
         }
       });

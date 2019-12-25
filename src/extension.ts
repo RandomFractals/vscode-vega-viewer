@@ -14,7 +14,7 @@ import {
 import * as fs from 'fs';
 import * as path from 'path';
 import * as config from './config';
-import {Logger, LogLevel} from './logger';
+import {Logger} from './logger';
 import {VegaPreview, VegaPreviewSerializer} from './vega.preview';
 import {previewManager} from './preview.manager';
 import {Template, ITemplateManager, TemplateManager} from './template.manager';

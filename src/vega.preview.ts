@@ -173,9 +173,16 @@ export class VegaPreview {
           this.exportPng(message.imageData);
           break;
         case 'openFile':
-          workspace.openTextDocument(this._uri).then(document => {
-            window.showTextDocument(document, ViewColumn.One);
-          });
+          if (this._vegaSpecUrl.startsWith('https://')) {
+            // open remote vega spec in browser
+            commands.executeCommand('vscode.open', this._uri);
+          } 
+          else {
+            // open vega spec json in text editor
+            workspace.openTextDocument(this._uri).then(document => {
+              window.showTextDocument(document, ViewColumn.One);
+            });
+          }
           break;
         case 'showData':
           this.showData(message.dataUri);

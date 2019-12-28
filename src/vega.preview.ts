@@ -60,7 +60,7 @@ export class VegaPreviewSerializer implements WebviewPanelSerializer {
  * Main vega preview webview implementation for this vscode extension.
  */
 export class VegaPreview {
-    
+  
   protected _disposables: Disposable[] = [];
   private _extensionPath: string;
   private _uri: Uri;
@@ -261,8 +261,8 @@ export class VegaPreview {
   public refresh(): void {
     // reveal corresponding Vega preview panel
     this._panel.reveal(this._panel.viewColumn, true); // preserve focus
-    if (this._vegaSpecUrl.startsWith('http')) {
-      // get encoded vega spec from editor url
+    if (this._vegaSpecUrl.startsWith('https://vega.github.io/editor/#/url/')) {
+      // get encoded vega spec from online editor url
       const vegaSpecInfo = this.getVegaSpecInfo('https://vega.github.io/editor/#/url/', this._vegaSpecUrl);
       this.refreshView(vegaSpecInfo.specString);
     }

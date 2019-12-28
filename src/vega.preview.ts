@@ -102,6 +102,9 @@ export class VegaPreview {
     switch (viewType) {
       case 'vega.preview':
         this._title = this._fileName;
+        if (this._vegaSpecUrl.startsWith('https://')) {
+          this._title = 'Untitled';
+        }
         break;
       case 'vega.visual.vocabulary':
         this._title = 'Visual Vocabulary';
@@ -264,7 +267,7 @@ export class VegaPreview {
     if (this._vegaSpecUrl.startsWith('https://vega.github.io/editor/#/url/')) {
       // get encoded vega spec from online editor url
       const vegaSpecInfo = this.getVegaSpecInfo('https://vega.github.io/editor/#/url/', this._vegaSpecUrl);
-      this.refreshView(vegaSpecInfo.specString);
+      this.refreshView(vegaSpecInfo.specString, vegaSpecInfo.fileType);
     }
     else {
       // open Vega json spec text document
@@ -279,11 +282,35 @@ export class VegaPreview {
   /**
    * Refreshes Vega preview.
    * @param vegaSpec Vega spec string to parse and visualize.
+   * @param fileType Vega spec file type.
    */
-  private refreshView(vegaSpec: string): void {
+  private refreshView(vegaSpec: string, fileType: string = null): void {
     try {
+      // parse Vega spec string
       const spec = JSON.parse(vegaSpec);
+
+      // extract data sources
       const data = this.getData(spec);
+
+      if (this._vegaSpecUrl.startsWith('https://')) {
+        // update remote vega spec file name
+        const title = spec['title'];
+        const description = spec['description'];
+        if (title !== undefined) {
+          this._fileName = `${title}.${fileType}`;
+        }
+        else if (description !== undefined) {
+          // use description for filename title
+          this._fileName = `${description.substr(0, 100)}.${fileType}`;
+        } 
+        else {
+          this._fileName = `Unititled.${fileType}`;
+        }
+        // update web view panel title
+        this._panel.title = this._fileName;
+      }
+
+      // refresh web view
       this.webview.postMessage({
         command: 'refresh',
         fileName: this._fileName,
@@ -301,7 +328,7 @@ export class VegaPreview {
   /**
    * Creates Vega spec info from encoded vega spec url.
    * @param {string} baseUrl Vega spec base url to strip out.
-   * @param {*} vegaSpecUrl Full Vega spec url.
+   * @param {string} vegaSpecUrl Full Vega spec url.
    */
   private getVegaSpecInfo(baseUrl: string, vegaSpecUrl: string): any {
     // extract vega spec from url
@@ -312,11 +339,8 @@ export class VegaPreview {
 
     const compressedVegaSpec = vegaSpecUrlPart.substring(vegaSpecPosition + 1);
     const vegaSpecString = lzString.decompressFromEncodedURIComponent(compressedVegaSpec);
-    const vegaSpec = JSON.parse(vegaSpecString);  
     return {
-      type: vegaSpecType,
       fileType: (vegaSpecType === 'vega' ? 'vg.json' : 'vl.json'),
-      spec: vegaSpec,
       specString: vegaSpecString,
       compressedString: compressedVegaSpec
     };

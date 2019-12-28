@@ -14,6 +14,7 @@ import {
 } from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as lzString from 'lz-string';
 import * as config from './config';
 import {Logger} from './logger';
 import {previewManager} from './preview.manager';
@@ -64,6 +65,7 @@ export class VegaPreview {
   private _extensionPath: string;
   private _uri: Uri;
   private _previewUri: Uri;
+  private _vegaSpecUrl: string;
   private _fileName: string;
   private _title: string;
   private _html: string;
@@ -89,10 +91,12 @@ export class VegaPreview {
 
     // save ext path, document uri, and create prview uri
     this._extensionPath = extensionPath;
-    this._uri = uri;
+    this._uri = uri; // vega spec uri
+    this._vegaSpecUrl = uri.toString(true);
     this._fileName = path.basename(uri.fsPath);
     this._previewUri = this._uri.with({scheme: 'vega'});
     this._logger = new Logger(`${viewType}:`, config.logLevel);
+    // this._logger.debug('():loading Vega spec:', this._vegaSpecUrl);
 
     // create preview panel title
     switch (viewType) {
@@ -252,31 +256,70 @@ export class VegaPreview {
   }
 
   /**
-   * Reload vega preview on vega spec json doc save changes or vscode IDE reload.
+   * Reloads vega preview on vega spec json doc save changes or vscode IDE reload.
    */
   public refresh(): void {
     // reveal corresponding Vega preview panel
     this._panel.reveal(this._panel.viewColumn, true); // preserve focus
-    // open Vega json spec text document
-    workspace.openTextDocument(this.uri).then(document => {
-      this._logger.debug('refresh(): file:', this._fileName);
-      const vegaSpec: string = document.getText();
-      try {
-        const spec = JSON.parse(vegaSpec);
-        const data = this.getData(spec);
-        this.webview.postMessage({
-          command: 'refresh',
-          fileName: this._fileName,
-          uri: this._uri.toString(),
-          spec: vegaSpec,
-          data: data
-        });
-      }
-      catch (error) {
-        this._logger.error('refresh():', error.message);
-        this.webview.postMessage({error: error});
-      }
-    });
+    if (this._vegaSpecUrl.startsWith('http')) {
+      // get encoded vega spec from editor url
+      const vegaSpecInfo = this.getVegaSpecInfo('https://vega.github.io/editor/#/url/', this._vegaSpecUrl);
+      this.refreshView(vegaSpecInfo.specString);
+    }
+    else {
+      // open Vega json spec text document
+      workspace.openTextDocument(this.uri).then(document => {
+        this._logger.debug('refresh(): file:', this._fileName);
+        const vegaSpec: string = document.getText();
+        this.refreshView(vegaSpec);
+      });
+    }
+  }
+
+  /**
+   * Refreshes Vega preview.
+   * @param vegaSpec Vega spec string to parse and visualize.
+   */
+  private refreshView(vegaSpec: string): void {
+    try {
+      const spec = JSON.parse(vegaSpec);
+      const data = this.getData(spec);
+      this.webview.postMessage({
+        command: 'refresh',
+        fileName: this._fileName,
+        uri: this._uri.toString(),
+        spec: vegaSpec,
+        data: data
+      });
+    }
+    catch (error) {
+      this._logger.error('refresh():', error.message);
+      this.webview.postMessage({error: error});
+    }
+  }
+
+  /**
+   * Creates Vega spec info from encoded vega spec url.
+   * @param {string} baseUrl Vega spec base url to strip out.
+   * @param {*} vegaSpecUrl Full Vega spec url.
+   */
+  private getVegaSpecInfo(baseUrl: string, vegaSpecUrl: string): any {
+    // extract vega spec from url
+    const vegaSpecUrlPart = vegaSpecUrl.replace(baseUrl, '');
+    const vegaSpecPosition = vegaSpecUrlPart.indexOf('/');
+    const vegaSpecType = vegaSpecUrlPart.substring(0, vegaSpecPosition);
+    this._logger.debug('getVegaSpecInfo(): spec type:', vegaSpecType);
+
+    const compressedVegaSpec = vegaSpecUrlPart.substring(vegaSpecPosition + 1);
+    const vegaSpecString = lzString.decompressFromEncodedURIComponent(compressedVegaSpec);
+    const vegaSpec = JSON.parse(vegaSpecString);  
+    return {
+      type: vegaSpecType,
+      fileType: (vegaSpecType === 'vega' ? 'vg.json' : 'vl.json'),
+      spec: vegaSpec,
+      specString: vegaSpecString,
+      compressedString: compressedVegaSpec
+    };
   }
 
   /**

@@ -450,7 +450,7 @@ export class VegaPreview {
    * @param svg Svg document export to save.
    */
   private async exportSvg(svg: string): Promise<void> {
-    const svgFilePath: string = this._uri.fsPath.replace('.json', '');
+    const svgFilePath: string = this.getFilePath().replace('.json', '');
     const svgFileUri: Uri = await window.showSaveDialog({
       defaultUri: Uri.parse(svgFilePath).with({scheme: 'file'}),
       filters: {'SVG': ['svg']}
@@ -473,7 +473,7 @@ export class VegaPreview {
    */
   private async exportPng(imageData: string): Promise<void> {
     const base64: string = imageData.replace('data:image/png;base64,', '');
-    const pngFilePath: string = this._uri.fsPath.replace('.json', '');
+    const pngFilePath: string = this.getFilePath().replace('.json', '');
     const pngFileUri: Uri = await window.showSaveDialog({
       defaultUri: Uri.parse(pngFilePath).with({scheme: 'file'}),
       filters: {'PNG': ['png']}
@@ -488,6 +488,17 @@ export class VegaPreview {
       });
     }
     this.webview.postMessage({command: 'showMessage', message: ''});
+  }
+
+  /**
+   * Creates local file path for saving json and image files.
+   */
+  private getFilePath() {
+    let filePath: string = this._uri.fsPath;
+    if (this._vegaSpecUrl.startsWith('https://')) {
+      filePath = this._fileName;
+    }
+    return filePath;
   }
 
   /**

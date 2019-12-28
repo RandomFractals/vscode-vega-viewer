@@ -24,6 +24,7 @@ and no `d3` `py` `plotly` || `rstats` required! :)
 - SVG & PNG Graph Export options
 - 598 built-in Vega & Vega-Lite Examples
 - [Vega Themes](https://twitter.com/search?q=%23vegaThemes&src=typed_query) Preview
+- Preview Vega specs from online Vega Editor
 - Referenced CSV & JSON data display via [Data Preview 🈸](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-data-preview)
 
 ![Vega Viewer Data Preview](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-data-preview.png?raw=true 
@@ -45,6 +46,9 @@ to Create & Save new Vega || Vega-Lite document with the corresponding Vega `jso
 2. Run `Vega: Preview Vega Graph` command on an open `.vg.json` || `.vl.json` Vega spec document to Preview 📈
 
 3. Save updated Vega spec `json` document to Preview updated Graph 📈
+
+4. Use `Vega: Preview Remote Vega Graph` command to preview URL encoded Vega specs from online 
+[Vega Editor](https://vega.github.io/editor)
 
 ## Built-in Examples
 

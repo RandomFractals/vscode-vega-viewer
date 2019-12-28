@@ -110,7 +110,7 @@
 
       // start with blank vega spec
       let spec = {
-        "$schema": "https://vega.github.io/schema/vega/v4.json",
+        "$schema": "https://vega.github.io/schema/vega/v5.json",
         "width": 400,
         "height": 200,
         "padding": 5
@@ -167,6 +167,7 @@
               spec = JSON.parse(event.data.spec);
               data = event.data.data;
               loadDataSourceList(data, dataSourceSelector);
+              loadSaveOptions(event.data.fileName, saveFileTypeSelector);
               view = preview(spec, theme);
             }
             catch (error) {
@@ -184,6 +185,15 @@
         Object.keys(dataSources).forEach(dataUri => {
           dataSourceSelector.innerHTML += `<option value="${dataUri}">${dataUri}</option>"`;
         });
+      }
+
+      function loadSaveOptions(fileName, saveFileTypeSelector) {
+        if (fileName.endsWith('vg.json')) {
+          saveFileTypeSelector.innerHTML += '<option value=".vg.json">&nbsp;{ }&nbsp; vg</option>';
+        } 
+        else {
+          saveFileTypeSelector.innerHTML += '<option value=".vl.json">&nbsp;{ }&nbsp; vl</option>';
+        }
       }
 
       function changeTheme() {
@@ -248,6 +258,12 @@
               });
             })
             .catch(error => showMessage(error.message));            
+            break;
+          default: // .vg or .vl json
+            vscode.postMessage({
+              command: 'saveVegaSpec', 
+              spec: spec
+            });
             break;
         }
       }

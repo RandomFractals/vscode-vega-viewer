@@ -15,6 +15,7 @@ import {
 import * as fs from 'fs';
 import * as path from 'path';
 import * as lzString from 'lz-string';
+import * as jsonStringify from 'json-stringify-pretty-compact';
 import * as config from './config';
 import {Logger} from './logger';
 import {previewManager} from './preview.manager';
@@ -171,6 +172,9 @@ export class VegaPreview {
           break;
         case 'exportPng':
           this.exportPng(message.imageData);
+          break;
+        case 'saveVegaSpec':
+          this.saveVegaSpec(message.spec);
           break;
         case 'openFile':
           if (this._vegaSpecUrl.startsWith('https://')) {
@@ -483,6 +487,28 @@ export class VegaPreview {
         if (error) {
           const errorMessage: string = `Failed to save file: ${pngFileUri.fsPath}`;
           this._logger.error('exportPng():', errorMessage);
+          window.showErrorMessage(errorMessage);
+        }
+      });
+    }
+    this.webview.postMessage({command: 'showMessage', message: ''});
+  }
+
+  /**
+   * Displays Save Vega spec dialog and saves it.
+   * @param vegaSpec Vega spec json to save.
+   */
+  private async saveVegaSpec(vegaSpec: any): Promise<void> {
+    const specFilePath: string = this.getFilePath();
+    const specFileUri: Uri = await window.showSaveDialog({
+      defaultUri: Uri.parse(specFilePath).with({scheme: 'file'}),
+      filters: {'JSON': ['json']}
+    });
+    if (specFileUri) {
+      fs.writeFile(specFileUri.fsPath, jsonStringify(vegaSpec), (error) => {
+        if (error) {
+          const errorMessage: string = `Failed to save file: ${specFileUri.fsPath}`;
+          this._logger.error('saveVegaSpec():', errorMessage);
           window.showErrorMessage(errorMessage);
         }
       });

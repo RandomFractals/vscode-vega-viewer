@@ -14,6 +14,7 @@ import {
 } from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as https from 'https';
 import * as lzString from 'lz-string';
 import * as jsonStringify from 'json-stringify-pretty-compact';
 import * as config from './config';
@@ -280,6 +281,9 @@ export class VegaPreview {
       const vegaSpecInfo = this.getVegaSpecInfo('https://vega.github.io/editor/#/url/', this._vegaSpecUrl);
       this.refreshView(vegaSpecInfo.specString, vegaSpecInfo.fileType);
     }
+    else if (this._vegaSpecUrl.startsWith('https://gist.github.com/')) {
+      this.loadVegaGist(this._vegaSpecUrl);
+    }
     else {
       // open Vega json spec text document
       workspace.openTextDocument(this.uri).then(document => {
@@ -356,6 +360,61 @@ export class VegaPreview {
       compressedString: compressedVegaSpec
     };
   }
+
+  /**
+   * Loads Vega spec from github gist.
+   * @param vegaGistUrl Vega spec gist url.
+   */
+  private loadVegaGist(vegaGistUrl: string): void {
+    // extract gist info from gist url
+    const pathTokens: Array<string> = this._uri.path.split('/');
+    const fragment: string = this._uri.fragment;
+    const gistId: string = pathTokens[2]; // skip github username
+
+    this._logger.debug('loadVegaGist(): gist url', vegaGistUrl);
+    this._logger.debug('loadVegaGist(): gist id:', gistId);
+    this._logger.debug('loadVegaGist(): fragment:', fragment);
+
+    // get gist content
+    const requestOptions: any = {
+      protocol: 'https:',
+      host: 'api.github.com',
+      port: 443,
+      path: `/gists/${gistId}`,
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'User-Agent': 'vscode-vega-viewer'
+      }
+    };
+    https.get(requestOptions, (response) => {
+      response.setEncoding('utf8');      
+      let data: string = '';
+      response.on('data', (chunk) => {
+        data += chunk;
+      });
+      response.on('end', () => {
+        // parse gist info
+        const gist: any = JSON.parse(data);
+
+        // get vega files
+        const vegaFiles: Array<any> = Object.keys(gist.files).filter(fileName => 
+          (fileName.endsWith('.vg.json') || fileName.endsWith('.vl.json')));          
+        this._logger.debug('loadVegaGist(): Vega files', vegaFiles);
+
+        if (vegaFiles.length > 0) {
+          // load the first vega file from gist for now
+          this._fileName = vegaFiles[0];
+          const vegaSpec: string = gist.files[this._fileName].content;
+          const fileType: string = (this._fileName.endsWith('.vg.json')) ? 'vg.json': 'vl.json';
+          this.refreshView(vegaSpec, fileType);
+        }
+      });
+    }).on('error', (error) => {
+      this._logger.error('loadVegaGist():', error.message);
+      this.webview.postMessage({error: error});
+    });
+  } // end of loadVegaGist()
 
   /**
    * Extracts data urls and loads local data files to pass to vega preview webview.

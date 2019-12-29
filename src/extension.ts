@@ -82,8 +82,8 @@ export function activate(context: ExtensionContext) {
   const vegaWebviewRemote: Disposable = commands.registerCommand('vega.preview.remote', () => {
     window.showInputBox({
       ignoreFocusOut: true,
-      placeHolder: 'https://',
-      prompt: 'Enter Vega(-Lite) spec JSON URL'
+      placeHolder: 'https://gist.github.com/... or https://vega.github.io/editor/#/url/...',
+      prompt: 'Enter Vega(-Lite) spec URL'
     }).then((vegaSpecUrl: string) => {
       if (vegaSpecUrl && vegaSpecUrl !== undefined && vegaSpecUrl.length > 0) {
         const vegaSpecUri: Uri = Uri.parse(vegaSpecUrl);

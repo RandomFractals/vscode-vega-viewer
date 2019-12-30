@@ -576,6 +576,10 @@ export class VegaPreview {
           this._logger.error('saveVegaSpec():', errorMessage);
           window.showErrorMessage(errorMessage);
         }
+        else {
+          // open saved Vega spec
+          commands.executeCommand('vscode.open', specFileUri);
+        }
       });
     }
     this.webview.postMessage({command: 'showMessage', message: ''});

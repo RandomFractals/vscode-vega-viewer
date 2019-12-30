@@ -285,7 +285,7 @@ export class VegaPreview {
       this.loadVegaGist(this._vegaSpecUrl);
     }
     else {
-      // open Vega json spec text document
+      // try to open local Vega json spec text document
       workspace.openTextDocument(this.uri).then(document => {
         this._logger.debug('refresh(): file:', this._fileName);
         const vegaSpec: string = document.getText();
@@ -307,8 +307,8 @@ export class VegaPreview {
       // extract data sources
       const data = this.getData(spec);
 
-      if (this._vegaSpecUrl.startsWith('https://')) {
-        // update remote vega spec file name
+      if (this._vegaSpecUrl.startsWith('https://vega.github.io/editor/#/url/')) {
+        // update vega editor spec file name
         const title = spec['title'];
         const description = spec['description'];
         if (title !== undefined) {
@@ -405,6 +405,9 @@ export class VegaPreview {
         if (vegaFiles.length > 0) {
           // load the first vega file from gist for now
           this._fileName = vegaFiles[0];
+          // update web view panel title
+          this._panel.title = this._fileName;
+          // display vega spec from gist
           const vegaSpec: string = gist.files[this._fileName].content;
           const fileType: string = (this._fileName.endsWith('.vg.json')) ? 'vg.json': 'vl.json';
           this.refreshView(vegaSpec, fileType);

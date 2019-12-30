@@ -66,10 +66,12 @@ export class VegaPreview {
   protected _disposables: Disposable[] = [];
   private _extensionPath: string;
   private _uri: Uri;
-  private _previewUri: Uri;
-  private _vegaSpecUrl: string;
+  private _url: string;
   private _fileName: string;
   private _title: string;
+  private _content: string;
+  private _spec: any;
+  private _previewUri: Uri;
   private _html: string;
   private _panel: WebviewPanel;
   private _logger: Logger;
@@ -94,7 +96,7 @@ export class VegaPreview {
     // save ext path, document uri, and create prview uri
     this._extensionPath = extensionPath;
     this._uri = uri; // vega spec uri
-    this._vegaSpecUrl = uri.toString(true);
+    this._url = uri.toString(true);
     this._fileName = path.basename(uri.fsPath);
     this._previewUri = this._uri.with({scheme: 'vega'});
     this._logger = new Logger(`${viewType}:`, config.logLevel);
@@ -104,7 +106,7 @@ export class VegaPreview {
     switch (viewType) {
       case 'vega.preview':
         this._title = this._fileName;
-        if (this._vegaSpecUrl.startsWith('https://')) {
+        if (this._url.startsWith('https://')) {
           this._title = 'Untitled';
         }
         break;
@@ -178,7 +180,7 @@ export class VegaPreview {
           this.saveVegaSpec(message.spec);
           break;
         case 'openFile':
-          if (this._vegaSpecUrl.startsWith('https://')) {
+          if (this._url.startsWith('https://')) {
             // open remote vega spec in browser
             commands.executeCommand('vscode.open', this._uri);
           } 
@@ -276,20 +278,21 @@ export class VegaPreview {
   public refresh(): void {
     // reveal corresponding Vega preview panel
     this._panel.reveal(this._panel.viewColumn, true); // preserve focus
-    if (this._vegaSpecUrl.startsWith('https://vega.github.io/editor/#/url/')) {
+    if (this._url.startsWith('https://vega.github.io/editor/#/url/')) {
       // get encoded vega spec from online editor url
-      const vegaSpecInfo = this.getVegaSpecInfo('https://vega.github.io/editor/#/url/', this._vegaSpecUrl);
-      this.refreshView(vegaSpecInfo.specString, vegaSpecInfo.fileType);
+      const vegaSpecInfo = this.getVegaSpecInfo('https://vega.github.io/editor/#/url/', this._url);
+      this._content = vegaSpecInfo.specString;
+      this.refreshView(this._content, vegaSpecInfo.fileType);
     }
-    else if (this._vegaSpecUrl.startsWith('https://gist.github.com/')) {
-      this.loadVegaGist(this._vegaSpecUrl);
+    else if (this._url.startsWith('https://gist.github.com/')) {
+      this.loadVegaGist(this._url);
     }
     else {
       // try to open local Vega json spec text document
       workspace.openTextDocument(this.uri).then(document => {
         this._logger.debug('refresh(): file:', this._fileName);
-        const vegaSpec: string = document.getText();
-        this.refreshView(vegaSpec);
+        this._content = document.getText();
+        this.refreshView(this._content);
       });
     }
   }
@@ -302,15 +305,15 @@ export class VegaPreview {
   private refreshView(vegaSpec: string, fileType: string = null): void {
     try {
       // parse Vega spec string
-      const spec = JSON.parse(vegaSpec);
+      this._spec = JSON.parse(vegaSpec);
 
       // extract data sources
-      const data = this.getData(spec);
+      const data = this.getData(this._spec);
 
-      if (this._vegaSpecUrl.startsWith('https://vega.github.io/editor/#/url/')) {
+      if (this._url.startsWith('https://vega.github.io/editor/#/url/')) {
         // update vega editor spec file name
-        const title = spec['title'];
-        const description = spec['description'];
+        const title = this._spec['title'];
+        const description = this._spec['description'];
         if (title !== undefined) {
           this._fileName = `${title}.${fileType}`;
         }
@@ -408,9 +411,9 @@ export class VegaPreview {
           // update web view panel title
           this._panel.title = this._fileName;
           // display vega spec from gist
-          const vegaSpec: string = gist.files[this._fileName].content;
+          this._content = gist.files[this._fileName].content;
           const fileType: string = (this._fileName.endsWith('.vg.json')) ? 'vg.json': 'vl.json';
-          this.refreshView(vegaSpec, fileType);
+          this.refreshView(this._content, fileType);
         }
       });
     }).on('error', (error) => {
@@ -583,7 +586,7 @@ export class VegaPreview {
    */
   private getFilePath() {
     let filePath: string = this._uri.fsPath;
-    if (this._vegaSpecUrl.startsWith('https://')) {
+    if (this._url.startsWith('https://')) {
       filePath = this._fileName;
     }
     return filePath;

@@ -318,7 +318,7 @@ export class VegaPreview {
           this._fileName = `${title}.${fileType}`;
         }
         else if (description !== undefined) {
-          // use description for filename title
+          // use truncated description for filename title
           this._fileName = `${description.substr(0, 100)}.${fileType}`;
         } 
         else {
@@ -570,7 +570,7 @@ export class VegaPreview {
       filters: {'JSON': ['json']}
     });
     if (specFileUri) {
-      fs.writeFile(specFileUri.fsPath, jsonStringify(vegaSpec), (error) => {
+      fs.writeFile(specFileUri.fsPath, this._content, (error) => {
         if (error) {
           const errorMessage: string = `Failed to save file: ${specFileUri.fsPath}`;
           this._logger.error('saveVegaSpec():', errorMessage);

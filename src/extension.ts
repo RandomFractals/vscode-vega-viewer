@@ -83,7 +83,7 @@ export function activate(context: ExtensionContext) {
     window.showInputBox({
       ignoreFocusOut: true,
       placeHolder: 'https://gist.github.com/... or https://vega.github.io/editor/#/url/...',
-      prompt: 'Enter Vega(-Lite) spec URL'
+      prompt: 'Input Vega(-Lite) spec URL'
     }).then((vegaSpecUrl: string) => {
       if (vegaSpecUrl && vegaSpecUrl !== undefined && vegaSpecUrl.length > 0) {
         const vegaSpecUri: Uri = Uri.parse(vegaSpecUrl);

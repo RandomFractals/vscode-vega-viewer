@@ -119,7 +119,7 @@ export class VegaPreview {
     }
 
     // create html template for the webview with scripts path replaced
-    const scriptsPath: string = Uri.file(path.join(this._extensionPath, 'scripts'))
+    const scriptsPath: string = Uri.file(path.join(this._extensionPath, 'web/scripts'))
       .with({scheme: 'vscode-resource'}).toString(true);
     this._html = template.content.replace(/\{scripts\}/g, scriptsPath);
 
@@ -232,7 +232,7 @@ export class VegaPreview {
       localResourceRoots.push(Uri.file(path.dirname(this.uri.fsPath)));
     }
     // add vega preview js scripts
-    localResourceRoots.push(Uri.file(path.join(this._extensionPath, 'scripts')));
+    localResourceRoots.push(Uri.file(path.join(this._extensionPath, 'web/scripts')));
     this._logger.debug('getLocalResourceRoots():', localResourceRoots);
     return localResourceRoots;
   }

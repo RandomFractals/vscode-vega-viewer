@@ -40,7 +40,7 @@ export function activate(context: ExtensionContext) {
   // logger.info('activate(): activating from extPath:', context.extensionPath);
 
   // initialize vega and data preview webview panel templates
-  const templateManager: ITemplateManager = new TemplateManager(context.asAbsolutePath('templates'));
+  const templateManager: ITemplateManager = new TemplateManager(context.asAbsolutePath('web'));
   const vegaPreviewTemplate: Template = templateManager.getTemplate('vega.preview.html');
   const visualVocabularyTemplate: Template = templateManager.getTemplate('visual.vocabulary.html');
 

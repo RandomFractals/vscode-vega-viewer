@@ -75,7 +75,7 @@ window.addEventListener('message', event => {
 
 function loadDataSourceList(dataSources, dataSourceSelector) {
   // clear data sources display
-  dataSourceSelector.innerHTML = '<option value="">🔡 data</option>';
+  dataSourceSelector.innerHTML = '<option value="">🔡 Data</option>';
   // load data source uri's
   Object.keys(dataSources).forEach(dataUri => {
     dataSourceSelector.innerHTML += `<option value="${dataUri}">${dataUri}</option>"`;

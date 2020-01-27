@@ -22,13 +22,13 @@
   <body>
     <div id="toolbar">
       <div id="toolbar-right">
-        <select id="data-source-selector" title="view data"
+        <select id="data-source-selector" title="View Data"
           style="max-width: 68px;"
           onChange="showData()">
-          <option value="">🔡 data</option>
+          <option value="">🔡 Data</option>
         </select>
-        <select id="theme-selector" title="change theme" onChange="changeTheme()">
-          <option value="">🌃 theme</option>
+        <select id="theme-selector" title="Change Theme" onChange="changeTheme()">
+          <option value="">🌃 Theme</option>
           <option value="dark">dark</option>
           <option value="excel">excel</option>
           <option value="ggplot2">ggplot2</option>
@@ -38,30 +38,30 @@
           <option value="fivethirtyeight">538</option>
         </select>
         <select id="save-file-type-selector" 
-          title="save graph"
+          title="Save Graph"
           onChange="saveGraph()">
-          <option value="">📥 save</option>
+          <option value="">📥 Save</option>
           <option value=".svg">&lt;/&gt; svg</option>
           <option value=".png">&nbsp;📈 png</option>
         </select>
-        <a title="help" href="#"
+        <a title="Help" href="#"
           style="color: orange;"
           onclick="showHelp()">&nbsp;?&nbsp;</a>
-        <a title="buy coffee" 
+        <a title="Buy Coffee" 
           style="color: orangered;" href="#" 
           onclick="buyCoffee()">&nbsp;☕️&nbsp;</a>          
       </div>
       <div id="toolbar-left">
         <a id="title" 
-          title="open file" href="#" 
+          title="Open File" href="#" 
           onclick="openFile()">loading...</a> | 
         <a id="refresh-data-button" 
-          title="refresh data" href="#"
+          title="Refresh" href="#"
           style="color: orange;"
           onclick="reloadData()">🔃</a>
       </div>
     </div>
-    <div id="message">Loading Vega spec preview...</div>
+    <div id="message">Loading Vega View...</div>
     <div id="vis"></div>
     <script type="text/javascript" src="{scripts}/vega-viewer.js"></script>
   </body>

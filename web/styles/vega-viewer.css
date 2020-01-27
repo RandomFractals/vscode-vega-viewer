@@ -14,14 +14,14 @@ body {
 }
 
 #toolbar-left {
-  width: calc(100% - 260);
+  width: calc(100% - 264);
 }
 
 #toolbar-right {
   position: absolute;
   top: 7px;
   right: 0px;
-  width: 270px;
+  width: 274px;
   height: 32px;
   padding-left: 5px;
 }

@@ -1,0 +1,48 @@
+body {
+  background:#fff;
+  color: #333;
+  margin: 0px;
+  padding: 0px;
+}
+
+#toolbar {
+  border-bottom: 1px solid #999;
+  margin-bottom: 10px;
+  padding: 0px;
+  color: #333;
+}
+
+#toolbar a {
+  color: dodgerblue;
+  font-size: 10pt;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+#title {
+  padding-left: 5px;
+}
+
+h3 {
+  padding: 0px;
+  margin: 5px;
+}
+
+#message {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: red;
+  font-size: 11pt;
+  text-align: center;
+}
+
+/* hide vega embed actions menu */
+.vega-embed {
+  padding-right: 0px !important;
+}
+.vega-embed summary {
+  display: none !important;
+}
+
+#vis {
+  padding: 5px;
+}

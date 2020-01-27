@@ -7,7 +7,7 @@ body {
 
 #toolbar {
   margin: 0px;
-  padding: 5px;
+  padding: 7px;
   color: #333;
   background-color: var(--vscode-editor-background);
   white-space: nowrap;

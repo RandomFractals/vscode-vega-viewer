@@ -44,6 +44,11 @@ body {
   text-align: center;
 }
 
+select {
+  color: var(--vscode-editor-foreground);
+  background-color: var(--vscode-editor-background);
+}
+
 /* hide vega embed actions menu */
 .vega-embed {
   padding-right: 0px !important;

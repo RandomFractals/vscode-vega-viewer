@@ -111,6 +111,12 @@ function preview(spec, theme) {
   return view;
 }
 
+function reloadData() {
+	vscode.postMessage({
+		command: 'refresh'
+	});
+}
+
 function openFile() {
   vscode.postMessage({command: 'openFile'});
 }

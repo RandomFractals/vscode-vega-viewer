@@ -6,10 +6,24 @@ body {
 }
 
 #toolbar {
-  border-bottom: 1px solid #999;
-  margin-bottom: 10px;
-  padding: 0px;
+  margin: 0px;
+  padding: 5px;
   color: #333;
+  background-color: var(--vscode-editor-background);
+  white-space: nowrap;
+}
+
+#toolbar-left {
+  width: calc(100% - 260);
+}
+
+#toolbar-right {
+  position: absolute;
+  top: 7px;
+  right: 0px;
+  width: 270px;
+  height: 32px;
+  padding-left: 5px;
 }
 
 #toolbar a {
@@ -21,11 +35,6 @@ body {
 
 #title {
   padding-left: 5px;
-}
-
-h3 {
-  padding: 0px;
-  margin: 5px;
 }
 
 #message {

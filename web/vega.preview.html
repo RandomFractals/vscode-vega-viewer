@@ -21,7 +21,7 @@
   </head>
   <body>
     <div id="toolbar">
-      <div style="float: right; width: 270px;">
+      <div id="toolbar-right">
         <select id="data-source-selector" title="view data"
           style="max-width: 68px;"
           onChange="showData()">
@@ -44,12 +44,22 @@
           <option value=".svg">&lt;/&gt; svg</option>
           <option value=".png">&nbsp;📈 png</option>
         </select>
-        <a title="help" style="color: black; font-weight: bold" 
-          href="#" onclick="showHelp()">&nbsp;?&nbsp;</a>
-        <a title="buy coffee" style="color: black; font-weight: bold" 
-          href="#" onclick="buyCoffee()">&nbsp;☕️&nbsp;</a>          
+        <a title="help" href="#"
+          style="font-weight: bold"
+          onclick="showHelp()">&nbsp;?&nbsp;</a>
+        <a title="buy coffee" 
+          style="color: orangered;" href="#" 
+          onclick="buyCoffee()">&nbsp;☕️&nbsp;</a>          
       </div>
-      <h3><a id="title" title="open file" href="#" onclick="openFile()">loading...</a></h3>
+      <div id="toolbar-left">
+        <a id="title" 
+          title="open file" href="#" 
+          onclick="openFile()">loading...</a> | 
+        <a id="refresh-data-button" 
+          title="Refresh Data" href="#"
+          style="color: orange;"
+          onclick="reloadData()">🔃</a>
+      </div>
     </div>
     <div id="message">Loading Vega spec preview...</div>
     <div id="vis"></div>

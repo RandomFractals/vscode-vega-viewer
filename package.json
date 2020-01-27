@@ -217,8 +217,8 @@
   "dependencies": {
     "json-stringify-pretty-compact": "^2.0.0",
     "lz-string": "^1.4.4",
-    "vega": "^5.9.0",
+    "vega": "^5.9.1",
     "vega-lite": "^4.0.2",
-    "vega-embed": "^6.2.1"
+    "vega-embed": "^6.2.2"
   }
 }

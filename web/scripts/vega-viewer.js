@@ -121,6 +121,10 @@ function openFile() {
   vscode.postMessage({command: 'openFile'});
 }
 
+function viewOnline() {
+  vscode.postMessage({command: 'viewOnline'});
+}
+
 function showData() {
   const dataUri = dataSourceSelector.value;
   if (dataUri) {

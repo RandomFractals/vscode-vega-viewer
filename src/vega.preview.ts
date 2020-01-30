@@ -195,6 +195,9 @@ export class VegaPreview {
             });
           }
           break;
+        case 'viewOnline':
+          this.viewOnline();
+          break;
         case 'showData':
           this.showData(message.dataUri);
           break;
@@ -519,6 +522,14 @@ export class VegaPreview {
       this._logger.error('getFileData():', `${filePath} doesn't exist`);
     }
     return data;
+  }
+
+  /**
+   * Encodes Vega spec and opens it in browser 
+   * for preview and edits in Vega Editor online.
+   */
+  private viewOnline(): void {
+    // TODO
   }
 
   /**

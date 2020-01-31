@@ -529,7 +529,11 @@ export class VegaPreview {
    * for preview and edits in Vega Editor online.
    */
   private viewOnline(): void {
-    // TODO
+    const vegaSpecType: string = this._fileName.endsWith('.vg.json') ? 'vega' : 'vega-lite';
+    let vegaEditorUrl: string = `https://vega.github.io/editor/#/url/${vegaSpecType}/`;
+    vegaEditorUrl += lzString.compressToEncodedURIComponent(this._content);
+    const vegaEditorUri: Uri = Uri.parse(vegaEditorUrl);
+    commands.executeCommand('vscode.open', vegaEditorUri);
   }
 
   /**

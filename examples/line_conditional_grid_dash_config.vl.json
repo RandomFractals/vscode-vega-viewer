@@ -8,19 +8,15 @@
   ],
   "mark": "line",
   "encoding": {
-    "x": {
-      "field": "date", "type": "temporal",
-      "axis": {
-        "tickCount": 20,
-        "gridDash": {
-          "condition": {
-            "test": {"field": "value", "timeUnit": "monthdate", "equal": {"month": 1, "date": 1}},
-            "value": [1, 0]
-          },
-          "value": [2, 2]
-        }
-      }
-    },
+    "x": {"field": "date", "type": "temporal", "axis": {"tickCount": 20}},
     "y": {"field": "price", "type": "quantitative"}
+  },
+  "config": {
+    "axisX": {
+      "gridDash": {
+        "condition": {"test": {"field": "value", "timeUnit": "monthdate", "equal": {"month": 1, "date": 1}}, "value": [1,0]},
+        "value": [2,2]
+      }
+    }
   }
 }

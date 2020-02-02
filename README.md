@@ -24,7 +24,8 @@ and no `d3` `py` `plotly` || `rstats` required! :)
 - SVG & PNG Graph Export options
 - Over 600 built-in Vega & Vega-Lite Examples
 - [Vega Themes](https://twitter.com/search?q=%23vegaThemes&src=typed_query) Preview
-- Preview Vega specs from online Vega Editor or github gists
+- Load Vega specs from online [Vega Editor](https://vega.github.io/editor) or github gists
+- View and Share Vega(-Lite) spec in online [Vega Editor](https://vega.github.io/editor)
 - Referenced CSV & JSON data display via [Data Preview 🈸](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-data-preview)
 
 ![Vega Viewer Data Preview](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-data-preview.png?raw=true 

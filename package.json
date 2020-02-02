@@ -208,8 +208,8 @@
     "test": "npm run compile && node ./node_modules/vscode/bin/test"
   },
   "devDependencies": {
-    "@types/mocha": "^5.2.7",
-    "@types/node": "^13.5.0",
+    "@types/mocha": "^7.0.1",
+    "@types/node": "^13.7.0",
     "tslint": "^6.0.0",
     "typescript": "^3.7.5",
     "vscode": "^1.1.36"
@@ -218,7 +218,7 @@
     "json-stringify-pretty-compact": "^2.0.0",
     "lz-string": "^1.4.4",
     "vega": "^5.9.1",
-    "vega-lite": "^4.0.2",
+    "vega-lite": "^4.1.1",
     "vega-embed": "^6.2.2"
   }
 }

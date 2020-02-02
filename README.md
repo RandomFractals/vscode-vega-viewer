@@ -76,6 +76,16 @@ to Create & Save new Vega || Vega-Lite document with the corresponding Vega `jso
 ![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-commands.png?raw=true 
  "Vega Viewer VSCode Commands")
 
+# Recommended Extensions
+
+Other extensions Vega Viewer replaces, enhances or supplements for working with data and graphs 📈 in [VSCode](https://code.visualstudio.com/):
+
+| Extension | Description |
+| --- | --- |
+| [Data Preivew 🈸](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-data-preview) | Data Preview 🈸 extension for importing 📤 viewing 🔎 slicing 🔪 dicing 🎲 charting 📊 & exporting 📥 large JSON array/config, YAML, Apache Arrow, Avro & Excel data files |
+| [GistPad 📘](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.gistfs) | VS Code extension for managing and sharing code snippets, notes and interactive samples using GitHub Gists |
+| [SVG Viewer](https://marketplace.visualstudio.com/items?itemName=cssho.vscode-svgviewer) | SVG Viewer for Visual Studio Code |
+
 # Dev Log
 
 See [#VegaViewer 📈 tag on Twitter](https://twitter.com/hashtag/vegaviewer?f=tweets&vertical=default&src=hash) for the latest & greatest updates on this vscode extension & what's in store next.

@@ -1,7 +1,8 @@
 # Change Log
-All notable changes to the "vscode-vega-viewer" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+See [releases](https://github.com/RandomFractals/vscode-vega-viewer/releases)
+for the prior versions information, and all the notable changes to this [Vega Viewer 📈](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-vega-viewer) extension with new feature details and screen pics.
 
-## [Unreleased]
-- Initial release
+## v8.0.0 (2020-02-02)
+
+TODO

@@ -2,7 +2,7 @@
   "name": "vscode-vega-viewer",
   "displayName": "Vega Viewer",
   "description": "VSCode extension for Interactive Preview of Vega & Vega-Lite maps 🗺️ & graphs 📈 ",
-  "version": "8.1.0",
+  "version": "8.2.0",
   "icon": "images/vega-viewer.png",
   "publisher": "RandomFractalsInc",
   "author": "Taras Novak",
@@ -209,7 +209,7 @@
   },
   "devDependencies": {
     "@types/mocha": "^7.0.1",
-    "@types/node": "^13.7.2",
+    "@types/node": "^13.7.4",
     "tslint": "^6.0.0",
     "typescript": "^3.7.5",
     "vscode": "^1.1.36"
@@ -218,7 +218,7 @@
     "json-stringify-pretty-compact": "^2.0.0",
     "lz-string": "^1.4.4",
     "vega": "^5.9.1",
-    "vega-lite": "^4.3.1",
+    "vega-lite": "^4.4.0",
     "vega-embed": "^6.2.2"
   }
 }

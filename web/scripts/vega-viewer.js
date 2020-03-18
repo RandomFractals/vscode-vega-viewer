@@ -62,7 +62,9 @@ window.addEventListener('message', event => {
         spec = JSON.parse(event.data.spec);
         data = event.data.data;
         loadDataSourceList(data, dataSourceSelector);
-        loadSaveOptions(event.data.fileName, saveFileTypeSelector);
+        if (saveFileTypeSelector.options.length === 3) { // initial save options count
+          loadSaveOptions(event.data.fileName, saveFileTypeSelector);
+        }
         view = preview(spec, theme);
       }
       catch (error) {

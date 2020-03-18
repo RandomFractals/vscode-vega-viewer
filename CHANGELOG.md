@@ -3,6 +3,15 @@
 See [releases](https://github.com/RandomFractals/vscode-vega-viewer/releases)
 for the prior versions information, and all the notable changes to this [Vega Viewer 📈](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-vega-viewer) extension with new feature details and screen pics.
 
+## v8.5.0 (2020-03-18)
+
+- [#77](https://github.com/RandomFractals/vscode-vega-viewer/issues/77)
+Update vega-embed library to v6.5.1 for vega.preview webview
+- [#78](https://github.com/RandomFractals/vscode-vega-viewer/issues/78)
+Update vega-lite library and built-in examples to [v4.7.0](https://github.com/vega/vega-lite/releases/tag/v4.7.0)
+- [#79](https://github.com/RandomFractals/vscode-vega-viewer/issues/79)
+Remove multiple vl items from save menu
+
 ## v8.4.0 (2020-03-12)
 
 - [#75](https://github.com/RandomFractals/vscode-vega-viewer/issues/75)

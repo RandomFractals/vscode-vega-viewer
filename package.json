@@ -220,6 +220,6 @@
     "lz-string": "^1.4.4",
     "vega": "^5.10.0",
     "vega-lite": "^4.6.0",
-    "vega-embed": "^6.4.0"
+    "vega-embed": "^6.5.1"
   }
 }

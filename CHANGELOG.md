@@ -3,6 +3,12 @@
 See [releases](https://github.com/RandomFractals/vscode-vega-viewer/releases)
 for the prior versions information, and all the notable changes to this [Vega Viewer 📈](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-vega-viewer) extension with new feature details and screen pics.
 
+## v8.6.0 (2020-03-21)
+
+Update vega-embed library to v6.5.1 for vega.preview webview
+- [#80](https://github.com/RandomFractals/vscode-vega-viewer/issues/80)
+Update vega-lite library and built-in examples to [v4.8.0](https://github.com/vega/vega-lite/releases/tag/v4.8.0)
+
 ## v8.5.0 (2020-03-18)
 
 - [#77](https://github.com/RandomFractals/vscode-vega-viewer/issues/77)

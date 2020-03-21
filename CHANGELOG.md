@@ -5,7 +5,6 @@ for the prior versions information, and all the notable changes to this [Vega Vi
 
 ## v8.6.0 (2020-03-21)
 
-Update vega-embed library to v6.5.1 for vega.preview webview
 - [#80](https://github.com/RandomFractals/vscode-vega-viewer/issues/80)
 Update vega-lite library and built-in examples to [v4.8.0](https://github.com/vega/vega-lite/releases/tag/v4.8.0)
 

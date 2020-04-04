@@ -6,7 +6,9 @@ for the prior versions information, and all the notable changes to this [Vega Vi
 ## v8.7.0 (2020-04-04)
 
 - [#81](https://github.com/RandomFractals/vscode-vega-viewer/issues/81)
-Update vega library to [5.10.1](https://github.com/vega/vega/releases/tag/v5.10.1)
+Update vega library to [v5.10.1](https://github.com/vega/vega/releases/tag/v5.10.1)
+- [#82](https://github.com/RandomFractals/vscode-vega-viewer/issues/82)
+Update vega-lite library to [v4.9.0](https://github.com/vega/vega-lite/releases/tag/v4.9.0)
 
 ## v8.6.0 (2020-03-21)
 

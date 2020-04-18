@@ -130,7 +130,7 @@ export function activate(context: ExtensionContext) {
     previewManager.configure();
   });
 
-  logger.info('activate(): activated! extPath:', context.extensionPath);
+  // logger.info('activate(): activated! extPath:', context.extensionPath);
 } // end of activate()
 
 /**

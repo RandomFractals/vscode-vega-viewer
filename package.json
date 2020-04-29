@@ -219,7 +219,7 @@
     "json-stringify-pretty-compact": "^2.0.0",
     "lz-string": "^1.4.4",
     "vega": "^5.10.1",
-    "vega-lite": "^4.10.4",
+    "vega-lite": "^4.11.0",
     "vega-embed": "^6.6.0"
   }
 }

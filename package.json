@@ -215,6 +215,9 @@
     "typescript": "^3.8.3",
     "vscode": "^1.1.37"
   },
+  "extensionPack": [
+    "vsls-contrib.gistfs"
+  ],
   "dependencies": {
     "json-stringify-pretty-compact": "^2.0.0",
     "lz-string": "^1.4.4",

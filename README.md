@@ -9,7 +9,7 @@
 [Vega Viewer](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-vega-viewer) provides language support & Interactive Preview of [Vega](https://vega.github.io/vega/) & 
 [Vega-Lite](https://vega.github.io/vega-lite/) JSON spec graphs 📈
 
-You can use it in disconnected mode, unlike other online dataViz devTools, to prototype your maps 🗺️ & graphs 📈 on a go, on a ✈️, on a 🚄, on a 🚤, in a 📦 with a 🐐, 
+You can use it in a disconnected mode, unlike other online dataViz devTools, to prototype your maps 🗺️ & graphs 📈 on a go, on a ✈️, on a 🚄, on a 🚤, in a 📦 with a 🐐, 
 and no `d3` `py` `plotly` || `rstats` required! :)
 
 ![Box Plot](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-boxplot.png?raw=true 
@@ -18,14 +18,15 @@ and no `d3` `py` `plotly` || `rstats` required! :)
 
 # Features
 
-- Create Vega Spec JSON documents
-- Vega & Vega-Lite Graphs Preview
+- Create Vega || Vega-Lite JSON `{}` spec documents
+- Vega & Vega-Lite Graphs Preview 📈
 - Local & http(s) data files support
 - SVG & PNG Graph Export options
-- Over 630 searchable built-in [Vega](https://vega.github.io/vega/examples/) & [Vega-Lite Examples](https://vega.github.io/vega-lite/examples/)
+- Over 640 searchable built-in [Vega](https://vega.github.io/vega/examples/) & [Vega-Lite Examples](https://vega.github.io/vega-lite/examples/)
 - [Vega Themes](https://twitter.com/search?q=%23vegaThemes&src=typed_query) Preview
 - Load Vega specs from online [Vega Editor](https://vega.github.io/editor) or github gists
-- View and Share Vega(-Lite) spec in online [Vega Editor](https://vega.github.io/editor)
+- Preview Vega graphs 📈 from ⭐️ Starred Gists, Playgrounds & featured Data Visualizations in [GistPad 📘](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.gistfs)
+- View and Share Vega(-Lite) spec in the online [Vega Editor](https://vega.github.io/editor)
 - Referenced CSV & JSON data display via [Data Preview 🈸](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-data-preview)
 
 ![Vega Viewer Data Preview](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-data-preview.png?raw=true 
@@ -63,18 +64,23 @@ to Create & Save new Vega || Vega-Lite document with the corresponding Vega `jso
 
 ## Example: [Vega Contour Plot Preview](https://vega.github.io/vega/examples/contour-plot/)
 
-![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-contour.png?raw=true 
+![Vega Viewer Plot Example](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-contour.png?raw=true 
  "Vega Viewer Contour Plot Preview")
 
 # Vega Viewer VSCode Contributions
 
-![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-contributions.png?raw=true 
+![Vega Viewer Contributions](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-contributions.png?raw=true 
  "Vega Viewer VSCode Contributions")
 
 # Vega Viewer Commands
 
-![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-commands.png?raw=true 
+![Vega Viewer Commands](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-commands.png?raw=true 
  "Vega Viewer VSCode Commands")
+
+# Vega Viewer GistPad Integration
+
+![Vega Viewer Gistpad Integration](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-gistpad-integration.png?raw=true 
+ "Vega Viewer GistPad Integration")
 
 # Recommended Extensions
 
@@ -85,8 +91,7 @@ Other extensions Vega Viewer replaces, enhances or supplements for working with 
 | [Data Preivew 🈸](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-data-preview) | Data Preview 🈸 extension for importing 📤 viewing 🔎 slicing 🔪 dicing 🎲 charting 📊 & exporting 📥 large JSON array/config, YAML, Apache Arrow, Avro & Excel data files |
 | [GistPad 📘](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.gistfs) | VS Code extension for managing and sharing code snippets, notes and interactive samples using GitHub Gists |
 | [SVG Viewer](https://marketplace.visualstudio.com/items?itemName=cssho.vscode-svgviewer) | SVG Viewer for Visual Studio Code |
-| [Geo Data Viewer 🗺️](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.geo-data-viewer) | 🗺️ Geo Data Viewer w/0 Py 🐍, pyWidgets, pandas 🐼,  @reactjs  ⚛️ required to gen. some snazzy maps 🗺️ with keplerGL ... |
-
+| [Geo Data Viewer 🗺️](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.geo-data-viewer) | Geo Data Viewer w/0 Py 🐍, pyWidgets ⚙️, pandas 🐼, or @reactjs ⚛️ required to gen. some snazzy maps 🗺️ with keplerGL ... |
 
 # Dev Log
 

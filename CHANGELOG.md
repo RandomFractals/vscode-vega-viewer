@@ -3,6 +3,17 @@
 See [releases](https://github.com/RandomFractals/vscode-vega-viewer/releases)
 for the prior versions information, and all the notable changes to this [Vega Viewer 📈](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-vega-viewer) extension with new feature details and screen pics.
 
+## v8.9.0 (2020-04-29)
+
+- [#86](https://github.com/RandomFractals/vscode-vega-viewer/issues/86)
+Update vega library, examples, and dependencies with new ARIA SVG features
+- [#87](https://github.com/RandomFractals/vscode-vega-viewer/issues/87)
+Update vega-lite library and examples to [v.4.11.0](https://github.com/vega/vega-lite/releases)
+- [#88](https://github.com/RandomFractals/vscode-vega-viewer/issues/88)
+Update min vscode engine/types dev dependency to v1.1.37
+- [#89](https://github.com/RandomFractals/vscode-vega-viewer/issues/89)
+Add gistpad install to vega viewer for sharing vega and vega-lite charts via gists
+
 ## v8.8.0 (2020-04-18)
 
 - [#83](https://github.com/RandomFractals/vscode-vega-viewer/issues/83)

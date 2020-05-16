@@ -40,7 +40,9 @@
     "node": ">=10.2.0"
   },
   "categories": [
-    "Programming Languages"
+    "Programming Languages",
+    "Other",
+    "Snippets"
   ],
   "galleryBanner": {
     "color": "#333",

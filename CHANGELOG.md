@@ -13,6 +13,8 @@ Update vega-lite library and examples to [v.4.12.1](https://github.com/vega/vega
 Update vega-embed library to v6.8.0
 - [#94](https://github.com/RandomFractals/vscode-vega-viewer/issues/94)
 Refine vega view filename/title display
+- [#95](https://github.com/RandomFractals/vscode-vega-viewer/issues/95)
+Add Other and Snippets to package.json ext. categories
 
 ## v8.9.0 (2020-04-29)
 

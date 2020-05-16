@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Security-Policy" 
-      content="default-src * vscode-resource: https: 'unsafe-inline' 'unsafe-eval';
-        script-src vscode-resource: blob: data: https: 'unsafe-inline' 'unsafe-eval';
-        style-src vscode-resource: https: 'unsafe-inline';
-        img-src vscode-resource: data: https:;
-        connect-src vscode-resource: blob: data: https: http:;">
+      content="default-src * vscode-resource: vscode-webview-resource: https: 'unsafe-inline' 'unsafe-eval';
+        script-src vscode-resource: vscode-webview-resource: blob: data: https: 'unsafe-inline' 'unsafe-eval';
+        style-src vscode-resource: vscode-webview-resource: https: 'unsafe-inline';
+        img-src vscode-resource: vscode-webview-resource: data: https:;
+        connect-src vscode-resource: vscode-webview-resource: blob: data: https: http:;">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Vega is a declarative JSON format for creating
       and sharing data visualization designs.">

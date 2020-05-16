@@ -118,21 +118,9 @@ export class VegaPreview {
         break;
     }
 
-    // create html template for the webview with scripts path replaced
-    const scriptsPath: string = Uri.file(path.join(this._extensionPath, 'web/scripts'))
-      .with({scheme: 'vscode-resource'}).toString(true);
-    const stylesPath: string = Uri.file(path.join(this._extensionPath, 'web/styles'))     
-      .with({scheme: 'vscode-resource'}).toString(true);
-     
-    this._html = template?.replace({
-      scripts: scriptsPath,
-      styles: stylesPath,
-      fileName: this._fileName.replace('.json', '')
-    });
-
     // initialize webview panel
     this._panel = panel;
-    this.initWebview(viewType, viewColumn);
+    this.initWebview(viewType, viewColumn, template);
     this.configure();
   } // end of constructor()
 
@@ -140,8 +128,9 @@ export class VegaPreview {
    * Initializes vega preview webview panel.
    * @param viewType Preview webview type, i.e. vega.preview or vega.data.preview.
    * @param viewColumn vscode IDE view column to display preview in.
+   * @param template Webview html template.
    */
-  private initWebview(viewType: string, viewColumn: ViewColumn): void {
+  private initWebview(viewType: string, viewColumn: ViewColumn, template: Template): void {
     if (!this._panel) {
       // create new webview panel
       this._panel = window.createWebviewPanel(viewType, this._title, viewColumn, this.getWebviewOptions());
@@ -157,8 +146,21 @@ export class VegaPreview {
           panelIconPath = './images/vega-viewer.svg';
           break;
       }
-      this._panel.iconPath = Uri.file(path.join(this._extensionPath, panelIconPath));
+      this._panel.iconPath = this.webview.asWebviewUri(
+        Uri.file(path.join(this._extensionPath, panelIconPath)));
     }
+
+    // create html template for the webview with scripts path replaced
+    const scriptsPath: string = this.webview.asWebviewUri(
+      Uri.file(path.join(this._extensionPath, 'web/scripts'))).toString(true);
+    const stylesPath: string = this.webview.asWebviewUri(
+      Uri.file(path.join(this._extensionPath, 'web/styles'))).toString(true);
+     
+    this._html = template?.replace({
+      scripts: scriptsPath,
+      styles: stylesPath,
+      fileName: this._fileName.replace('.json', '')
+    });
 
     // dispose preview panel 
     this._panel.onDidDispose(() => {

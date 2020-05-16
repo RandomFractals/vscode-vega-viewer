@@ -44,6 +44,10 @@ body {
   text-align: center;
 }
 
+.label {
+  color: var(--vscode-editor-foreground);
+}
+
 select {
   color: var(--vscode-editor-foreground);
   background-color: var(--vscode-editor-background);

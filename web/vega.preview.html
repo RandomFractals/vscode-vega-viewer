@@ -54,7 +54,10 @@
       <div id="toolbar-left">
         <a id="title" 
           title="Open File" href="#" 
-          onclick="openFile()">loading...</a> | 
+          onclick="openFile()">
+          <span class="label">📈</span>
+          {fileName}
+        </a> | 
         <a id="refresh-data-button" 
           title="Refresh" href="#"
           style="color: orange;"

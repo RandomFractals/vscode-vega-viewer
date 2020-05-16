@@ -58,7 +58,7 @@ window.addEventListener('message', event => {
     case 'refresh':
       try {
         vscode.setState({uri: event.data.uri});
-        title.innerText = event.data.fileName.replace('.json', '');
+        // title.innerText = event.data.fileName.replace('.json', '');
         spec = JSON.parse(event.data.spec);
         data = event.data.data;
         loadDataSourceList(data, dataSourceSelector);

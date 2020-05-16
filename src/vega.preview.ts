@@ -124,8 +124,11 @@ export class VegaPreview {
     const stylesPath: string = Uri.file(path.join(this._extensionPath, 'web/styles'))     
       .with({scheme: 'vscode-resource'}).toString(true);
      
-    this._html = template.content.replace(/\{scripts\}/g, scriptsPath)
-      .replace(/\{styles\}/g, stylesPath);
+    this._html = template?.replace({
+      scripts: scriptsPath,
+      styles: stylesPath,
+      fileName: this._fileName.replace('.json', '')
+    });
 
     // initialize webview panel
     this._panel = panel;

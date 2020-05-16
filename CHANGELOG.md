@@ -3,6 +3,15 @@
 See [releases](https://github.com/RandomFractals/vscode-vega-viewer/releases)
 for the prior versions information, and all the notable changes to this [Vega Viewer 📈](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-vega-viewer) extension with new feature details and screen pics.
 
+## v9.0.0 (2020-05-16)
+
+- [#90](https://github.com/RandomFractals/vscode-vega-viewer/issues/90)
+Use asWebviewUri for loading vega viewer webview resources
+- [#96](https://github.com/RandomFractals/vscode-vega-viewer/issues/96)
+Update minimum required vscode version to 1.38
+- [#97](https://github.com/RandomFractals/vscode-vega-viewer/issues/97)
+Inline vega viewer scripts and styles till vscode webview reload api is fixed
+
 ## v8.10.0 (2020-05-16)
 
 - [#91](https://github.com/RandomFractals/vscode-vega-viewer/issues/91)

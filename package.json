@@ -230,8 +230,8 @@
   "dependencies": {
     "json-stringify-pretty-compact": "^2.0.0",
     "lz-string": "^1.4.4",
-    "vega": "^5.12.0",
+    "vega": "^5.13.0",
     "vega-lite": "^4.12.1",
-    "vega-embed": "^6.8.0"
+    "vega-embed": "^6.10.0"
   }
 }

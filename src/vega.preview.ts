@@ -146,8 +146,7 @@ export class VegaPreview {
           panelIconPath = './images/vega-viewer.svg';
           break;
       }
-      this._panel.iconPath = this.webview.asWebviewUri(
-        Uri.file(path.join(this._extensionPath, panelIconPath)));
+      this._panel.iconPath = Uri.file(path.join(this._extensionPath, panelIconPath));
     }
 
     // create html template for the webview with scripts path replaced

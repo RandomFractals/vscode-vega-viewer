@@ -15,6 +15,8 @@ and no `d3` `py` `plotly` || `rstats` required! :)
 ![Box Plot](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-boxplot.png?raw=true 
  "Vega Viewer Box Plot Preview")
 
+![Advanced Vega Charts](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-advanced-charts.png?raw=true 
+ "Vega Viewer Advanced Charts Multipanel View")
 
 # Features
 

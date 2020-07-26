@@ -12,9 +12,6 @@
 You can use it in a disconnected mode, unlike other online dataViz devTools, to prototype your maps 🗺️ & graphs 📈 on a go, on a ✈️, on a 🚄, on a 🚤, in a 📦 with a 🐐, 
 and no `d3` `py` `plotly` || `rstats` required! :)
 
-![Box Plot](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-boxplot.png?raw=true 
- "Vega Viewer Box Plot Preview")
-
 ![Advanced Vega Charts](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-advanced-charts.png?raw=true 
  "Vega Viewer Advanced Charts Multipanel View")
 

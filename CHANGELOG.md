@@ -3,6 +3,23 @@
 See [releases](https://github.com/RandomFractals/vscode-vega-viewer/releases)
 for the prior versions information, and all the notable changes to this [Vega Viewer 📈](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-vega-viewer) extension with new feature details and screen pics.
 
+## v9.1.0 (2020-07-26)
+
+- [#45](https://github.com/RandomFractals/vscode-vega-viewer/issues/45)
+Update screen pics in docs
+- [#99](https://github.com/RandomFractals/vscode-vega-viewer/issues/99)
+Update vega library and built-in examples to v5.13.0
+- [#100](https://github.com/RandomFractals/vscode-vega-viewer/issues/100)
+Update vaga-lite library and examples to v4.14.0
+- [#101](https://github.com/RandomFractals/vscode-vega-viewer/issues/101)
+Add padding for the vega viewer viz content display
+- [#102](https://github.com/RandomFractals/vscode-vega-viewer/issues/102)
+Add new Google Charts & Urban Institute themes to vega viewer themes dropdown
+- [#103](https://github.com/RandomFractals/vscode-vega-viewer/issues/103)
+Fixed svg icon loading for the vega preview titlebar and files treeview display
+- [#104](https://github.com/RandomFractals/vscode-vega-viewer/issues/104)
+Package and publish summer 2020 update release
+
 ## v9.0.0 (2020-05-16)
 
 - [#90](https://github.com/RandomFractals/vscode-vega-viewer/issues/90)

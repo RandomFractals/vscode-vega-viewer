@@ -3,6 +3,15 @@
 See [releases](https://github.com/RandomFractals/vscode-vega-viewer/releases)
 for the prior versions information, and all the notable changes to this [Vega Viewer 📈](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-vega-viewer) extension with new feature details and screen pics.
 
+## v9.2.0 (2020-08-14)
+
+- [#106](https://github.com/RandomFractals/vscode-vega-viewer/issues/106)
+Update vscode extension dev dependencies to vscode v1.48.0
+- [#107](https://github.com/RandomFractals/vscode-vega-viewer/issues/107)
+Apply vega-lite v4.14.1 patch relase
+- [#108](https://github.com/RandomFractals/vscode-vega-viewer/issues/108)
+Add Data Science, Formatters, and Visualization categories to this extension manifest
+
 ## v9.1.0 (2020-07-26)
 
 - [#45](https://github.com/RandomFractals/vscode-vega-viewer/issues/45)

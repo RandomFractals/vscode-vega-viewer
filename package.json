@@ -40,9 +40,12 @@
     "node": ">=10.2.0"
   },
   "categories": [
+    "Data Science",
+    "Formatters",
     "Programming Languages",
     "Other",
-    "Snippets"
+    "Snippets",
+    "Visualization"
   ],
   "galleryBanner": {
     "color": "#333",

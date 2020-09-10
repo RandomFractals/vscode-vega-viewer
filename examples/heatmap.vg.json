@@ -19,10 +19,12 @@
       "bind": {
         "input": "select",
         "options": [
+          "Turbo",
           "Viridis",
           "Magma",
           "Inferno",
           "Plasma",
+          "Cividis",
           "DarkBlue",
           "DarkGold",
           "DarkGreen",

@@ -14,6 +14,20 @@
         }
       },
       "description": "## Intro\r\n\r\nVega Viewer 📈 is a vscode extension for interactive preview of Vega & Vega-Lite visualization grammars. \r\n\r\nVega is a declarative format for creating, saving, and sharing visualization designs. With Vega, visualizations are described in JSON, and generate interactive views using either HTML5 Canvas or SVG.\r\n\r\nsee: https://vega.github.io/"
+    },
+    {
+      "file": "package.json",
+      "selection": {
+        "start": {
+          "line": 55,
+          "character": 1
+        },
+        "end": {
+          "line": 61,
+          "character": 1
+        }
+      },
+      "description": "## 📈 Commands\r\n\r\nVega Viewer adds custom `vega.*` commands to vscode for creating and viewing vega JSON documents, and built-in vega and vega-lite examples. You can also load remote vega specs from gists or other http(s) sources with `vega.preview.remote` command.\r\n\r\n*Note:* since vega grammar documents are specialized JSON files, they are frequently called **vega specs**."
     }
   ],
   "ref": "master"

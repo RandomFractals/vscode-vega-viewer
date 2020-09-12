@@ -42,6 +42,20 @@
         }
       },
       "description": "## Vega Languages\r\n\r\nVega Viewer extends vscode `json` documents support with new file extensions for vega and vega-lite specs: `.vega`, `.vg`, `.vg.json`, `.vl` and `.vl.json`\r\n\r\n**Note:** Vega-Lite provides a more concise and convenient form to author common visualizations. As Vega-Lite can compile its specifications to Vega specifications, users may use Vega-Lite as the primary visualization tool and, if needed, transition to use the lower-level Vega for advanced use cases.\r\n\r\nsee: https://vega.github.io/vega-lite/"
+    },
+    {
+      "file": "package.json",
+      "selection": {
+        "start": {
+          "line": 148,
+          "character": 1
+        },
+        "end": {
+          "line": 170,
+          "character": 1
+        }
+      },
+      "description": "## Vega JSON Schemas\r\n\r\nVega and Vega-Lite JSON documents use `$schema` for validation & automatic hints display with intelli-sense in vscode.\r\n\r\nsee: http://json-schema.org"
     }
   ],
   "ref": "master"

@@ -27,7 +27,21 @@
           "character": 1
         }
       },
-      "description": "## 📈 Commands\r\n\r\nVega Viewer adds custom `vega.*` commands to vscode for creating and viewing vega JSON documents, and built-in vega and vega-lite examples. You can also load remote vega specs from gists or other http(s) sources with `vega.preview.remote` command.\r\n\r\n*Note:* since vega grammar documents are specialized JSON files, they are frequently called **vega specs**."
+      "description": "## Vega Viewer 📈 Commands\r\n\r\nVega Viewer adds custom `vega.*` commands to vscode for creating and viewing vega JSON documents, and built-in vega and vega-lite examples. You can also load remote vega specs from gists or other http(s) sources with `vega.preview.remote` command.\r\n\r\n**Note:** since vega grammar documents are specialized JSON files, or specifications, they are frequently called **vega specs**."
+    },
+    {
+      "file": "package.json",
+      "selection": {
+        "start": {
+          "line": 138,
+          "character": 1
+        },
+        "end": {
+          "line": 145,
+          "character": 1
+        }
+      },
+      "description": "## Vega Languages\r\n\r\nVega Viewer extends vscode `json` documents support with new file extensions for vega and vega-lite specs: `.vega`, `.vg`, `.vg.json`, `.vl` and `.vl.json`\r\n\r\n**Note:** Vega-Lite provides a more concise and convenient form to author common visualizations. As Vega-Lite can compile its specifications to Vega specifications, users may use Vega-Lite as the primary visualization tool and, if needed, transition to use the lower-level Vega for advanced use cases.\r\n\r\nsee: https://vega.github.io/vega-lite/"
     }
   ],
   "ref": "master"

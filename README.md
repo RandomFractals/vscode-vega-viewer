@@ -21,7 +21,7 @@ and no `d3` `py` `plotly` || `rstats` required! :)
 - Vega & Vega-Lite Graphs Preview 📈
 - Local & http(s) data files support
 - SVG & PNG Graph Export options
-- 650 searchable built-in [Vega](https://vega.github.io/vega/examples/) & [Vega-Lite Examples](https://vega.github.io/vega-lite/examples/)
+- 660 searchable built-in [Vega](https://vega.github.io/vega/examples/) & [Vega-Lite Examples](https://vega.github.io/vega-lite/examples/)
 - [Vega Themes](https://twitter.com/search?q=%23vegaThemes&src=typed_query) Preview
 - Load Vega specs from online [Vega Editor](https://vega.github.io/editor) or github gists
 - Preview Vega graphs 📈 from ⭐️ Starred Gists, Playgrounds & featured Data Visualizations in [GistPad 📘](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.gistfs)

@@ -9,6 +9,8 @@ for the prior versions information, and all the notable changes to this [Vega Vi
 Update vega library and built-in examples to v5.16.1
 - [#116](https://github.com/RandomFractals/vscode-vega-viewer/issues/116)
 Update vega-lite library and examples to v4.16.2
+- [#117](https://github.com/RandomFractals/vscode-vega-viewer/issues/117)
+Update vscode ext. dev dependencies to v4.19.0
 
 ## v9.3.0 (2020-09-12)
 

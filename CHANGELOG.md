@@ -3,6 +3,24 @@
 See [releases](https://github.com/RandomFractals/vscode-vega-viewer/releases)
 for the prior versions information, and all the notable changes to this [Vega Viewer 📈](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-vega-viewer) extension with new feature details and screen pics.
 
+## v9.5.0 (2021-11-21)
+- [#121](https://github.com/RandomFractals/vscode-vega-viewer/issues/121)
+Update vega-lite library and examples to v5.1.1
+- [#125](https://github.com/RandomFractals/vscode-vega-viewer/issues/125)
+Updage vega, vega examples, and core vega dependencies to v5.21.0
+- [#126](https://github.com/RandomFractals/vscode-vega-viewer/issues/126)
+Update vscode, node, ts and other extension dependencies to vscode v1.62.0
+- [#127](https://github.com/RandomFractals/vscode-vega-viewer/issues/127)
+Remove vsc extension quickstart document
+- [#128](https://github.com/RandomFractals/vscode-vega-viewer/issues/128)
+Add Apache 2.0 license
+- [#129](https://github.com/RandomFractals/vscode-vega-viewer/issues/129)
+Move extension images to docs/images
+- [#130](https://github.com/RandomFractals/vscode-vega-viewer/issues/130)
+Adjust Vega Viewer right toolbar width
+- [#131](https://github.com/RandomFractals/vscode-vega-viewer/issues/131)
+Package and publish Vega Viewer v9.5.0 release
+
 ## v9.4.0 (2020-09-24)
 
 - [#115](https://github.com/RandomFractals/vscode-vega-viewer/issues/115)

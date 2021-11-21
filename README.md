@@ -14,7 +14,7 @@
 You can use it in a disconnected mode, unlike other online dataViz devTools, to prototype your maps 🗺️ & graphs 📈 on a go, on a ✈️, on a 🚄, on a 🚤, in a 📦 with a 🐐, 
 and no `d3` `py` `plotly` || `rstats` required! :)
 
-![Advanced Vega Charts](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-advanced-charts.png?raw=true 
+![Advanced Vega Charts](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/docs/images/vega-viewer-advanced-charts.png?raw=true 
  "Vega Viewer Advanced Charts Multipanel View")
 
 # Features
@@ -30,7 +30,7 @@ and no `d3` `py` `plotly` || `rstats` required! :)
 - View and Share Vega(-Lite) spec in the online [Vega Editor](https://vega.github.io/editor)
 - Referenced CSV & JSON data display via [Data Preview 🈸](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-data-preview)
 
-![Vega Viewer Data Preview](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-data-preview.png?raw=true 
+![Vega Viewer Data Preview](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/docs/images/vega-viewer-data-preview.png?raw=true 
  "Vega Viewer Data Preview")
 
 # Settings
@@ -38,7 +38,7 @@ and no `d3` `py` `plotly` || `rstats` required! :)
 Install [Data Preview 🈸](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-data-preview)
 or use built-in `vscode.open` command to preivew referenced CSV & JSON data files for your Vega graphs 📈
 
-![Vega Viewer Data Preview Command Setting](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-data-preview-command-setting.png?raw=true 
+![Vega Viewer Data Preview Command Setting](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/docs/images/vega-viewer-data-preview-command-setting.png?raw=true 
  "Vega Viewer Data Preview Command Setting")
 
 # Usage 
@@ -65,22 +65,22 @@ to Create & Save new Vega || Vega-Lite document with the corresponding Vega `jso
 
 ## Example: [Vega Contour Plot Preview](https://vega.github.io/vega/examples/contour-plot/)
 
-![Vega Viewer Plot Example](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-contour.png?raw=true 
+![Vega Viewer Plot Example](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/docs/images/vega-viewer-contour.png?raw=true 
  "Vega Viewer Contour Plot Preview")
 
 # Vega Viewer VSCode Contributions
 
-![Vega Viewer Contributions](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-contributions.png?raw=true 
+![Vega Viewer Contributions](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/docs/images/vega-viewer-contributions.png?raw=true 
  "Vega Viewer VSCode Contributions")
 
 # Vega Viewer Commands
 
-![Vega Viewer Commands](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-commands.png?raw=true 
+![Vega Viewer Commands](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/docs/images/vega-viewer-commands.png?raw=true 
  "Vega Viewer VSCode Commands")
 
 # Vega Viewer GistPad Integration
 
-![Vega Viewer Gistpad Integration](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vega-viewer-gistpad-integration.png?raw=true 
+![Vega Viewer Gistpad Integration](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/docs/images/vega-viewer-gistpad-integration.png?raw=true 
  "Vega Viewer GistPad Integration")
 
 # Recommended Extensions
@@ -108,7 +108,7 @@ $ code .
 ```
 `F5` to launch Vega Viewer extension VSCode debug session:
 
-![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/images/vscode-vega-viewer-dev-screen.png?raw=true 
+![Alt text](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/docs/images/vscode-vega-viewer-dev-screen.png?raw=true 
  "Vega Viewer Dev Preview")
 
 # Contributions

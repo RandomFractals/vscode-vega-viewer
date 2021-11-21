@@ -2,6 +2,7 @@
 .vscode-test/**
 out/test/**
 src/**
+docs/images/**
 .gitignore
 
 **/tsconfig.json

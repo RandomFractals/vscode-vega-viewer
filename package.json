@@ -234,7 +234,7 @@
     "vsls-contrib.gistfs"
   ],
   "dependencies": {
-    "json-stringify-pretty-compact": "^3.0.0",
+    "json-stringify-pretty-compact": "^4.0.0",
     "lz-string": "^1.4.4"
   }
 }

@@ -17,6 +17,9 @@
   },
   "bugs": "https://github.com/RandomFractals/vscode-vega-viewer/issues",
   "homepage": "https://github.com/RandomFractals/vscode-vega-viewer/README.md",
+  "sponsor": {
+    "url": "https://github.com/sponsors/RandomFractals"
+  },
   "keywords": [
     "vega",
     "vega-lite",

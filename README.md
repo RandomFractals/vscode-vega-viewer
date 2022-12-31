@@ -68,6 +68,8 @@ to Create & Save new Vega || Vega-Lite document with the corresponding Vega `jso
 
 # Vega Viewer VSCode Contributions
 
+Vega Viewer Settings, Commands, Keyboard Shortcuts, Languages, and JSON Validation feature contributions:
+
 ![Vega Viewer Contributions](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/docs/images/vega-viewer-contributions.png?raw=true
  "Vega Viewer VSCode Contributions")
 

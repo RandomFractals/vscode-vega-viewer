@@ -87,10 +87,10 @@ Other extensions Vega Viewer replaces, enhances or supplements for working with 
 
 | Extension | Description |
 | --- | --- |
-| [Data Preivew 🈸](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-data-preview) | Data Preview 🈸 extension for importing 📤 viewing 🔎 slicing 🔪 dicing 🎲 charting 📊 & exporting 📥 large JSON array/config, YAML, Apache Arrow, Avro & Excel data files |
-| [GistPad 📘](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.gistfs) | VS Code extension for managing and sharing code snippets, notes and interactive samples using GitHub Gists |
-| [SVG Viewer](https://marketplace.visualstudio.com/items?itemName=cssho.vscode-svgviewer) | SVG Viewer for Visual Studio Code |
-| [Geo Data Viewer 🗺️](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.geo-data-viewer) | Geo Data Viewer w/0 Py 🐍, pyWidgets ⚙️, pandas 🐼, or @reactjs ⚛️ required to gen. some snazzy maps 🗺️ with keplerGL ... |
+| [Data Preivew 🈸](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-data-preview) | Data Preview 🈸 extension for importing 📤 viewing 🔎 slicing 🔪 dicing 🎲 charting 📊 & exporting 📥 large JSON array/config, YAML, Apache Arrow, Avro & Excel data files. |
+| [GistPad 📘](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.gistfs) | VS Code extension for managing and sharing code snippets, notes and interactive samples using GitHub Gists. |
+| [SVG](https://marketplace.visualstudio.com/items?itemName=jock.svg) | SVG language support extension. |
+| [Geo Data Viewer 🗺️](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.geo-data-viewer) | Geo Data Viewer for generating snazzy maps 🗺️ with keplerGL. |
 
 # Dev Log
 

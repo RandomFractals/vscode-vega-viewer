@@ -73,6 +73,8 @@ to Create & Save new Vega || Vega-Lite document with the corresponding Vega `jso
 
 # Vega Viewer Commands
 
+Vega Viewer provides the following commands to view built-in Vega and Vega-Lite graph examples and create new visualization specification documents:
+
 ![Vega Viewer Commands](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/docs/images/vega-viewer-commands.png?raw=true
  "Vega Viewer VSCode Commands")
 

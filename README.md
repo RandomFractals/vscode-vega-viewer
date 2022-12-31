@@ -114,3 +114,10 @@ $ code .
 Any & all test, code || feedback contributions are welcome.
 
 Open an issue || create a pull request to make Vega Viewer 📈 work better for all. 🤗
+
+# Support
+
+Become a [Fan](https://github.com/sponsors/RandomFractals/sponsorships?tier_id=18883&preview=false) and sponsor our dev efforts on this and other [Random Fractals, Inc.](https://twitter.com/search?q=%23RandomFractalsInc&src=typed_query&f=live) code and [data viz extensions](https://marketplace.visualstudio.com/publishers/RandomFractalsInc) if you find them useful, educational, or enhancing your daily dataViz/dev code workflows:
+
+☕️ https://ko-fi.com/dataPixy
+💖 https://github.com/sponsors/RandomFractals

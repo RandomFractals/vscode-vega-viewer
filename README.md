@@ -42,9 +42,9 @@ or use built-in `vscode.open` command to preivew referenced `CSV` or `JSON` data
 1. Use `Vega: Create Vega Spec` command from `View -> Command Pallette...` menu
 to Create and Save new Vega or Vega-Lite document with the corresponding Vega `json` `$schema` reference.
 
-2. Use `Vega: Preview Vega Graph` command on an open `.vg.json` or `.vl.json` Vega spec document to Preview Graph 📈
+2. Use `Vega: Preview Vega Graph` command on an open `.vg.json` or `.vl.json` Vega spec document to Preview Graph 📈.
 
-3. Save updated Vega spec `json` document to Preview updated Graph 📈
+3. Save updated Vega spec `json` document to Preview updated Graph 📈.
 
 4. Use `Vega: Preview Remote Vega Graph` command to preview URL encoded Vega specs from online
 [Vega Editor](https://vega.github.io/editor) or [github gists](https://gist.github.com/).
@@ -53,7 +53,7 @@ to Create and Save new Vega or Vega-Lite document with the corresponding Vega `j
 
 1. Use `Vega: Examples` command to view the list of built-in [Vega Examples](https://vega.github.io/vega/examples/).
 
-2. Use `Vega: Lite Examples` command to view all the [Vega-Lite Maps 🗺 and Graphs 📈](https://vega.github.io/vega-lite/examples/) created by the Vega dev community 🤗
+2. Use `Vega: Lite Examples` command to view all the [Vega-Lite Maps 🗺 and Graphs 📈](https://vega.github.io/vega-lite/examples/) created by the Vega dev community.
 
 3. Use `Vega: Visual Vocabulary Examples` command to View quick list of [Visual Vocabulary Vega](https://github.com/gramener/visual-vocabulary-vega/) Examples.
 
@@ -117,7 +117,7 @@ $ code .
 
 Any and all test, code and feedback contributions are welcome.
 
-Open an issue or create a pull request to make Vega Viewer 📈 work better for all. 🤗
+Open an issue or create a pull request to make Vega Viewer 📈 work better for all.
 
 # Support
 

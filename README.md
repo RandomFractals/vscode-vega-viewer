@@ -32,7 +32,7 @@ Use Vega Viewer to find and prototype custom data visualizations using Vega maps
 # Settings
 
 Install [Data Preview 🈸](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-data-preview)
-or use built-in `vscode.open` command to preivew referenced `CSV` or `JSON` data files for your Vega graphs 📈
+or use built-in `vscode.open` command to preivew `CSV` and `JSON` data files referenced in your Vega graph 📈 specifications.
 
 ![Vega Viewer Data Preview Command Setting](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/docs/images/vega-viewer-data-preview-command-setting.png?raw=true
  "Vega Viewer Data Preview Command Setting")

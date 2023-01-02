@@ -3,6 +3,36 @@
 See [releases](https://github.com/RandomFractals/vscode-vega-viewer/releases)
 for the prior versions information, and all the notable changes to this [Vega Viewer 📈](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-vega-viewer) extension with new feature details and screen pics.
 
+## v9.6.0 (2023-01-02)
+- [#135](https://github.com/RandomFractals/vscode-vega-viewer/issues/135)
+Update vega library and built-in vega chart examples to v5.22.1
+- [#136](https://github.com/RandomFractals/vscode-vega-viewer/issues/136)
+Update vega-lite library and built-in vega-lite chart examples to v5.6.1-next.0
+- [#137](https://github.com/RandomFractals/vscode-vega-viewer/issues/137)
+Review and merge extended vega map projections PR
+- [#138](https://github.com/RandomFractals/vscode-vega-viewer/issues/138)
+Update vscode, node, ts and other extension dev dependencies to the latest vscode v1.74.x
+- [#139](https://github.com/RandomFractals/vscode-vega-viewer/issues/139)
+Add extension sponsoring config
+- [#141](https://github.com/RandomFractals/vscode-vega-viewer/issues/141)
+Add Install from local .vsix instructions to docs
+- [#143](https://github.com/RandomFractals/vscode-vega-viewer/issues/143)
+Use shields.io for version, installs, and downloads badges in docs
+- [#144](https://github.com/RandomFractals/vscode-vega-viewer/issues/144)
+Update json stringify compact library to v4.0.0
+- [#145](https://github.com/RandomFractals/vscode-vega-viewer/issues/145)
+Update vega-embed.min files in /web folder to v6.21.0
+- [#146](https://github.com/RandomFractals/vscode-vega-viewer/issues/146)
+Replace SVG Viewer in Recommanded Extensions section in docs
+- [#147](https://github.com/RandomFractals/vscode-vega-viewer/issues/147)
+Add new Support/Sponsor section to docs
+- [#148](https://github.com/RandomFractals/vscode-vega-viewer/issues/148)
+Refine documentation sections in README.md
+- [#149](https://github.com/RandomFractals/vscode-vega-viewer/issues/149)
+Use open workspace folder to save exported svg, png, and vega files
+- [#150](https://github.com/RandomFractals/vscode-vega-viewer/issues/150)
+Package and publish Vega Viewer v9.6.0 release
+
 ## v9.5.0 (2021-11-21)
 - [#121](https://github.com/RandomFractals/vscode-vega-viewer/issues/121)
 Update vega-lite library and examples to v5.1.1

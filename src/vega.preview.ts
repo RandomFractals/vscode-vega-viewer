@@ -1,14 +1,14 @@
 'use strict';
-import { 
-  workspace, 
-  window, 
-  Disposable, 
-  Uri, 
-  ViewColumn, 
-  WorkspaceFolder, 
+import {
+  workspace,
+  window,
+  Disposable,
+  Uri,
+  ViewColumn,
+  WorkspaceFolder,
   Webview,
-  WebviewPanel, 
-  WebviewPanelOnDidChangeViewStateEvent, 
+  WebviewPanel,
+  WebviewPanelOnDidChangeViewStateEvent,
   WebviewPanelSerializer,
   commands
 } from 'vscode';
@@ -28,7 +28,7 @@ import {Template} from './template.manager';
 export class VegaPreviewSerializer implements WebviewPanelSerializer {
 
   private _logger: Logger;
-  
+
   /**
    * Creates new webview serializer.
    * @param viewType Web view type.
@@ -49,10 +49,10 @@ export class VegaPreviewSerializer implements WebviewPanelSerializer {
     previewManager.add(
       new VegaPreview(
         this.viewType,
-        this.extensionPath, 
+        this.extensionPath,
         Uri.parse(state.uri),
-        webviewPanel.viewColumn, 
-        this.template, 
+        webviewPanel.viewColumn,
+        this.template,
         webviewPanel
     ));
   }
@@ -62,7 +62,7 @@ export class VegaPreviewSerializer implements WebviewPanelSerializer {
  * Main vega preview webview implementation for this vscode extension.
  */
 export class VegaPreview {
-  
+
   protected _disposables: Disposable[] = [];
   private _extensionPath: string;
   private _uri: Uri;
@@ -87,10 +87,10 @@ export class VegaPreview {
    */
   constructor(
     viewType: string,
-    extensionPath: string, 
-    uri: Uri, 
-    viewColumn: ViewColumn, 
-    template: Template, 
+    extensionPath: string,
+    uri: Uri,
+    viewColumn: ViewColumn,
+    template: Template,
     panel?: WebviewPanel) {
 
     // save ext path, document uri, and create prview uri
@@ -112,7 +112,7 @@ export class VegaPreview {
         break;
       case 'vega.visual.vocabulary':
         this._title = 'Visual Vocabulary';
-        break;  
+        break;
       default: // vega.help
         this._title = 'Vega Help';
         break;
@@ -141,7 +141,7 @@ export class VegaPreview {
           break;
         case 'vega.visual.vocabulary':
           panelIconPath = './images/visual-vocabulary.svg';
-          break;  
+          break;
         default: // vega.help, etc.
           panelIconPath = './images/vega-viewer.svg';
           break;
@@ -154,14 +154,14 @@ export class VegaPreview {
       Uri.file(path.join(this._extensionPath, 'web/scripts'))).toString(true);
     const stylesPath: string = this.webview.asWebviewUri(
       Uri.file(path.join(this._extensionPath, 'web/styles'))).toString(true);
-     
+
     this._html = template?.replace({
       scripts: scriptsPath,
       styles: stylesPath,
       fileName: this._fileName.replace('.json', '')
     });
 
-    // dispose preview panel 
+    // dispose preview panel
     this._panel.onDidDispose(() => {
       this.dispose();
     }, null, this._disposables);
@@ -191,7 +191,7 @@ export class VegaPreview {
           if (this._url.startsWith('https://')) {
             // open remote vega spec in browser
             commands.executeCommand('vscode.open', this._uri);
-          } 
+          }
           else {
             // open vega spec json in text editor
             workspace.openTextDocument(this._uri).then(document => {
@@ -212,7 +212,7 @@ export class VegaPreview {
         case 'buyCoffee':
           const buyCoffeeUri: Uri = Uri.parse('https://ko-fi.com/datapixy');
           commands.executeCommand('vscode.open', buyCoffeeUri);
-          break;  
+          break;
       }
     }, null, this._disposables);
   } // end of initWebview()
@@ -270,12 +270,12 @@ export class VegaPreview {
     if (dataUrl.startsWith('http://') || dataUrl.startsWith('https://')) {
       dataUri = Uri.parse(dataUrl);
     }
-    else { 
+    else {
       // join with vega spec file path for reletive data file loading
       dataUri = Uri.file(path.join(path.dirname(this._uri.fsPath), dataUrl));
     }
     this._logger.info(`showData(): ${this.dataPreviewCommand}`, dataUri.toString(true));
-    
+
     // execute requested data preview command
     let viewDataCommand: string = 'vscode.open'; // default
     commands.getCommands().then(availableCommands => {
@@ -334,7 +334,7 @@ export class VegaPreview {
         else if (description !== undefined) {
           // use truncated description for filename title
           this._fileName = `${description.substr(0, 100)}.${fileType}`;
-        } 
+        }
         else {
           this._fileName = `Unititled.${fileType}`;
         }
@@ -405,7 +405,7 @@ export class VegaPreview {
       }
     };
     https.get(requestOptions, (response) => {
-      response.setEncoding('utf8');      
+      response.setEncoding('utf8');
       let data: string = '';
       response.on('data', (chunk) => {
         data += chunk;
@@ -415,8 +415,8 @@ export class VegaPreview {
         const gist: any = JSON.parse(data);
 
         // get vega files
-        const vegaFiles: Array<any> = Object.keys(gist.files).filter(fileName => 
-          (fileName.endsWith('.vg.json') || fileName.endsWith('.vl.json')));          
+        const vegaFiles: Array<any> = Object.keys(gist.files).filter(fileName =>
+          (fileName.endsWith('.vg.json') || fileName.endsWith('.vl.json')));
         this._logger.debug('loadVegaGist(): Vega files', vegaFiles);
 
         if (vegaFiles.length > 0) {
@@ -467,9 +467,9 @@ export class VegaPreview {
     });
     return dataFiles;
   }
-  
+
   /**
-   * Recursively extracts data urls from the specified vega json doc spec 
+   * Recursively extracts data urls from the specified vega json doc spec
    * or knowwn nested data elements for loading local data content.
    * @param spec Vega json doc spec root or nested data references to extract.
    */
@@ -529,7 +529,7 @@ export class VegaPreview {
   }
 
   /**
-   * Encodes Vega spec and opens it in browser 
+   * Encodes Vega spec and opens it in browser
    * for preview and edits in Vega Editor online.
    */
   private viewOnline(): void {
@@ -545,9 +545,9 @@ export class VegaPreview {
    * @param svg Svg document export to save.
    */
   private async exportSvg(svg: string): Promise<void> {
-    const svgFilePath: string = this.getFilePath().replace('.json', '');
+    const svgFilePath: string = this.getSaveFilePath().replace('.json', '');
     const svgFileUri: Uri = await window.showSaveDialog({
-      defaultUri: Uri.parse(svgFilePath).with({scheme: 'file'}),
+      defaultUri: Uri.file(svgFilePath),
       filters: {'SVG': ['svg']}
     });
     if (svgFileUri) {
@@ -568,9 +568,9 @@ export class VegaPreview {
    */
   private async exportPng(imageData: string): Promise<void> {
     const base64: string = imageData.replace('data:image/png;base64,', '');
-    const pngFilePath: string = this.getFilePath().replace('.json', '');
+    const pngFilePath: string = this.getSaveFilePath().replace('.json', '');
     const pngFileUri: Uri = await window.showSaveDialog({
-      defaultUri: Uri.parse(pngFilePath).with({scheme: 'file'}),
+      defaultUri: Uri.file(pngFilePath),
       filters: {'PNG': ['png']}
     });
     if (pngFileUri) {
@@ -590,9 +590,9 @@ export class VegaPreview {
    * @param vegaSpec Vega spec json to save.
    */
   private async saveVegaSpec(vegaSpec: any): Promise<void> {
-    const specFilePath: string = this.getFilePath();
+    const specFilePath: string = this.getSaveFilePath();
     const specFileUri: Uri = await window.showSaveDialog({
-      defaultUri: Uri.parse(specFilePath).with({scheme: 'file'}),
+      defaultUri: Uri.file(specFilePath),
       filters: {'JSON': ['json']}
     });
     if (specFileUri) {
@@ -614,8 +614,12 @@ export class VegaPreview {
   /**
    * Creates local file path for saving json and image files.
    */
-  private getFilePath() {
+  private getSaveFilePath() {
     let filePath: string = this._uri.fsPath;
+    if (workspace.workspaceFolders && workspace.workspaceFolders.length >= 1) {
+      const workspacePath: string = workspace.workspaceFolders[0].uri.fsPath;
+      filePath = path.join(workspacePath, this._fileName);
+    }
     if (this._url.startsWith('https://')) {
       filePath = this._fileName;
     }
@@ -649,7 +653,7 @@ export class VegaPreview {
   get webview(): Webview {
     return this._panel.webview;
   }
-    
+
   /**
    * Gets the source vega spec json doc uri for this preview.
    */
@@ -658,12 +662,12 @@ export class VegaPreview {
   }
 
   /**
-   * Gets the preview uri to load on commands triggers or vscode IDE reload. 
+   * Gets the preview uri to load on commands triggers or vscode IDE reload.
    */
   get previewUri(): Uri {
     return this._previewUri;
   }
-  
+
   /**
    * Gets the html content to load for this preview.
    */

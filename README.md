@@ -29,6 +29,14 @@ Use Vega Viewer to find and prototype custom data visualizations using Vega maps
 ![Vega Viewer Data Preview](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/docs/images/vega-viewer-data-preview.png?raw=true
  "Vega Viewer Data Preview")
 
+# Installation
+
+Install [Vega Viewer](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-vega-viewer) 📈 from VSCode Extensions tab (`Ctrl+Shift+X`) by searching for `Vega`, or directly from [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-vega-viewer) link in your browser.
+
+Users of [VSCodium](https://vscodium.com), [Azure Data Studio](https://github.com/microsoft/azuredatastudio), and other VSCode-based IDEs can install Vega Viewer using `.vsix` extension package attached in `Assets` section from published [releases](https://github.com/RandomFractals/vscode-vega-viewer/releases) of this extension on github. Follow [install from .vsix](https://code.visualstudio.com/docs/editor/extension-marketplace#_install-from-a-vsix) instructions in your VSCode extensions compatible IDE or online container service to install it.
+
+**Note:**  VSCodium and other VSCode extension compatible IDE flavors are not officially supported as they require additional testing in those IDE variants.
+
 # Settings
 
 Install [Data Preview 🈸](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-data-preview)

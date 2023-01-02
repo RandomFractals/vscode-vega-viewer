@@ -7,10 +7,8 @@
   <img height='24' style='border:0px;height:20px;' src='https://az743702.vo.msecnd.net/cdn/kofi3.png?v=2' alt='https://ko-fi.com/dataPixy' /></a>
 
 [Vega Viewer](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-vega-viewer) provides language support and Interactive Preview of [Vega](https://vega.github.io/vega/) and
-[Vega-Lite](https://vega.github.io/vega-lite/) `JSON` specification graphs 📈.
-
-You can use it in a disconnected mode unlike other online dataViz devTools to prototype your maps 🗺️ and graphs 📈 on a go, on a ✈️, on a 🚄, on a 🚤, in a 📦 with a 🐐,
-and no `d3`, `py`, `plotly` or `rstats` required! 😊
+[Vega-Lite](https://vega.github.io/vega-lite/) `JSON` specification graphs.
+Use Vega Viewer to find and prototype custom data visualizations using Vega maps 🗺️ and graphs 📈.
 
 ![Advanced Vega Charts](https://github.com/RandomFractals/vscode-vega-viewer/blob/master/docs/images/vega-viewer-advanced-charts.png?raw=true
  "Vega Viewer Advanced Charts Multipanel View")
@@ -24,7 +22,7 @@ and no `d3`, `py`, `plotly` or `rstats` required! 😊
 - 724 searchable built-in [Vega](https://vega.github.io/vega/examples/) and [Vega-Lite Examples](https://vega.github.io/vega-lite/examples/)
 - [Vega Themes](https://twitter.com/search?q=%23vegaThemes&src=typed_query) Preview
 - Load Vega specs from online [Vega Editor](https://vega.github.io/editor) or github gists
-- Preview Vega graphs 📈 from ⭐️ Starred Gists, Playgrounds & featured Data Visualizations in [GistPad 📘](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.gistfs)
+- Preview Vega graphs 📈 from starred gists, playgrounds, and data visualizations in [GistPad 📘](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.gistfs)
 - View and Share Vega(-Lite) spec in the online [Vega Editor](https://vega.github.io/editor)
 - Referenced `CSV` and `JSON` data display via [Data Preview 🈸](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.vscode-data-preview)
 
